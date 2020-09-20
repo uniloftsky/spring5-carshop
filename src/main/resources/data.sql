@@ -28,12 +28,12 @@ INSERT INTO car (engine_id, car_type_id, brand_name, model_name, body_name, colo
             VALUES (3, 1, 'BMW', '518i', 'E34', 'black', '2250', '50');
 
 -- Car buys
-INSERT INTO buy_car (car_id, customer_id, date, count) VALUES (1, 1, '20-09-20', 1);
-INSERT INTO buy_car (car_id, customer_id, date, count) VALUES (3, 2, '13-07-20', 1);
-INSERT INTO buy_car (car_id, customer_id, date, count) VALUES (2, 3, '09-12-18', 1);
+INSERT INTO buy_car (car_id, customer_id, date, count) VALUES (1, 1, '2020-09-20', 1);
+INSERT INTO buy_car (car_id, customer_id, date, count) VALUES (3, 2, '2020-07-13', 1);
+INSERT INTO buy_car (car_id, customer_id, date, count) VALUES (2, 3, '2018-12-09', 1);
 
 -- Car tests
-INSERT INTO test_car (car_id, customer_id, date, count) VALUES (1, 3, '28-05-17', 1);
-INSERT INTO test_car (car_id, customer_id, date, count) VALUES (2, 3, '05-06-19', 1);
-INSERT INTO test_car (car_id, customer_id, date, count) VALUES (1, 3, '30-10-16', 1);
+INSERT INTO test_car (car_id, customer_id, date, count) VALUES (1, 3, '2017-05-28', 1);
+INSERT INTO test_car (car_id, customer_id, date, count) VALUES (2, 3, '2019-06-05', 1);
+INSERT INTO test_car (car_id, customer_id, date, count) VALUES (1, 3, '2016-10-30', 1);
 

@@ -1,12 +1,8 @@
 package uniloft.springframework.spring5carshop.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @Entity
 public class TestCar extends BaseEntity {
@@ -17,7 +13,6 @@ public class TestCar extends BaseEntity {
     @ManyToOne
     private Customer customer;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;
     private int count;
 
