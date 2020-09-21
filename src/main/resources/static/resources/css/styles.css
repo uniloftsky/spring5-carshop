@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.25rem;
+    background-color: yellow;
+}
+
+/* navigation */
+
+nav ul {
+    padding: 0;
+    display: flex;
+    list-style: none;
+}

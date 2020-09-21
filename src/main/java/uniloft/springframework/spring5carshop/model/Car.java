@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,8 +26,6 @@ public class Car extends BaseEntity {
     private String modelName;
     private String bodyName;
     private String color;
-    private BigDecimal buyPrice;
-    private BigDecimal testPrice;
 
     @Lob
     private Byte[] image;
@@ -79,22 +76,6 @@ public class Car extends BaseEntity {
 
     public void setColor(String color) {
         this.color = color;
-    }
-
-    public BigDecimal getBuyPrice() {
-        return buyPrice;
-    }
-
-    public void setBuyPrice(BigDecimal buyPrice) {
-        this.buyPrice = buyPrice;
-    }
-
-    public BigDecimal getTestPrice() {
-        return testPrice;
-    }
-
-    public void setTestPrice(BigDecimal testPrice) {
-        this.testPrice = testPrice;
     }
 
     public Byte[] getImage() {

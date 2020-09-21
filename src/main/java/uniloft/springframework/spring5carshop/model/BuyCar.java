@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -18,6 +19,7 @@ public class BuyCar extends BaseEntity {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;
     private int count;
+    private BigDecimal price;
 
     public Car getCar() {
         return car;
@@ -49,5 +51,13 @@ public class BuyCar extends BaseEntity {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }
