@@ -22,6 +22,17 @@
     </header>
     <main>
 
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+            <tr th:each="type : ${carTypes}">
+                <td th:text="${type.id}">1</td>
+                <td th:text="${type.typeName}">Седан</td>
+            </tr>
+        </table>
+
     </main>
     <footer>
 

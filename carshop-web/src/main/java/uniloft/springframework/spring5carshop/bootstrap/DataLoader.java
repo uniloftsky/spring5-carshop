@@ -2,10 +2,10 @@ package uniloft.springframework.spring5carshop.bootstrap;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import uniloft.springframework.spring5carshop.services.CarRepository;
-import uniloft.springframework.spring5carshop.services.CarTypeRepository;
-import uniloft.springframework.spring5carshop.services.EngineRepository;
-import uniloft.springframework.spring5carshop.services.TestCarRepository;
+import uniloft.springframework.spring5carshop.services.repositories.CarRepository;
+import uniloft.springframework.spring5carshop.services.repositories.CarTypeRepository;
+import uniloft.springframework.spring5carshop.services.repositories.EngineRepository;
+import uniloft.springframework.spring5carshop.services.repositories.TestCarRepository;
 
 @Component
 public class DataLoader implements CommandLineRunner {
