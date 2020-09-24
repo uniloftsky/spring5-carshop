@@ -6,9 +6,6 @@ import uniloft.springframework.spring5carshop.model.enums.EngineType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.OneToMany;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Engine extends BaseEntity {
