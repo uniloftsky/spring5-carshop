@@ -7,7 +7,6 @@
 body {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 1.25rem;
-    background-color: yellow;
 }
 
 /* navigation */
@@ -16,4 +15,72 @@ nav ul {
     padding: 0;
     display: flex;
     list-style: none;
+    justify-content: space-between;
+    width: 50%;
+    margin: 0 auto;
+}
+
+nav li {
+    padding: 0 .5em;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+/*
+==================
+Layout
+==================
+ */
+
+img {
+    display: block;
+}
+
+.wrap {
+    max-width: 978px;
+    width: 98%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #323232;
+    padding: .75em 0;
+}
+
+.top-bar, .top-bar-section, .top-bar-inner {
+    display: flex;
+}
+
+.top-bar {
+    justify-content: space-between;
+    color: white;
+    font-size: .9rem;
+}
+
+.top-bar-inner {
+    align-items: center;
+    justify-content: flex-start;
+    margin-right: 1em;
+}
+
+.top-bar-icon {
+    width: 15px;
+    filter: invert(2);
+    margin-right: .5em;
+}
+
+.logo-block {
+    display: flex;
+    justify-content: center;
+    padding: 3em 0;
+}
+
+.logo-img {
+    width: 20%;
 }

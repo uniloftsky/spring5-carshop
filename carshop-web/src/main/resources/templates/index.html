@@ -2,40 +2,59 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap" rel="stylesheet">
-    <link th:href="@{../../../../../src/main/resources/static/resources/css/styles.css}" href="../../../../../src/main/resources/static/resources/css/styles.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap"
+          rel="stylesheet">
+    <link th:href="@{resources/css/styles.css}"
+          href="../static/resources/css/styles.css" rel="stylesheet" type="text/css">
     <title>UniCar - Автосалон</title>
 </head>
 <body>
-    <header>
+<header>
+    <div class="wrap">
+        <section class="top-bar">
+            <section class="top-bar-section">
+                <div class="top-bar-inner">
+                    <img class="top-bar-icon" src="../static/resources/images/icons/email.png"
+                         th:src="@{resources/images/icons/email.png}">
+                    <p class="top-bar-section-text">uniloftsky@gmail.com</p>
+                </div>
+                <div class="top-bar-inner">
+                    <img class="top-bar-icon" src="../static/resources/images/icons/four-oclock.png"
+                         th:src="@{resources/images/icons/four-oclock.png}">
+                    <p class="top-bar-section-text" th:text="${currentDate}">20.12.2002 02:00 AM</p>
+                </div>
+            </section>
+            <section class="top-bar-section">
+                <div class="top-bar-inner">
+                    <img class="top-bar-icon" src="../static/resources/images/icons/phone-call.png"
+                         th:src="@{resources/images/icons/phone-call.png}">
+                    <p class="top-bar-section-text">(097)127-93-32</p>
+                </div>
+            </section>
+        </section>
+    </div>
+</header>
+<main>
+    <div class="wrap">
+
+        <section class="logo-block">
+            <img class="logo-img" src="../static/resources/images/logo.png" th:src="@{resources/images/logo.png}">
+        </section>
+
         <nav>
             <ul>
-                <li>Головна</li>
-                <li>Автомобілі</li>
-                <li>Список операцій</li>
-                <li>Про нас</li>
+                <li><a href="#">Головна</a></li>
+                <li><a href="#">Купити авто</a></li>
+                <li><a href="#">Тест-драйв авто</a></li>
+                <li><a href="#">Про нас</a></li>
             </ul>
         </nav>
-        <div>
-            <p>Авторизуватись</p>
-        </div>
-    </header>
-    <main>
+        
+    </div>
+</main>
+<footer>
 
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-            </tr>
-            <tr th:each="type : ${carTypes}">
-                <td th:text="${type.id}">1</td>
-                <td th:text="${type.typeName}">Седан</td>
-            </tr>
-        </table>
-
-    </main>
-    <footer>
-
-    </footer>
+</footer>
 </body>
 </html>
