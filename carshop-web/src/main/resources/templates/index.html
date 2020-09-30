@@ -130,7 +130,7 @@
 
         <section class="intro-section">
             <div class="intro-img-block">
-                <img class="intro-img" src="../static/resources/images/car.jpg">
+                <img class="intro-img" src="../static/resources/images/car.jpg" th:src="@{resources/images/car.jpg}">
             </div>
             <div class="intro-content">
                 <h4 class="intro-content-title">Find your dream car</h4>
@@ -141,7 +141,7 @@
             </div>
         </section>
     </div>
-    <section class="parallax-window find_car-section" data-parallax="scroll" data-image-src="../static/resources/images/background-car.jpg">
+    <section class="parallax-window find_car-section" data-parallax="scroll" data-image-src="../static/resources/images/background-car.jpg" th:data-image-src="@{resources/images/background-car.jpg}">
 
     </section>
 </main>
@@ -151,7 +151,7 @@
 
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script type="text/javascript" src="../static/resources/js/parallax.js"></script>
+<script type="text/javascript" src="../static/resources/js/parallax.js" th:src="@{resources/js/parallax.js}"></script>
 <script>
     'use strict';
     var multiItemSlider = (function () {
