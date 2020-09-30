@@ -34,7 +34,7 @@ nav a {
 }
 
 nav a:hover {
-    color: red;
+    color: #DB2D2E;
 }
 
 /*
@@ -219,11 +219,16 @@ Slider
 }
 
 .feature:hover {
-    background: red;
-    height: 250px;
+    background: #DB2D2E;
+    padding-bottom: 1em;
+    margin-bottom: -1em;
     color: white;
 }
 
 .features-section .feature:nth-child(2n) {
+    border-left: none;
+}
+
+.features-section .feature:nth-child(3) {
     border-left: none;
 }

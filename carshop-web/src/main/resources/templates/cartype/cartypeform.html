@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap"
+          rel="stylesheet">
+    <link th:href="@{resources/css/styles.css}"
+          href="../../static/resources/css/styles.css" rel="stylesheet" type="text/css">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:object="${cartype}" th:action="@{/cartype}" th:method="POST">
+    <input type="hidden" th:field="*{id}">
+    <input type="text" th:field="*{typeName}">
+    <input type="submit">
+</form>
+
+</body>
+</html>

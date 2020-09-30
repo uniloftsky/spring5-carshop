@@ -6,6 +6,8 @@ import java.util.Set;
 
 public interface CarTypeService {
 
-    public Set<CarType> getCarTypes();
+    Set<CarType> getCarTypes();
+    CarType saveOrUpdate(CarType carType);
+    CarType findById(Long id);
 
 }
