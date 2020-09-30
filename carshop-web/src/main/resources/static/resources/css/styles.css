@@ -7,6 +7,7 @@
 body {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 1.25rem;
+    color: #363636;
 }
 
 /* navigation */
@@ -48,7 +49,7 @@ img {
 }
 
 .wrap {
-    max-width: 978px;
+    max-width: 1150px;
     width: 98%;
     margin: 0 auto;
 }
@@ -56,6 +57,10 @@ img {
 header {
     background-color: #323232;
     padding: .75em 0;
+}
+
+footer {
+    margin-top: 5em;
 }
 
 .top-bar, .top-bar-section, .top-bar-inner {
@@ -207,6 +212,7 @@ Slider
 .features-section {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 5em;
 }
 
 .feature {
@@ -216,13 +222,22 @@ Slider
     width: 25%;
     text-align: center;
     transition: .5s;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 1.25em 0;
 }
 
 .feature:hover {
     background: #DB2D2E;
-    padding-bottom: 1em;
-    margin-bottom: -1em;
+    min-height: 250px;
+    margin-bottom: -2.5em;
     color: white;
+}
+
+.feature p {
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
 .features-section .feature:nth-child(2n) {
@@ -231,4 +246,77 @@ Slider
 
 .features-section .feature:nth-child(3) {
     border-left: none;
+}
+
+.feature-icon i {
+    display: inline-block;
+    font-size: 2rem;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+    width: 85px;
+    height: 85px;
+    text-align: center;
+    line-height: 85px;
+}
+
+.intro-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.intro-img-block, .intro-content {
+    width: 48%;
+}
+
+.intro-img {
+    object-fit: cover;
+    width: 100%;
+    height: 250px;
+    filter: ;
+}
+
+.intro-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.intro-content-title {
+    font-size: 1.75rem;
+    text-transform: uppercase;
+    margin-top: -.25em;
+}
+
+.intro-content-subtitle {
+    margin-top: .25em;
+}
+
+.intro-content-main {
+    margin-top: auto;
+    font-style: italic;
+}
+
+.car_search-section {
+    margin-top: 3.5em;
+    min-height: 500px;
+    background-color: red;
+}
+
+/*
+==================
+Parallax
+==================
+*/
+
+.parallax-window {
+    background: transparent;
+    color: #fff;
+    padding: 5em 2em;
+    text-shadow: 0px 0px 15px black;
+}
+
+/*=========================*/
+
+.find_car-section {
+    margin-top: 3.5em;
+    min-height: 700px;
 }
