@@ -3,7 +3,7 @@
     <parent>
         <artifactId>spring5-carshop</artifactId>
         <groupId>uniloft.springframework</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -36,6 +36,6 @@
 
 
   <scm>
-    <tag>carshop-data-0.0.1</tag>
+    <tag>spring5-carshop-0.0.1</tag>
   </scm>
 </project>

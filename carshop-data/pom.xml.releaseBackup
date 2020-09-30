@@ -8,19 +8,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>carshop-data</artifactId>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>11</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
     <properties>
         <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
@@ -47,4 +34,8 @@
         </dependency>
     </dependencies>
 
+
+  <scm>
+    <tag>carshop-data-0.0.1</tag>
+  </scm>
 </project>
