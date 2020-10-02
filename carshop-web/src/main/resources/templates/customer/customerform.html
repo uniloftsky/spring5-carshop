@@ -7,6 +7,7 @@
           rel="stylesheet">
     <link th:href="@{/resources/css/styles.css}"
           href="../../static/resources/css/styles.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="img/favicon.png" th:href="@{/resources/images/favicon.jpg}" type="img/jpg">
     <title>Title</title>
 </head>
 <body>
@@ -24,7 +25,8 @@
     <input type="submit" value="Підтвердити">
 </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script th:src="@{/resources/js/jquery.maskedinput.min.js}" src="../../static/resources/js/jquery.maskedinput.min.js"></script>
+<script th:src="@{/resources/js/jquery.maskedinput.min.js}"
+        src="../../static/resources/js/jquery.maskedinput.min.js"></script>
 <script>
     $(function () {
         $("#phone").mask("+38(999) 999-9999");

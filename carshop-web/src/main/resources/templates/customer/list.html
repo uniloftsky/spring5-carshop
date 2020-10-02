@@ -7,18 +7,19 @@
           rel="stylesheet">
     <link th:href="@{resources/css/styles.css}"
           href="../../static/resources/css/styles.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="img/favicon.png" th:href="@{/resources/images/favicon.jpg}" type="img/jpg">
     <title>Title</title>
 </head>
 <body>
-    <section>
-        <div th:each="customer : ${customers}">
-            <p th:text="${customer.firstName} + ' ' + ${customer.lastName}"></p>
-            <a href="#" th:href="@{'customers/' + ${customer.id} + '/show'}">Переглянути</a>
-            <a href="#" th:href="@{'customers/' + ${customer.id} + '/update'}">Оновити</a>
-            <a href="#" th:href="@{'customers/' + ${customer.id} + '/delete'}">Видалити</a>
-            <hr>
-        </div>
-        <a href="#" th:href="@{customers/new}">Додати</a>
-    </section>
+<section>
+    <div th:each="customer : ${customers}">
+        <p th:text="${customer.firstName} + ' ' + ${customer.lastName}"></p>
+        <a href="#" th:href="@{'customers/' + ${customer.id} + '/show'}">Переглянути</a>
+        <a href="#" th:href="@{'customers/' + ${customer.id} + '/update'}">Оновити</a>
+        <a href="#" th:href="@{'customers/' + ${customer.id} + '/delete'}">Видалити</a>
+        <hr>
+    </div>
+    <a href="#" th:href="@{customers/new}">Додати</a>
+</section>
 </body>
 </html>
