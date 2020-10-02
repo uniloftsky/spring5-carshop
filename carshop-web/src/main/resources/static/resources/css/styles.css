@@ -17,7 +17,7 @@ nav ul {
     display: flex;
     list-style: none;
     justify-content: space-between;
-    width: 50%;
+    width: 70%;
     margin: 0 auto 2em;
 }
 
@@ -272,7 +272,6 @@ Slider
     object-fit: cover;
     width: 100%;
     height: 250px;
-    filter: ;
 }
 
 .intro-content {
@@ -320,3 +319,69 @@ Parallax
     margin-top: 3.5em;
     min-height: 700px;
 }
+
+/*
+==================
+Forms
+==================
+*/
+
+/* customer form */
+
+.customer-form {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 2em auto 0;
+}
+
+.customer-form input {
+    margin-bottom: 1.25em;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.25rem;
+    padding: .35em;
+}
+
+.customer-form input[type="submit"] {
+    margin-top: 1.25em;
+    border: 0;
+    transition: .25s;
+}
+
+.customer-form input[type="submit"]:hover {
+    background-color: #DB2D2E;
+    color: white;
+}
+
+/* customer form end */
+
+/* cartype form */
+
+.cartype-form {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 2em auto 0;
+}
+
+.cartype-form input {
+    margin-bottom: 1.25em;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.25rem;
+    padding: .35em;
+}
+
+.cartype-form input[type="submit"] {
+    margin-top: 1.25em;
+    border: 0;
+    transition: .25s;
+}
+
+.cartype-form input[type="submit"]:hover {
+    background-color: #DB2D2E;
+    color: white;
+}
+
+/* cartype form end */
+
+/*=========================*/

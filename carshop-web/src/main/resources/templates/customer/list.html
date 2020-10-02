@@ -12,10 +12,13 @@
 <body>
     <section>
         <div th:each="customer : ${customers}">
-            <p th:text="${customer.firstName}"></p>
-            <p th:text="${customer.lastName}"></p>
-            <a href="#" th:href="@{'customers/show/' + ${customer.id}}">View</a>
+            <p th:text="${customer.firstName} + ' ' + ${customer.lastName}"></p>
+            <a href="#" th:href="@{'customers/' + ${customer.id} + '/show'}">Переглянути</a>
+            <a href="#" th:href="@{'customers/' + ${customer.id} + '/update'}">Оновити</a>
+            <a href="#" th:href="@{'customers/' + ${customer.id} + '/delete'}">Видалити</a>
+            <hr>
         </div>
+        <a href="#" th:href="@{customers/new}">Додати</a>
     </section>
 </body>
 </html>

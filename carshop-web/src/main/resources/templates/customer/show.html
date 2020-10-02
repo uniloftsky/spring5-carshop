@@ -11,7 +11,12 @@
 </head>
 <body>
 <section>
-    <div th:text="${customer.firstName} + ' ' + ${customer.lastName}"></div>
+    <div>
+        <p th:text=" ${customer.firstName}">FirstName</p>
+        <p th:text="${customer.lastName}">LastName</p>
+        <p th:text="${customer.address}">Address</p>
+        <p th:text="${customer.telephone}">Phone</p>
+    </div>
 </section>
 </body>
 </html>

@@ -35,4 +35,9 @@ public class CarTypeServiceImpl implements CarTypeService {
         }
         return carTypeOptional.get();
     }
+
+    @Override
+    public void delete(CarType carType) {
+        carTypeRepository.delete(carType);
+    }
 }

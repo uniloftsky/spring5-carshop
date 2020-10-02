@@ -34,8 +34,14 @@ public class CarTypeController {
         return "cartype/cartypeform";
     }
 
+    @RequestMapping("cartypes/{id}/delete")
+    public String deleteCarType(@PathVariable String id, Model model) {
+        carTypeService.delete(carTypeService.findById(Long.valueOf(id)));
+        return "redirect:/cartypes";
+    }
+
     @PostMapping
-    @RequestMapping("cartype")
+    @RequestMapping("cartypeNew")
     public String saveOrUpdate(@ModelAttribute CarType carType) {
         carTypeService.saveOrUpdate(carType);
         return "redirect:cartypes";

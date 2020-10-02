@@ -11,9 +11,14 @@
 </head>
 <body>
 
-<section th:each="cartype : ${cartypes}">
-    <div th:text="${cartype.id}"></div>
-    <div th:text="${cartype.typeName}"></div>
+<section>
+    <div th:each="cartype : ${cartypes}">
+        <p th:text="${cartype.typeName}"></p>
+        <a href="#" th:href="@{'cartypes/' + ${cartype.id} + '/update'}">Оновити</a>
+        <a href="#" th:href="@{'cartypes/' + ${cartype.id} + '/delete'}">Видалити</a>
+        <hr>
+    </div>
+    <a href="#" th:href="@{'cartypes/new'}">Додати</a>
 </section>
 
 </body>

@@ -9,5 +9,6 @@ public interface CustomerService {
     Set<Customer> getCustomers();
     Customer findById(Long id);
     Customer saveOrUpdate(Customer customer);
+    void delete(Customer customer);
 
 }

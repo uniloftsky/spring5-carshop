@@ -9,5 +9,6 @@ public interface CarTypeService {
     Set<CarType> getCarTypes();
     CarType saveOrUpdate(CarType carType);
     CarType findById(Long id);
+    void delete(CarType carType);
 
 }

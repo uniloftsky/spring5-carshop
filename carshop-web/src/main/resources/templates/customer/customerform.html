@@ -5,16 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap"
           rel="stylesheet">
-    <link th:href="@{resources/css/styles.css}"
+    <link th:href="@{/resources/css/styles.css}"
           href="../../static/resources/css/styles.css" rel="stylesheet" type="text/css">
     <title>Title</title>
 </head>
 <body>
-<form th:object="${customer}" th:action="@{/newCustomer}" method="post" th:method="post">
+<form th:object="${customer}" th:action="@{/newCustomer}" method="post" th:method="post" class="customer-form">
+
     <input type="hidden" th:field="*{id}">
-    <input type="text" th:field="*{firstName}">
-    <input type="text" th:field="*{lastName}">
-    <input type="submit" value="Submit">
+    <label>Ім'я:</label>
+    <input type="text" th:field="*{firstName}" required>
+    <label>Прізвище:</label>
+    <input type="text" th:field="*{lastName}" required>
+    <label>Адреса:</label>
+    <input type="text" th:field="*{address}" required>
+    <label>Номер телефону:</label>
+    <input id="phone" type="text" th:field="*{telephone}" required>
+    <input type="submit" value="Підтвердити">
 </form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script th:src="@{/resources/js/jquery.maskedinput.min.js}" src="../../static/resources/js/jquery.maskedinput.min.js"></script>
+<script>
+    $(function () {
+        $("#phone").mask("+38(999) 999-9999");
+    });
+</script>
 </body>
 </html>
