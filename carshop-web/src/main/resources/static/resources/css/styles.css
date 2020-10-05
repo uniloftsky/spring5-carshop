@@ -384,4 +384,42 @@ Forms
 
 /* cartype form end */
 
+/* engine form */
+
+.engine-form {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 2em auto 0;
+}
+
+.engine-form input {
+    margin-bottom: 1.25em;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.25rem;
+    padding: .35em;
+}
+
+.engine-form input[type="submit"] {
+    margin-top: 1.25em;
+    border: 0;
+    transition: .25s;
+}
+
+.engine-form input[type="submit"]:hover {
+    background-color: #DB2D2E;
+    color: white;
+}
+
+.engine-form select {
+    margin-bottom: 1.25em;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.25rem;
+    padding: .35em;
+}
+
+
+/* engine form end */
+
+
 /*=========================*/

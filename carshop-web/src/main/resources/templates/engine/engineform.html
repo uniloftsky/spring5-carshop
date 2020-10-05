@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap"
+          rel="stylesheet">
+    <link th:href="@{/resources/css/styles.css}"
+          href="../../static/resources/css/styles.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="img/favicon.png" th:href="@{/resources/images/favicon.jpg}" type="img/jpg">
+    <title>Title</title>
+</head>
+<body>
+<form th:object="${engine}" th:action="@{/newEngine}" method="post" th:method="post" class="engine-form">
+
+    <input type="hidden" th:field="*{id}">
+    <label>Назва:</label>
+    <input type="text" th:field="*{name}" required>
+    <label>Тип:</label>
+    <select name="type">
+        <option th:value="${types}" th:each="types : ${T(uniloft.springframework.spring5carshop.model.enums.EngineType).values()}" th:text="${types.description}"></option>
+    </select>
+    <label>Потужність:</label>
+    <input type="text" th:field="*{power}" required>
+    <label>Об'єм:</label>
+    <input type="text" th:field="*{capacity}" required>
+    <label>Конфігурація:</label>
+    <select name="type">
+        <option th:each="config : ${T(uniloft.springframework.spring5carshop.model.enums.EngineConfig).values()}" th:text="${config.description}" th:value="${config}"></option>
+    </select>
+    <label>Кількість циліндрів:</label>
+    <input type="text" th:field="*{cylinders}">
+    <input type="submit" value="Підтвердити">
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script th:src="@{/resources/js/jquery.maskedinput.min.js}"
+        src="../../static/resources/js/jquery.maskedinput.min.js"></script>
+<script>
+    $(function () {
+        $("#phone").mask("+38(999) 999-9999");
+    });
+</script>
+</body>
+</html>
