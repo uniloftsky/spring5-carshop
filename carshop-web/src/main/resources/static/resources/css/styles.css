@@ -217,7 +217,7 @@ Slider
 
 .feature {
     min-height: 200px;
-    border: 1px solid lightgray;
+    border: 1px solid #f6f6f6;
     border-top: 0;
     width: 25%;
     text-align: center;
@@ -418,8 +418,93 @@ Forms
     padding: .35em;
 }
 
-
 /* engine form end */
+
+.find-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.find-block h2 {
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    margin-bottom: .25em;
+}
+
+/* find form */
+
+.form-in {
+    display: flex;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+.form-section:first-child {
+    margin-right: 5em;
+}
+
+.find-form {
+    margin-top: 2em;
+}
+
+.find-form label {
+    font-size: 1rem;
+    margin-bottom: .75em;
+}
+
+.find-form select {
+    margin-bottom: 1.25em;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1rem;
+    padding: .35em;
+}
+
+.find-form input[type="submit"] {
+    margin-top: 1.25em;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1rem;
+    padding: .5em 5.75em;
+    background-color: #DB2D2E;
+    border: 0;
+    color: white;
+    font-weight: 600;
+    transition: .25s;
+}
+
+.find-form input[type="submit"]:hover {
+    background-color: #323232;
+    cursor: pointer;
+}
+
+#form-hr1, #form-hr2 {
+    border: 0;
+    height: 1px;
+    background: #DB2D2E;
+    margin-bottom: .3em;
+    transition: .75s;
+}
+
+#form-hr1 {
+    width: 4%;
+}
+
+#form-hr2 {
+    width: 8%;
+}
+
+.find_car-section:hover #form-hr1 {
+    width: 8%;
+}
+
+.find_car-section:hover #form-hr2 {
+    width: 4%;
+}
+
+/* find form end */
 
 
 /*=========================*/

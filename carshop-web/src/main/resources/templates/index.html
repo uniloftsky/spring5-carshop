@@ -141,12 +141,64 @@
                 <p class="intro-content-subtitle">Everything you need to build an amazing dealership website</p>
                 <p class="intro-content-main">Suitable for any car dealer websites, business or corporate websites.
                     The Theme has been Created especially for Automotive Dealers,
-                    car resellers, car service stations, mechanic workshop and auto motor retailers. mechanic workshop and auto motor retailers.mechanic workshop and auto motor retailers.</p>
+                    car resellers, car service stations, mechanic workshop and auto motor retailers. mechanic workshop
+                    and auto motor retailers.mechanic workshop and auto motor retailers.</p>
             </div>
         </section>
     </div>
-    <section class="parallax-window find_car-section" data-parallax="scroll" data-image-src="../static/resources/images/background-car.jpg" th:data-image-src="@{resources/images/background-car.jpg}">
+    <section class="parallax-window find_car-section" data-parallax="scroll"
+             data-image-src="../static/resources/images/background-car.jpg"
+             th:data-image-src="@{resources/images/background-car.jpg}">
+        <div class="wrap">
+            <div class="find-block">
+                <h2>Find a dream car</h2>
+                <hr id="form-hr1">
+                <hr id="form-hr2">
 
+                <form class="find-form" action="#" method="post">
+                    <div class="form-in">
+                        <div class="form-section">
+                            <label>Select brand</label>
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+                            <select id="brand_select" name="brandName">
+                                <option th:each="car : ${cars}" th:class="${car.brandName}" th:value="${car.brandName}"
+                                        th:text="${car.brandName}">BMW
+                                </option>
+                                <option th:remove="all">Mercedes-Benz</option>
+                                <option th:remove="all">Toyota</option>
+                            </select>
+                            <label>Select body</label>
+                            <select id="body_select" name="bodyName">
+                                <option th:each="car : ${cars}" th:class="${car.modelName}" th:value="${car.bodyName}"
+                                        th:text="${car.bodyName}">s500
+                                </option>
+                                <option th:remove="all">s120</option>
+                                <option th:remove="all">e34</option>
+                            </select>
+                        </div>
+                        <div class="form-section">
+                            <label>Select model</label>
+                            <select id="model_select" name="modelName">
+                                <option th:each="car : ${cars}" th:class="${car.brandName}" th:value="${car.modelName}"
+                                        th:text="${car.modelName}">Mers
+                                </option>
+                                <option th:remove="all">Toyota</option>
+                                <option th:remove="all">BMW</option>
+                            </select>
+                            <label>Engine type</label>
+                            <select name="engine.type">
+                                <option th:each="type : ${T(uniloft.springframework.spring5carshop.model.enums.EngineType).values()}"
+                                        th:text="${type.description}" th:value="${type}">DIESEL
+                                </option>
+                                <option th:remove="all">PETROL</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <input type="submit" value="Search">
+                </form>
+            </div>
+        </div>
     </section>
 </main>
 <footer>
@@ -154,98 +206,9 @@
     <p>footer</p>
 
 </footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript" src="../static/resources/js/parallax.js" th:src="@{resources/js/parallax.js}"></script>
-<script>
-    'use strict';
-    var multiItemSlider = (function () {
-        return function (selector, config) {
-            var
-                _mainElement = document.querySelector(selector), // основный элемент блока
-                _sliderWrapper = _mainElement.querySelector('.slider__wrapper'), // обертка для .slider-item
-                _sliderItems = _mainElement.querySelectorAll('.slider__item'), // элементы (.slider-item)
-                _sliderControls = _mainElement.querySelectorAll('.slider__control'), // элементы управления
-                _sliderControlLeft = _mainElement.querySelector('.slider__control_left'), // кнопка "LEFT"
-                _sliderControlRight = _mainElement.querySelector('.slider__control_right'), // кнопка "RIGHT"
-                _wrapperWidth = parseFloat(getComputedStyle(_sliderWrapper).width), // ширина обёртки
-                _itemWidth = parseFloat(getComputedStyle(_sliderItems[0]).width), // ширина одного элемента
-                _positionLeftItem = 0, // позиция левого активного элемента
-                _transform = 0, // значение транфсофрмации .slider_wrapper
-                _step = _itemWidth / _wrapperWidth * 100, // величина шага (для трансформации)
-                _items = []; // массив элементов
-            // наполнение массива _items
-            _sliderItems.forEach(function (item, index) {
-                _items.push({item: item, position: index, transform: 0});
-            });
-
-            var position = {
-                getMin: 0,
-                getMax: _items.length - 1,
-            }
-
-            var _transformItem = function (direction) {
-                if (direction === 'right') {
-                    if ((_positionLeftItem + _wrapperWidth / _itemWidth - 1) >= position.getMax) {
-                        return;
-                    }
-                    if (!_sliderControlLeft.classList.contains('slider__control_show')) {
-                        _sliderControlLeft.classList.add('slider__control_show');
-                    }
-                    if (_sliderControlRight.classList.contains('slider__control_show') && (_positionLeftItem + _wrapperWidth / _itemWidth) >= position.getMax) {
-                        _sliderControlRight.classList.remove('slider__control_show');
-                    }
-                    _positionLeftItem++;
-                    _transform -= _step;
-                }
-                if (direction === 'left') {
-                    if (_positionLeftItem <= position.getMin) {
-                        return;
-                    }
-                    if (!_sliderControlRight.classList.contains('slider__control_show')) {
-                        _sliderControlRight.classList.add('slider__control_show');
-                    }
-                    if (_sliderControlLeft.classList.contains('slider__control_show') && _positionLeftItem - 1 <= position.getMin) {
-                        _sliderControlLeft.classList.remove('slider__control_show');
-                    }
-                    _positionLeftItem--;
-                    _transform += _step;
-                }
-                _sliderWrapper.style.transform = 'translateX(' + _transform + '%)';
-            }
-
-            // обработчик события click для кнопок "назад" и "вперед"
-            var _controlClick = function (e) {
-                if (e.target.classList.contains('slider__control')) {
-                    e.preventDefault();
-                    var direction = e.target.classList.contains('slider__control_right') ? 'right' : 'left';
-                    _transformItem(direction);
-                }
-            };
-
-            var _setUpListeners = function () {
-                // добавление к кнопкам "назад" и "вперед" обрботчика _controlClick для событя click
-                _sliderControls.forEach(function (item) {
-                    item.addEventListener('click', _controlClick);
-                });
-            }
-
-            // инициализация
-            _setUpListeners();
-
-            return {
-                right: function () { // метод right
-                    _transformItem('right');
-                },
-                left: function () { // метод left
-                    _transformItem('left');
-                }
-            }
-
-        }
-    }());
-
-    var slider = multiItemSlider('.slider')
-
-</script>
+<script src="../static/resources/js/chainedselects.js" type="text/javascript"
+        th:src="@{resources/js/chainedselects.js}"></script>
+<script src="../static/resources/js/slider.js" type="text/javascript" th:src="@{resources/js/slider.js}"></script>
 </body>
 </html>

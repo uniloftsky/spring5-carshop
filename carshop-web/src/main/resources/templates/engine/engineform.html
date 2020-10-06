@@ -18,7 +18,9 @@
     <input type="text" th:field="*{name}" required>
     <label>Тип:</label>
     <select name="type">
-        <option th:value="${types}" th:each="types : ${T(uniloft.springframework.spring5carshop.model.enums.EngineType).values()}" th:text="${types.description}"></option>
+        <option th:value="${types}"
+                th:each="types : ${T(uniloft.springframework.spring5carshop.model.enums.EngineType).values()}"
+                th:text="${types.description}"></option>
     </select>
     <label>Потужність:</label>
     <input type="text" th:field="*{power}" required>
@@ -26,7 +28,8 @@
     <input type="text" th:field="*{capacity}" required>
     <label>Конфігурація:</label>
     <select name="type">
-        <option th:each="config : ${T(uniloft.springframework.spring5carshop.model.enums.EngineConfig).values()}" th:text="${config.description}" th:value="${config}"></option>
+        <option th:each="config : ${T(uniloft.springframework.spring5carshop.model.enums.EngineConfig).values()}"
+                th:text="${config.description}" th:value="${config}"></option>
     </select>
     <label>Кількість циліндрів:</label>
     <input type="text" th:field="*{cylinders}">
