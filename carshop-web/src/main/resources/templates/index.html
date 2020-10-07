@@ -8,6 +8,7 @@
     <link th:href="@{resources/css/styles.css}"
           href="../static/resources/css/styles.css" rel="stylesheet" type="text/css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
     <link rel="shortcut icon" href="img/favicon.png" th:href="@{/resources/images/favicon.jpg}" type="img/jpg">
     <title>UniCar - Автосалон</title>
 </head>
@@ -50,9 +51,6 @@
                 <li><a href="#">Купити авто</a></li>
                 <li><a href="#">Тест-драйв авто</a></li>
                 <li><a href="#">Про нас</a></li>
-                <li><a href="#" th:href="@{'customers'}">Форма клієнтів</a></li>
-                <li><a href="#" th:href="@{'cartypes'}">Форма типів</a></li>
-                <li><a href="#" th:href="@{'engines'}">Форма двигунів</a></li>
             </ul>
         </nav>
 
@@ -60,41 +58,38 @@
     <div class="slider">
         <div class="slider__wrapper">
             <div class="slider__item">
-                <div class="slider__item-inner" style="background: url('resources/images/slider/slider1.jpg') no-repeat; background-position: 25% 60%;">
+                <div class="slider__item-inner"
+                     style="background: url('resources/images/slider/slider1.jpg') no-repeat; background-position: 50% 90%; background-size: cover">
                     <div class="wrap">
-                        <div class="slider__item-content">
-                            <p>Сучасні автомобілі</p>
-                            <a class="slider-btn" href="#">Перейти</a>
+                        <div class="slider__item-content-one">
+                            <div>
+                                <p>Сучасні автомобілі</p>
+                                <a class="slider-btn btn-one" href="#">Перейти</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="slider__item">
-                <div class="slider__item-inner" style="background: green;">
+                <div class="slider__item-inner"
+                     style="background: url('resources/images/slider/slider2.jpg') no-repeat; background-position: center; background-size: cover">
                     <div class="wrap">
-                        <div class="slider__item-content">
-                            <p>Сучасні автомобілі</p>
-                            <a class="slider-btn" href="#">Перейти</a>
+                        <div class="slider__item-content-two">
+                            <div>
+                                <p>Старий чи новий?</p>
+                                <a class="slider-btn" href="#">Перейти</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="slider__item">
-                <div class="slider__item-inner" style="background: violet;">
+                <div class="slider__item-inner"
+                     style="background: url('resources/images/slider/slider3.jpg') no-repeat; background-position: 50% 90%; background-size: cover">
                     <div class="wrap">
-                        <div class="slider__item-content">
-                            <p>Сучасні автомобілі</p>
-                            <a class="slider-btn" href="#">Перейти</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="slider__item">
-                <div class="slider__item-inner" style="background: coral;">
-                    <div class="wrap">
-                        <div class="slider__item-content">
-                            <p>Сучасні автомобілі</p>
-                            <a class="slider-btn" href="#">Перейти</a>
+                        <div class="slider__item-content-one">
+                            <p>Спробуй тест-драйв</p>
+                            <a class="slider-btn btn-one" href="#">Перейти</a>
                         </div>
                     </div>
                 </div>
@@ -271,6 +266,58 @@
             </div>
         </div>
     </section>
+
+    <section class="parallax-window find_car-section" data-parallax="scroll"
+             data-image-src="../static/resources/images/background-car2.jpg"
+             th:data-image-src="@{resources/images/background-car2.jpg}">
+        <div class="wrap">
+            <div class="why-section">
+                <h4>Because We are ultra creative agency</h4>
+                <h2>WHY CHOOSE US</h2>
+                <hr id="why-hr1">
+                <hr id="why-hr2">
+                <div class="arg-block">
+                    <div class="arg">
+                        <i class="fa fa-car"></i>
+                        <h3 class="arg-title">ALL BRANDS</h3>
+                        <p class="arg-content">Sed ut perspiciatis unde omnis iste natus error sit voluptatem acantium
+                            doloremque laudantium.</p>
+                    </div>
+                    <div class="arg">
+                        <i class="fa fa-comments"></i>
+                        <h3 class="arg-title">FREE SUPPORT</h3>
+                        <p class="arg-content">Omnis sed ut perspiciatis unde iste natus error sit voluptatem acantium
+                            doloremque laudantium.</p>
+                    </div>
+                    <div class="arg">
+                        <i class="fa fa-key"></i>
+                        <h3 class="arg-title">DEALERSHIP</h3>
+                        <p class="arg-content">Error sed ut perspiciatis unde omnis iste natus sit voluptatem acantium
+                            doloremque laudantium.</p>
+                    </div>
+                    <div class="arg">
+                        <i class="fa fa-wallet"></i>
+                        <h3 class="arg-title">AFFORDABLE</h3>
+                        <p class="arg-content">Perspiciatis sed ut unde omnis iste natus error sit voluptatem acantium
+                            doloremque laudantium.</p>
+                    </div>
+                    <div class="arg">
+                        <i class="fas fa-tools"></i>
+                        <h3 class="arg-title">TRANSMISSION</h3>
+                        <p class="arg-content">Omnis perspiciatis sed ut unde iste natus error sit voluptatem acantium
+                            doloremque laudantium.</p>
+                    </div>
+                    <div class="arg">
+                        <i class="fas fa-oil-can"></i>
+                        <h3 class="arg-title">OIL CHANGES</h3>
+                        <p class="arg-content">Voluptatem perspiciatis sed ut unde omnis iste natus error sit acantium
+                            doloremque laudantium.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </main>
 <footer>
 
@@ -282,5 +329,6 @@
         th:src="@{resources/js/chainedselects.js}"></script>
 <script src="../static/resources/js/slider.js" type="text/javascript" th:src="@{resources/js/slider.js}"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://kit.fontawesome.com/de94abba4d.js" crossorigin="anonymous"></script>
 </body>
 </html>
