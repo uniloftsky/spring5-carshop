@@ -175,6 +175,10 @@
                                 <option th:remove="all">s120</option>
                                 <option th:remove="all">e34</option>
                             </select>
+                            <label>Select type</label>
+                            <select id="cartype_select" name="carType">
+                                <option th:each="car : ${cars}" th:value="${car.carType.id}" th:text="${car.carType.typeName}"></option>
+                            </select>
                         </div>
                         <div class="form-section">
                             <label>Select model</label>
@@ -191,6 +195,10 @@
                                         th:text="${type.description}" th:value="${type}">
                                 </option>
                                 <option th:remove="all">PETROL</option>
+                            </select>
+                            <label>Select color</label>
+                            <select id="color" name="color">
+                                <option th:each="car : ${cars}" th:value="${car.color}" th:text="${car.color}"></option>
                             </select>
                         </div>
                     </div>

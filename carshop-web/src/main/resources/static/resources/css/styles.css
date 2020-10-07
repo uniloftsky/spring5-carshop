@@ -464,10 +464,10 @@ Forms
 }
 
 .find-form input[type="submit"] {
-    margin-top: 1.25em;
+    margin-top: 2em;
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 1rem;
-    padding: .5em 5.75em;
+    padding: .35em 5.75em;
     background-color: #DB2D2E;
     border: 0;
     color: white;

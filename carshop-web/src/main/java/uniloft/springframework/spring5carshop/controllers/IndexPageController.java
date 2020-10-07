@@ -10,7 +10,7 @@ import uniloft.springframework.spring5carshop.services.repositories.CarRepositor
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class IndexPageController {
@@ -39,11 +39,23 @@ public class IndexPageController {
         return "car/show";
     }
 
-    @PostMapping("findCar")
-    public String findCar(@RequestParam String brandName, @RequestParam String bodyName, @RequestParam String modelName, @RequestParam String engineType, Model model) {
+    @GetMapping("car/foundedlist/cartype/{id}")
+    public String foundedListCar(@PathVariable String id, Model model) {
+        model.addAttribute("cars", carRepository.findCarsByCarType_Id(Long.valueOf(id)));
+        return "car/list";
+    }
+
+    /*@PostMapping("findCar")
+    public String findCar(@RequestParam String brandName, @RequestParam String bodyName, @RequestParam String modelName, @RequestParam EngineType engineType, Model model) {
         Optional<Car> carOptional = carRepository.findCarByBrandNameAndModelNameAndBodyNameAndEngine_Type(brandName, modelName, bodyName, engineType);
         Car foundedCar = carOptional.get();
         return "redirect:/car/" + foundedCar.getId() + "/show";
+    }*/
+
+    @PostMapping("findCar")
+    public String findCar(@RequestParam String carType) {
+        Set<Car> foundedCars = carRepository.findCarsByCarType_Id(Long.valueOf(carType));
+        return "redirect:/car/foundedlist/cartype/" + carType;
     }
 
 }
