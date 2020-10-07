@@ -2,22 +2,27 @@ package uniloft.springframework.spring5carshop.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import uniloft.springframework.spring5carshop.model.Car;
 import uniloft.springframework.spring5carshop.services.CarService;
 import uniloft.springframework.spring5carshop.services.CarTypeService;
+import uniloft.springframework.spring5carshop.services.repositories.CarRepository;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 @Controller
 public class IndexPageController {
 
     private final CarTypeService carTypeService;
     private final CarService carService;
+    private final CarRepository carRepository;
 
-    public IndexPageController(CarTypeService carTypeService, CarService carService) {
+    public IndexPageController(CarTypeService carTypeService, CarService carService, CarRepository carRepository) {
         this.carTypeService = carTypeService;
         this.carService = carService;
+        this.carRepository = carRepository;
     }
 
     @RequestMapping({"", "/", "index", "index.html", "home", "home.html"})
@@ -26,6 +31,19 @@ public class IndexPageController {
         model.addAttribute("currentDate", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")));
         model.addAttribute("cars", carService.getCars());
         return "index";
+    }
+
+    @GetMapping("car/{id}/show")
+    public String showCar(@PathVariable String id, Model model) {
+        model.addAttribute("car", carService.findById(Long.valueOf(id)));
+        return "car/show";
+    }
+
+    @PostMapping("findCar")
+    public String findCar(@RequestParam String brandName, @RequestParam String bodyName, @RequestParam String modelName, @RequestParam String engineType, Model model) {
+        Optional<Car> carOptional = carRepository.findCarByBrandNameAndModelNameAndBodyNameAndEngine_Type(brandName, modelName, bodyName, engineType);
+        Car foundedCar = carOptional.get();
+        return "redirect:/car/" + foundedCar.getId() + "/show";
     }
 
 }

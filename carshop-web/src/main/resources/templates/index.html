@@ -155,7 +155,7 @@
                 <hr id="form-hr1">
                 <hr id="form-hr2">
 
-                <form class="find-form" action="#" method="post">
+                <form class="find-form" th:action="@{/findCar}" method="post">
                     <div class="form-in">
                         <div class="form-section">
                             <label>Select brand</label>
@@ -186,13 +186,12 @@
                                 <option th:remove="all">BMW</option>
                             </select>
                             <label>Engine type</label>
-                            <select name="engine.type">
+                            <select name="engineType">
                                 <option th:each="type : ${T(uniloft.springframework.spring5carshop.model.enums.EngineType).values()}"
-                                        th:text="${type.description}" th:value="${type}">DIESEL
+                                        th:text="${type.description}" th:value="${type}">
                                 </option>
                                 <option th:remove="all">PETROL</option>
                             </select>
-
                         </div>
                     </div>
                     <input type="submit" value="Search">
