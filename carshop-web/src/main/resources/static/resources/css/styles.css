@@ -10,6 +10,12 @@ body {
     color: #363636;
 }
 
+h2 {
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    margin-bottom: .25em;
+}
+
 /* navigation */
 
 nav ul {
@@ -425,12 +431,6 @@ Forms
     flex-direction: column;
 }
 
-.find-block h2 {
-    text-transform: uppercase;
-    font-size: 2.5rem;
-    margin-bottom: .25em;
-}
-
 /* find form */
 
 .form-in {
@@ -506,5 +506,128 @@ Forms
 
 /* find form end */
 
+.feature_cars-section {
+    padding: 3em;
+}
+
+.feature_cars-section-in {
+    text-align: center;
+}
+
+.feature_cars-section-in h4 {
+    color: #999999;
+    margin-top: 2em;
+    font-weight: 300;
+    font-size: 1rem;
+}
+
+#featurecar-hr1, #featurecar-hr2 {
+    border: 0;
+    height: 1px;
+    background: #DB2D2E;
+    margin: 0 auto .3em;
+    transition: .75s;
+}
+
+#featurecar-hr1 {
+    width: 4.5%;
+}
+
+#featurecar-hr2 {
+    width: 10%;
+}
+
+.feature_cars-section-in:hover #featurecar-hr1 {
+    width: 10%;
+}
+
+.feature_cars-section-in:hover #featurecar-hr2 {
+    width: 4.5%;
+}
+
+.cars-block {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3.5em;
+}
+
+.car {
+    width: 23%;
+    padding: .5em;
+    box-shadow: 0 0 3px 2px lightgray;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+.car-img {
+    object-fit: cover;
+    max-width: 245px;
+    min-height: 175px;
+    margin: 0 auto;
+}
+
+.extra-car-info {
+    display: flex;
+    justify-content: space-around;
+    color: #999999;
+    font-size: 1rem;
+    border-bottom: 1px solid #f6f6f6;
+    padding-bottom: .5em;
+    margin-bottom: 1.25em;
+    margin-top: .5em;
+}
+
+.car-title {
+    color: #DB2D2E;
+    font-weight: 600;
+    margin-bottom: .5em;
+}
+
+.btn-car {
+    margin-top: auto;
+    text-decoration: none;
+    background-color: #DB2D2E;
+    padding: .15em;
+    width: 100%;
+    color: white;
+    font-weight: 600;
+}
+
+.car-hr1, .car-hr2 {
+    border: 0;
+    background: black;
+    height: 1px;
+    margin: 0 auto;
+    transition: .75s;
+}
+
+.car-hr1 {
+    width: 12%;
+    margin-bottom: .2em;
+}
+
+.car-hr2 {
+    width: 20%;
+}
+
+.car:hover .car-hr1 {
+    width: 20%;
+    background: #DB2D2E;
+}
+
+.car:hover .car-hr2 {
+    width: 12%;
+    background: #DB2D2E;
+}
+
+.extra-car-info div {
+    display: flex;
+    align-items: center;
+}
+
+.extra-car-info div i {
+    margin-right: .5em;
+}
 
 /*=========================*/

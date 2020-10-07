@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,10 +31,11 @@ public class Car extends BaseEntity {
     private String brandName;
     private String modelName;
     private String bodyName;
+    private BigDecimal price;
 
     @ManyToOne
     private Color color;
 
     @Lob
-    private Byte[] image;
+    private String image;
 }

@@ -20,17 +20,18 @@ INSERT INTO engine (name, type, capacity, power, config, cylinders) VALUES ('1JZ
 INSERT INTO engine (name, type, capacity, power, config, cylinders) VALUES ('BMW M43', 'PETROL', 1596, 87, 'INLINE', 4);
 
 -- Colors
-INSERT INTO color (color) VALUES ('black');
-INSERT INTO color (color) VALUES ('white');
-INSERT INTO color (color) VALUES ('red');
+INSERT INTO color (color) VALUES ('Чорний');
+INSERT INTO color (color) VALUES ('Білий');
+INSERT INTO color (color) VALUES ('Червоний');
+INSERT INTO color (color) VALUES ('Синій');
 
 -- Cars
-INSERT INTO car (engine_id, car_type_id, brand_name, model_name, body_name, color_id)
-            VALUES (1, 1, 'Mercedes-Benz', 'S500', 'W140', 1);
-INSERT INTO car (engine_id, car_type_id, brand_name, model_name, body_name, color_id)
-            VALUES (2, 1, 'Toyota', 'Crown', 'S170', 2);
-INSERT INTO car (engine_id, car_type_id, brand_name, model_name, body_name, color_id)
-            VALUES (3, 1, 'BMW', '518i', 'E34', 1);
+INSERT INTO car (engine_id, car_type_id, brand_name, model_name, body_name, color_id, price, image)
+            VALUES (1, 1, 'Mercedes-Benz', 'S500', 'W140', 1, 5376, 'resources/images/s500.jpg');
+INSERT INTO car (engine_id, car_type_id, brand_name, model_name, body_name, color_id, price, image)
+            VALUES (2, 1, 'Toyota', 'Crown', 'S170', 2, 3964, 'resources/images/s170.jpg');
+INSERT INTO car (engine_id, car_type_id, brand_name, model_name, body_name, color_id, price, image)
+            VALUES (3, 1, 'BMW', '518i', 'E34', 4, 2523, 'resources/images/e34.jpg');
 
 -- Car buys
 INSERT INTO buy_car (car_id, customer_id, date, count, price) VALUES (1, 1, '2020-09-20', 1, 5000);

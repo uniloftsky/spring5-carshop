@@ -177,7 +177,8 @@
                             </select>
                             <label>Select type</label>
                             <select id="cartype_select" name="carType">
-                                <option th:each="car : ${cars}" th:value="${car.carType.id}" th:text="${car.carType.typeName}"></option>
+                                <option th:each="car : ${cars}" th:value="${car.carType.id}"
+                                        th:text="${car.carType.typeName}"></option>
                             </select>
                         </div>
                         <div class="form-section">
@@ -198,12 +199,75 @@
                             </select>
                             <label>Select color</label>
                             <select id="color" name="color">
-                                <option th:each="color : ${colors}" th:value="${color.id}" th:text="${color.color}"></option>
+                                <option th:each="color : ${colors}" th:value="${color.id}"
+                                        th:text="${color.color}"></option>
                             </select>
                         </div>
                     </div>
                     <input type="submit" value="Search">
                 </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature_cars-section">
+        <div class="wrap">
+            <div class="feature_cars-section-in">
+                <h4>Check out our recent cars</h4>
+                <h2>FEATURE CAR</h2>
+                <hr id="featurecar-hr1">
+                <hr id="featurecar-hr2">
+
+                <div class="cars-block">
+                    <div th:each="car : ${cars}" class="car">
+                        <div class="car-img-block">
+                            <img class="car-img" src="../static/resources/images/mercedes.jpg"
+                                 th:src="${car.image}">
+                        </div>
+                        <div class="extra-car-info">
+                            <div>
+                                <i class="fa fa-paint-brush"></i>
+                                <p th:text="${car.color.color}">Color</p>
+                            </div>
+                            <div>
+                                <i class="fa fa-cogs"></i>
+                                <p th:text="${car.engine.type.description}">Diesel</p>
+                            </div>
+                            <div>
+                                <i class="fa fa-car"></i>
+                                <p th:text="${car.carType.typeName}">Sedan</p>
+                            </div>
+                        </div>
+                        <p th:text="${car.brandName} + ' ' + ${car.modelName}" class="car-title">Mercedes-Benz</p>
+                        <hr class="car-hr1">
+                        <hr class="car-hr2">
+                        <a href="#" th:text=" '$' + ${car.price}" class="btn-car">$999</a>
+                    </div>
+                    <div class="car">
+                        <div class="car-img-block">
+                            <img class="car-img" src="../static/resources/images/car.jpg"
+                                 th:src="@{resources/images/car.jpg}">
+                        </div>
+                        <div class="extra-car-info">
+                            <div>
+                                <i class="fa fa-paint-brush"></i>
+                                <p>Color</p>
+                            </div>
+                            <div>
+                                <i class="fa fa-cogs"></i>
+                                <p>Diesel</p>
+                            </div>
+                            <div>
+                                <i class="fa fa-car"></i>
+                                <p>Sedan</p>
+                            </div>
+                        </div>
+                        <p class="car-title">Mercedes-Benz</p>
+                        <hr class="car-hr1">
+                        <hr class="car-hr2">
+                        <a href="#" class="btn-car">$999</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -217,5 +281,6 @@
 <script src="../static/resources/js/chainedselects.js" type="text/javascript"
         th:src="@{resources/js/chainedselects.js}"></script>
 <script src="../static/resources/js/slider.js" type="text/javascript" th:src="@{resources/js/slider.js}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
 </html>
