@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import uniloft.springframework.spring5carshop.model.Car;
 import uniloft.springframework.spring5carshop.services.CarService;
 import uniloft.springframework.spring5carshop.services.CarTypeService;
+import uniloft.springframework.spring5carshop.services.ColorService;
 import uniloft.springframework.spring5carshop.services.repositories.CarRepository;
 
 import java.time.LocalDateTime;
@@ -18,11 +19,13 @@ public class IndexPageController {
     private final CarTypeService carTypeService;
     private final CarService carService;
     private final CarRepository carRepository;
+    private final ColorService colorService;
 
-    public IndexPageController(CarTypeService carTypeService, CarService carService, CarRepository carRepository) {
+    public IndexPageController(CarTypeService carTypeService, CarService carService, CarRepository carRepository, ColorService colorService) {
         this.carTypeService = carTypeService;
         this.carService = carService;
         this.carRepository = carRepository;
+        this.colorService = colorService;
     }
 
     @RequestMapping({"", "/", "index", "index.html", "home", "home.html"})
@@ -30,6 +33,7 @@ public class IndexPageController {
         model.addAttribute("carTypes", carTypeService.getCarTypes());
         model.addAttribute("currentDate", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")));
         model.addAttribute("cars", carService.getCars());
+        model.addAttribute("colors", colorService.getColors());
         return "index";
     }
 

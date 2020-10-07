@@ -198,7 +198,7 @@
                             </select>
                             <label>Select color</label>
                             <select id="color" name="color">
-                                <option th:each="car : ${cars}" th:value="${car.color}" th:text="${car.color}"></option>
+                                <option th:each="color : ${colors}" th:value="${color.id}" th:text="${color.color}"></option>
                             </select>
                         </div>
                     </div>

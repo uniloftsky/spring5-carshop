@@ -30,7 +30,9 @@ public class Car extends BaseEntity {
     private String brandName;
     private String modelName;
     private String bodyName;
-    private String color;
+
+    @ManyToOne
+    private Color color;
 
     @Lob
     private Byte[] image;
