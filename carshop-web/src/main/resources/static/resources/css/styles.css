@@ -63,6 +63,9 @@ img {
 header {
     background-color: #323232;
     padding: .75em 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 footer {
@@ -562,7 +565,7 @@ Forms
 
 .car-img {
     object-fit: cover;
-    max-width: 245px;
+    width: 245px;
     min-height: 175px;
     margin: 0 auto;
 }
