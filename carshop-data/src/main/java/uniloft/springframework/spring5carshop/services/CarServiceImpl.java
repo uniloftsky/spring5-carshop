@@ -32,4 +32,9 @@ public class CarServiceImpl implements CarService {
         }
         return carOptional.get();
     }
+
+    @Override
+    public Long getCarsCount() {
+        return carRepository.count();
+    }
 }

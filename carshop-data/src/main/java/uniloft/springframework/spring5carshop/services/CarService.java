@@ -8,5 +8,6 @@ public interface CarService {
 
     Set<Car> getCars();
     Car findById(Long id);
+    Long getCarsCount();
 
 }

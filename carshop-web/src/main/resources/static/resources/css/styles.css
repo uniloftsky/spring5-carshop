@@ -666,12 +666,41 @@ Forms
     align-items: center;
 }
 
+.why-section h4 {
+    font-weight: 300;
+    font-size: 1rem;
+}
+
+#why-hr1, #why-hr2 {
+    border: 0;
+    height: 1px;
+    background: #DB2D2E;
+    margin: 0 auto .3em;
+    transition: .75s;
+}
+
+#why-hr1 {
+    width: 10%;
+}
+
+#why-hr2 {
+    width: 4.5%;
+}
+
+.why-section:hover #why-hr1 {
+    width: 4.5%;
+}
+
+.why-section:hover #why-hr2 {
+    width: 10%;
+}
+
 .arg-block {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-top: 4em;
-    padding-bottom: 10em;
+    margin-top: 3em;
+    margin-bottom: 3em;
 }
 
 .arg {
@@ -709,4 +738,69 @@ Forms
     color: #999999;
     margin-top: .5em;
     transition: .75s;
+}
+
+.counters-block, .counter {
+    display: flex;
+}
+
+.counters-block {
+    justify-content: space-around;
+    width: 100%;
+}
+
+.counter {
+    justify-content: space-between;
+}
+
+.counter:hover .left-side:after {
+    height: 50px;
+}
+
+.counter:hover .left-side:before {
+    height: 30px;
+}
+
+.left-side {
+    margin-right: 1em;
+    position: relative;
+}
+
+.left-side:after, .left-side:before {
+    content: '';
+    background: white;
+    width: 1px;
+    float: left;
+    margin-top: .35em;
+    transition: .75s;
+    position: absolute;
+    bottom: 5px;
+}
+
+.left-side:after {
+    height: 30px;
+}
+
+.left-side:before {
+    height: 50px;
+    left: 6px;
+}
+
+.counter-title {
+    font-weight: 600;
+}
+
+.counter-in {
+    display: flex;
+    align-items: baseline;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.counter-in i {
+    margin-right: .5em;
+}
+
+.counter-in p {
+    font-size: 2.5rem;
 }
