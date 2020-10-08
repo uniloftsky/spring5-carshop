@@ -31,7 +31,7 @@ public class IndexPageController {
     @RequestMapping({"", "/", "index", "index.html", "home", "home.html"})
     public String getIndexPage(Model model) {
         model.addAttribute("carTypes", carTypeService.getCarTypes());
-        model.addAttribute("currentDate", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")));
+        model.addAttribute("currentDate", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
         model.addAttribute("cars", carService.getCars());
         model.addAttribute("colors", colorService.getColors());
         return "index";

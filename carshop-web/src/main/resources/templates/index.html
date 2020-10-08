@@ -172,8 +172,8 @@
                             </select>
                             <label>Select type</label>
                             <select id="cartype_select" name="carType">
-                                <option th:each="car : ${cars}" th:value="${car.carType.id}"
-                                        th:text="${car.carType.typeName}"></option>
+                                <option th:each="carType : ${carTypes}" th:value="${carType.id}"
+                                        th:text="${carType.typeName}"></option>
                             </select>
                         </div>
                         <div class="form-section">
