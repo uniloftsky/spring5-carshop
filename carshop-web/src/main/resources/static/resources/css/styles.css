@@ -325,6 +325,7 @@ Slider
 .intro-content-main {
     margin-top: auto;
     font-style: italic;
+    text-align: justify;
 }
 
 .car_search-section {

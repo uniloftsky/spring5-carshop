@@ -105,25 +105,25 @@
                 <div class="feature-icon">
                     <i class="fa fa-car"></i>
                 </div>
-                <p>New Vehicles</p>
+                <p>Нові машини</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">
                     <i class="fa fa-tag"></i>
                 </div>
-                <p>Special offers</p>
+                <p>Спеціальні пропозиції</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">
                     <i class="fa fa-wrench"></i>
                 </div>
-                <p>Vehicle service</p>
+                <p>Автосервіс</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">
                     <i class="fa fa-phone"></i>
                 </div>
-                <p>Contact us</p>
+                <p>Швидкий зв'язок</p>
             </div>
         </section>
 
@@ -132,12 +132,10 @@
                 <img class="intro-img" src="../static/resources/images/car.jpg" th:src="@{resources/images/car.jpg}">
             </div>
             <div class="intro-content">
-                <h4 class="intro-content-title">Find your dream car</h4>
-                <p class="intro-content-subtitle">Everything you need to build an amazing dealership website</p>
-                <p class="intro-content-main">Suitable for any car dealer websites, business or corporate websites.
-                    The Theme has been Created especially for Automotive Dealers,
-                    car resellers, car service stations, mechanic workshop and auto motor retailers. mechanic workshop
-                    and auto motor retailers.mechanic workshop and auto motor retailers.</p>
+                <h4 class="intro-content-title">Знайди автомобіль мрії</h4>
+                <p class="intro-content-subtitle">Необхідно лише вибрати ваші переваги і знайти</p>
+                <p class="intro-content-main">Наш автосалон пропонує автомобілі різного сорту: сучасні і старі, швидкі і
+                    великі. У нас є можливість спробувати машину у тест-драйв і зрозуміти чи вона вам подобається. Наш автосалон щільно працює із партнерскими автосервісами. При виникненні певних проблем ви завжди можете звернутись за гарячою лінією або за допомогою форми на нашому сайті.</p>
             </div>
         </section>
     </div>
@@ -146,60 +144,67 @@
              th:data-image-src="@{resources/images/background-car.jpg}">
         <div class="wrap">
             <div class="find-block">
-                <h2>Find a dream car</h2>
+                <h2>Знайди свій автомобіль</h2>
                 <hr id="form-hr1">
                 <hr id="form-hr2">
 
                 <form class="find-form" th:action="@{/findCar}" method="post">
                     <div class="form-in">
                         <div class="form-section">
-                            <label>Select brand</label>
+                            <label>Бренд</label>
                             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
                             <select id="brand_select" name="brandName">
+                                <option class="all-brands">Всі бренди</option>
                                 <option th:each="car : ${cars}" th:class="${car.brandName}" th:value="${car.brandName}"
                                         th:text="${car.brandName}">BMW
                                 </option>
                                 <option th:remove="all">Mercedes-Benz</option>
                                 <option th:remove="all">Toyota</option>
                             </select>
-                            <label>Select body</label>
+                            <label>Модель кузова</label>
                             <select id="body_select" name="bodyName">
                                 <option th:each="car : ${cars}" th:class="${car.modelName}" th:value="${car.bodyName}"
                                         th:text="${car.bodyName}">s500
                                 </option>
+                                <option class="Всі моделі">Всі моделі кузова</option>
                                 <option th:remove="all">s120</option>
                                 <option th:remove="all">e34</option>
                             </select>
-                            <label>Select type</label>
+                            <label>Тип кузова</label>
                             <select id="cartype_select" name="carType">
+                                <option>Всі типи кузова</option>
                                 <option th:each="carType : ${carTypes}" th:value="${carType.id}"
                                         th:text="${carType.typeName}"></option>
                             </select>
                         </div>
                         <div class="form-section">
-                            <label>Select model</label>
+                            <label>Модель</label>
                             <select id="model_select" name="modelName">
+
                                 <option th:each="car : ${cars}" th:class="${car.brandName}" th:value="${car.modelName}"
                                         th:text="${car.modelName}">Mers
                                 </option>
+                                <option class="Всі бренди">Всі моделі</option>
                                 <option th:remove="all">Toyota</option>
                                 <option th:remove="all">BMW</option>
                             </select>
-                            <label>Engine type</label>
+                            <label>Тип двигуна</label>
                             <select name="engineType">
+                                <option>Всі типи двигуна</option>
                                 <option th:each="type : ${T(uniloft.springframework.spring5carshop.model.enums.EngineType).values()}"
                                         th:text="${type.description}" th:value="${type}">
                                 </option>
                                 <option th:remove="all">PETROL</option>
                             </select>
-                            <label>Select color</label>
+                            <label>Колір</label>
                             <select id="color" name="color">
+                                <option>Всі кольори</option>
                                 <option th:each="color : ${colors}" th:value="${color.id}"
                                         th:text="${color.color}"></option>
                             </select>
                         </div>
                     </div>
-                    <input type="submit" value="Search">
+                    <input type="submit" value="Шукати">
                 </form>
             </div>
         </div>
@@ -322,7 +327,7 @@
                             <p class="counter-title">VEHICLES IN STOCK</p>
                             <div class="counter-in">
                                 <i class="fa fa-car"></i>
-                                <p>561</p>
+                                <p th:text="${carCount}">561</p>
                             </div>
                         </div>
                     </div>

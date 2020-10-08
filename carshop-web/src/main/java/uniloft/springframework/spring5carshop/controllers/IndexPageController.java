@@ -34,6 +34,7 @@ public class IndexPageController {
         model.addAttribute("currentDate", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
         model.addAttribute("cars", carService.getCars());
         model.addAttribute("colors", colorService.getColors());
+        model.addAttribute("carCount", carService.getCarsCount());
         return "index";
     }
 
