@@ -548,10 +548,10 @@ Forms
     color: #999999;
     margin-top: 2em;
     font-weight: 300;
-    font-size: 1rem;
+    font-size: 1.15rem;
 }
 
-#featurecar-hr1, #featurecar-hr2 {
+.featurecar-hr1, .featurecar-hr2 {
     border: 0;
     height: 1px;
     background: #DB2D2E;
@@ -559,19 +559,19 @@ Forms
     transition: .75s;
 }
 
-#featurecar-hr1 {
+.featurecar-hr1 {
     width: 4.5%;
 }
 
-#featurecar-hr2 {
+.featurecar-hr2 {
     width: 10%;
 }
 
-.feature_cars-section-in:hover #featurecar-hr1 {
+.feature_cars-section-in:hover .featurecar-hr1 {
     width: 10%;
 }
 
-.feature_cars-section-in:hover #featurecar-hr2 {
+.feature_cars-section-in:hover .featurecar-hr2 {
     width: 4.5%;
 }
 
@@ -669,7 +669,7 @@ Forms
 
 .why-section h4 {
     font-weight: 300;
-    font-size: 1rem;
+    font-size: 1.15rem;
 }
 
 #why-hr1, #why-hr2 {
@@ -814,4 +814,75 @@ Forms
 .counter-visible {
     opacity: 1;
     transition: 1.5s;
+}
+
+.feedback-section {
+    padding: 3em;
+}
+
+.feedback-section-in {
+    text-align: center;
+}
+
+.feedback-section-in:hover .featurecar-hr1 {
+    width: 10%;
+}
+
+.feedback-section-in:hover .featurecar-hr2 {
+    width: 4.5%;
+}
+
+.feedback-section-in h4 {
+    color: #999999;
+    margin-top: 2em;
+    font-weight: 300;
+    font-size: 1.15rem;
+}
+
+.feedbacks {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3.5em;
+}
+
+.feedback {
+    width: 32.25%;
+    min-height: 400px;
+    background-color: #F6F6F6;
+}
+
+.feedback-img {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 155px;
+}
+
+.customer-img {
+    width: 75px;
+    border-radius: 50%;
+    margin: -2em auto 0;
+}
+
+.customer-block {
+    padding: 0 1em 1em;
+    color: #999999;
+}
+
+.customer-name {
+    color: #DB2D2E;
+}
+
+.customer-pos {
+    margin-bottom: 1em;
+    font-size: 1.15rem;
+}
+
+.customer-text {
+    font-size: 1.1rem;
+    margin-bottom: 1em;
+}
+
+.customer-block i {
+    font-size: 1.75rem;
 }

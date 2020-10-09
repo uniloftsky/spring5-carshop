@@ -223,8 +223,8 @@
             <div class="feature_cars-section-in">
                 <h4>Check out our recent cars</h4>
                 <h2>FEATURE CAR</h2>
-                <hr id="featurecar-hr1">
-                <hr id="featurecar-hr2">
+                <hr class="featurecar-hr1">
+                <hr class="featurecar-hr2">
 
                 <div class="cars-block">
                     <div th:each="car : ${featuredCars}" class="car">
@@ -376,6 +376,81 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <section class="feedback-section">
+
+        <div class="wrap">
+            <div class="feedback-section-in">
+                <h4>What Our Happy Clients say about us</h4>
+                <h2>Our testimonial</h2>
+                <hr class="featurecar-hr1">
+                <hr class="featurecar-hr2">
+                <div class="feedbacks">
+                    <div class="feedback">
+                        <div class="feedback-img-block">
+                            <img class="feedback-img" th:src="@{resources/images/e34.jpg}"
+                                 src="../static/resources/images/e34.jpg">
+                        </div>
+                        <div class="feedback-info">
+                            <div class="customer-img-block">
+                                <img class="customer-img" th:src="@{resources/images/favicon.jpg}"
+                                     src="../static/resources/images/favicon.jpg">
+                            </div>
+                            <div class="customer-block">
+                                <p class="customer-name">Anton</p>
+                                <p class="customer-pos">Customer</p>
+                                <p class="customer-text">Text of the printin a galley of type and bled it to a type
+                                    specimen book. It has survived not only five centuries make Lorem Ipsum is simply
+                                    dummy.</p>
+                                <i class="fa fa-quote-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feedback">
+                        <div class="feedback-img-block">
+                            <img class="feedback-img" th:src="@{resources/images/e34.jpg}"
+                                 src="../static/resources/images/e34.jpg">
+                        </div>
+                        <div class="feedback-info">
+                            <div class="customer-img-block">
+                                <img class="customer-img" th:src="@{resources/images/favicon.jpg}"
+                                     src="../static/resources/images/favicon.jpg">
+                            </div>
+                            <div class="customer-block">
+                                <p class="customer-name">Anton</p>
+                                <p class="customer-pos">Customer</p>
+                                <p class="customer-text">Text of the printin a galley of type and bled it to a type
+                                    specimen book. It has survived not only five centuries make Lorem Ipsum is simply
+                                    dummy.</p>
+                                <i class="fa fa-quote-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feedback">
+                        <div class="feedback-img-block">
+                            <img class="feedback-img" th:src="@{resources/images/e34.jpg}"
+                                 src="../static/resources/images/e34.jpg">
+                        </div>
+                        <div class="feedback-info">
+                            <div class="customer-img-block">
+                                <img class="customer-img" th:src="@{resources/images/favicon.jpg}"
+                                     src="../static/resources/images/favicon.jpg">
+                            </div>
+                            <div class="customer-block">
+                                <p class="customer-name">Anton</p>
+                                <p class="customer-pos">Customer</p>
+                                <p class="customer-text">Text of the printin a galley of type and bled it to a type
+                                    specimen book. It has survived not only five centuries make Lorem Ipsum is simply
+                                    dummy.</p>
+                                <i class="fa fa-quote-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
 </main>
