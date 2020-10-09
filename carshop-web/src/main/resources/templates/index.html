@@ -135,7 +135,9 @@
                 <h4 class="intro-content-title">Знайди автомобіль мрії</h4>
                 <p class="intro-content-subtitle">Необхідно лише вибрати ваші переваги і знайти</p>
                 <p class="intro-content-main">Наш автосалон пропонує автомобілі різного сорту: сучасні і старі, швидкі і
-                    великі. У нас є можливість спробувати машину у тест-драйв і зрозуміти чи вона вам подобається. Наш автосалон щільно працює із партнерскими автосервісами. При виникненні певних проблем ви завжди можете звернутись за гарячою лінією або за допомогою форми на нашому сайті.</p>
+                    великі. У нас є можливість спробувати машину у тест-драйв і зрозуміти чи вона вам подобається. Наш
+                    автосалон щільно працює із партнерскими автосервісами. При виникненні певних проблем ви завжди
+                    можете звернутись за гарячою лінією або за допомогою форми на нашому сайті.</p>
             </div>
         </section>
     </div>
@@ -154,7 +156,8 @@
                             <label>Бренд</label>
                             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
                             <select id="brand_select" name="brandName">
-                                <option th:each="brand : ${brands}" th:class="${brand.brandName}" th:value="${brand.brandName}"
+                                <option th:each="brand : ${brands}" th:class="${brand.brandName}"
+                                        th:value="${brand.brandName}"
                                         th:text="${brand.brandName}">BMW
                                 </option>
                                 <option th:remove="all">Mercedes-Benz</option>
@@ -162,8 +165,15 @@
                             </select>
                             <label>Модель кузова</label>
                             <select id="body_select" name="bodyName">
-                                <option th:each="body : ${bodies}" th:class="${body.model.modelName}" th:value="${body.bodyName}"
-                                        th:text="${body.bodyName}">s500</option>
+                                <th:block th:each="model : ${models}">
+                                    <option th:class="${model.modelName}" th:value="all-bodies">Всі моделі кузовів
+                                    </option>
+                                </th:block>
+                                <option class="all-models" value="all-bodies">Всі моделі кузовів</option>
+                                <option th:each="body : ${bodies}" th:class="${body.model.modelName}"
+                                        th:value="${body.bodyName}"
+                                        th:text="${body.bodyName}">s500
+                                </option>
                                 <option th:remove="all">s120</option>
                                 <option th:remove="all">e34</option>
                             </select>
@@ -177,8 +187,11 @@
                         <div class="form-section">
                             <label>Модель</label>
                             <select id="model_select" name="modelName">
-                                <option th:class="Всі бренди">Всі моделі</option>
-                                <option th:each="model : ${models}" th:class="${model.brand.brandName}" th:value="${model.modelName}" th:text="${model.modelName}">Mers
+                                <th:block th:each="brand : ${brands}">
+                                    <option th:class="${brand.brandName}" value="all-models">Всі моделі</option>
+                                </th:block>
+                                <option th:each="model : ${models}" th:class="${model.brand.brandName}"
+                                        th:value="${model.modelName}" th:text="${model.modelName}">Mers
                                 </option>
                                 <option th:remove="all">Toyota</option>
                                 <option th:remove="all">BMW</option>
@@ -233,7 +246,8 @@
                                 <p th:text="${car.carType.typeName}">Sedan</p>
                             </div>
                         </div>
-                        <p th:text="${car.brand.brandName} + ' ' + ${car.model.modelName}" class="car-title">Mercedes-Benz</p>
+                        <p th:text="${car.brand.brandName} + ' ' + ${car.model.modelName}" class="car-title">
+                            Mercedes-Benz</p>
                         <hr class="car-hr1">
                         <hr class="car-hr2">
                         <a href="#" th:text=" '$' + ${car.price}" class="btn-car">$999</a>
@@ -314,7 +328,7 @@
                             doloremque laudantium.</p>
                     </div>
                 </div>
-                <div class="counters-block">
+                <div id="counter" class="counters-block">
                     <div class="counter">
                         <div class="left-side">
                         </div>
@@ -322,7 +336,7 @@
                             <p class="counter-title">VEHICLES IN STOCK</p>
                             <div class="counter-in">
                                 <i class="fa fa-car"></i>
-                                <p th:text="${carCount}">561</p>
+                                <p class="counter-numb" th:data-num="${carCount}">0</p>
                             </div>
                         </div>
                     </div>
@@ -333,7 +347,7 @@
                             <p class="counter-title">DEALER REVIEWS</p>
                             <div class="counter-in">
                                 <i class="fa fa-comments"></i>
-                                <p>856</p>
+                                <p class="counter-numb" data-num="856">0</p>
                             </div>
                         </div>
                     </div>
@@ -344,7 +358,7 @@
                             <p class="counter-title">HAPPY CUSTOMER</p>
                             <div class="counter-in">
                                 <i class="fas fa-user-circle"></i>
-                                <p>789</p>
+                                <p class="counter-numb" data-num="789">0</p>
                             </div>
                         </div>
                     </div>
@@ -355,7 +369,7 @@
                             <p class="counter-title">AWARDS</p>
                             <div class="counter-in">
                                 <i class="fas fa-trophy"></i>
-                                <p>356</p>
+                                <p class="counter-numb" data-num="356">0</p>
                             </div>
                         </div>
                     </div>
@@ -370,6 +384,7 @@
     <p>footer</p>
 
 </footer>
+<script src="../static/resources/js/numbercount.js" th:src="@{resources/js/numbercount.js}"></script>
 <script type="text/javascript" src="../static/resources/js/parallax.js" th:src="@{resources/js/parallax.js}"></script>
 <script src="../static/resources/js/chainedselects.js" type="text/javascript"
         th:src="@{resources/js/chainedselects.js}"></script>

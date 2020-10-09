@@ -39,6 +39,7 @@ public class IndexPageController {
         model.addAttribute("cars", carService.getCars());
         model.addAttribute("colors", colorService.getColors());
         model.addAttribute("featuredCars", carService.getCars().stream().limit(3).collect(Collectors.toSet()));
+        model.addAttribute("carCount", carService.getCarsCount());
         model.addAttribute("brands", carBrandService.getBrands());
         model.addAttribute("models", carBrandService.getBrandModels());
         model.addAttribute("bodies", carBrandService.getModelBodies());

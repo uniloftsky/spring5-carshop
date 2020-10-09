@@ -739,6 +739,7 @@ Forms
     color: #999999;
     margin-top: .5em;
     transition: .75s;
+    cursor: default;
 }
 
 .counters-block, .counter {
@@ -804,4 +805,13 @@ Forms
 
 .counter-in p {
     font-size: 2.5rem;
+}
+
+.counter-numb {
+    opacity: 0;
+}
+
+.counter-visible {
+    opacity: 1;
+    transition: 1.5s;
 }
