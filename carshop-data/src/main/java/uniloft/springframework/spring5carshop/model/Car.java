@@ -3,10 +3,7 @@ package uniloft.springframework.spring5carshop.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,9 +25,17 @@ public class Car extends BaseEntity {
     @OneToMany(mappedBy = "car")
     private Set<TestCar> testCars = new HashSet<>();
 
-    private String brandName;
-    private String modelName;
-    private String bodyName;
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private CarBrand brand;
+
+    @ManyToOne
+    @JoinColumn(name = "model_id")
+    private CarModel model;
+
+    @ManyToOne
+    @JoinColumn(name = "body_id")
+    private CarBody body;
     private BigDecimal price;
 
     @ManyToOne

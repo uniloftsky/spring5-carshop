@@ -154,19 +154,16 @@
                             <label>Бренд</label>
                             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
                             <select id="brand_select" name="brandName">
-                                <option class="all-brands">Всі бренди</option>
-                                <option th:each="car : ${cars}" th:class="${car.brandName}" th:value="${car.brandName}"
-                                        th:text="${car.brandName}">BMW
+                                <option th:each="brand : ${brands}" th:class="${brand.brandName}" th:value="${brand.brandName}"
+                                        th:text="${brand.brandName}">BMW
                                 </option>
                                 <option th:remove="all">Mercedes-Benz</option>
                                 <option th:remove="all">Toyota</option>
                             </select>
                             <label>Модель кузова</label>
                             <select id="body_select" name="bodyName">
-                                <option th:each="car : ${cars}" th:class="${car.modelName}" th:value="${car.bodyName}"
-                                        th:text="${car.bodyName}">s500
-                                </option>
-                                <option class="Всі моделі">Всі моделі кузова</option>
+                                <option th:each="body : ${bodies}" th:class="${body.model.modelName}" th:value="${body.bodyName}"
+                                        th:text="${body.bodyName}">s500</option>
                                 <option th:remove="all">s120</option>
                                 <option th:remove="all">e34</option>
                             </select>
@@ -180,11 +177,9 @@
                         <div class="form-section">
                             <label>Модель</label>
                             <select id="model_select" name="modelName">
-
-                                <option th:each="car : ${cars}" th:class="${car.brandName}" th:value="${car.modelName}"
-                                        th:text="${car.modelName}">Mers
+                                <option th:class="Всі бренди">Всі моделі</option>
+                                <option th:each="model : ${models}" th:class="${model.brand.brandName}" th:value="${model.modelName}" th:text="${model.modelName}">Mers
                                 </option>
-                                <option class="Всі бренди">Всі моделі</option>
                                 <option th:remove="all">Toyota</option>
                                 <option th:remove="all">BMW</option>
                             </select>
@@ -219,7 +214,7 @@
                 <hr id="featurecar-hr2">
 
                 <div class="cars-block">
-                    <div th:each="car : ${cars}" class="car">
+                    <div th:each="car : ${featuredCars}" class="car">
                         <div class="car-img-block">
                             <img class="car-img" src="../static/resources/images/mercedes.jpg"
                                  th:src="${car.image}">
@@ -238,7 +233,7 @@
                                 <p th:text="${car.carType.typeName}">Sedan</p>
                             </div>
                         </div>
-                        <p th:text="${car.brandName} + ' ' + ${car.modelName}" class="car-title">Mercedes-Benz</p>
+                        <p th:text="${car.brand.brandName} + ' ' + ${car.model.modelName}" class="car-title">Mercedes-Benz</p>
                         <hr class="car-hr1">
                         <hr class="car-hr2">
                         <a href="#" th:text=" '$' + ${car.price}" class="btn-car">$999</a>

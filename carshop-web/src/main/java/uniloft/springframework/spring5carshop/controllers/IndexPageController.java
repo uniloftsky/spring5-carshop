@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import uniloft.springframework.spring5carshop.model.Car;
+import uniloft.springframework.spring5carshop.services.CarBrandService;
 import uniloft.springframework.spring5carshop.services.CarService;
 import uniloft.springframework.spring5carshop.services.CarTypeService;
 import uniloft.springframework.spring5carshop.services.ColorService;
@@ -12,6 +13,7 @@ import uniloft.springframework.spring5carshop.services.repositories.CarRepositor
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 public class IndexPageController {
@@ -20,12 +22,14 @@ public class IndexPageController {
     private final CarService carService;
     private final CarRepository carRepository;
     private final ColorService colorService;
+    private final CarBrandService carBrandService;
 
-    public IndexPageController(CarTypeService carTypeService, CarService carService, CarRepository carRepository, ColorService colorService) {
+    public IndexPageController(CarTypeService carTypeService, CarService carService, CarRepository carRepository, ColorService colorService, CarBrandService carBrandService) {
         this.carTypeService = carTypeService;
         this.carService = carService;
         this.carRepository = carRepository;
         this.colorService = colorService;
+        this.carBrandService = carBrandService;
     }
 
     @RequestMapping({"", "/", "index", "index.html", "home", "home.html"})
@@ -34,7 +38,10 @@ public class IndexPageController {
         model.addAttribute("currentDate", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
         model.addAttribute("cars", carService.getCars());
         model.addAttribute("colors", colorService.getColors());
-        model.addAttribute("carCount", carService.getCarsCount());
+        model.addAttribute("featuredCars", carService.getCars().stream().limit(3).collect(Collectors.toSet()));
+        model.addAttribute("brands", carBrandService.getBrands());
+        model.addAttribute("models", carBrandService.getBrandModels());
+        model.addAttribute("bodies", carBrandService.getModelBodies());
         return "index";
     }
 
