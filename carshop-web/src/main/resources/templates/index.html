@@ -458,13 +458,14 @@
 
     <section class="parallax-window footer-section" data-parallax="scroll"
              data-image-src="../static/resources/images/background-car3.jpg"
-             th:data-image-src="@{resources/images/background-car3.jpg}">
+             th:data-image-src="@{resources/images/background-car3.jpg}" style="padding-bottom: 1.5em; padding-left: 0; padding-right: 0;">
         <div class="wrap">
             <div class="footer-section-in">
                 <div class="footer-top">
                     <div class="footer-info">
                         <div class="logo-footer-img-block">
-                            <img class="logo-footer-img" src="../static/resources/images/logo-light.png" th:src="@{resources/images/logo-light.png}">
+                            <img class="logo-footer-img" src="../static/resources/images/logo-light.png"
+                                 th:src="@{resources/images/logo-light.png}">
                         </div>
                         <div class="footer-content">
                             <p class="footer-text">We provide everything you need to build an amazing dealership website
@@ -510,10 +511,11 @@
                     </div>
                     <div class="footer-info">
                         <p class="footer-info-title">Recent Cars</p>
-                        <div class="recents-cars">
+                        <div class="recent-cars">
                             <div class="recent-car">
                                 <div class="recent-car-img-block">
-                                    <img class="recent-car-img" src="../static/resources/images/mercedes.jpg" th:src="@{resources/images/mercedes.jpg}">
+                                    <img class="recent-car-img" src="../static/resources/images/mercedes.jpg"
+                                         th:src="@{resources/images/mercedes.jpg}">
                                 </div>
                                 <div class="recent-car-info">
                                     <p class="recent-car-name">Mercedes Benz</p>
@@ -525,7 +527,8 @@
                             </div>
                             <div class="recent-car">
                                 <div class="recent-car-img-block">
-                                    <img class="recent-car-img" src="../static/resources/images/mercedes.jpg" th:src="@{resources/images/mercedes.jpg}">
+                                    <img class="recent-car-img" src="../static/resources/images/mercedes.jpg"
+                                         th:src="@{resources/images/mercedes.jpg}">
                                 </div>
                                 <div class="recent-car-info">
                                     <p class="recent-car-name">Mercedes Benz</p>
@@ -537,7 +540,8 @@
                             </div>
                             <div class="recent-car">
                                 <div class="recent-car-img-block">
-                                    <img class="recent-car-img" src="../static/resources/images/mercedes.jpg" th:src="@{resources/images/mercedes.jpg}">
+                                    <img class="recent-car-img" src="../static/resources/images/mercedes.jpg"
+                                         th:src="@{resources/images/mercedes.jpg}">
                                 </div>
                                 <div class="recent-car-info">
                                     <p class="recent-car-name">Mercedes Benz</p>
@@ -551,18 +555,50 @@
                     </div>
                     <div class="footer-info">
                         <p class="footer-info-title">Subscribe our newsletter</p>
-                        <p class="footer-text">Keep up on our always evolving products features and technology. Enter your e-mail and subscribe to our newsletter.</p>
-                        <form>
+                        <p class="footer-text">Keep up on our always evolving products features and technology. Enter
+                            your e-mail and subscribe to our newsletter.</p>
+                        <form class="footer-form">
                             <input type="email" placeholder="Enter your Email" name="email-sub">
+                            <br>
                             <input type="submit" value="Subscribe">
                         </form>
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <div class="footer-q"></div>
-                    <div class="footer-q"></div>
+                    <div class="footer-q">
+                        <div class="footer-q-side">
+                            <p class="footer-q-title">ARE YOU LOOKING FOR A CAR?</p>
+                            <p class="footer-q-text">Search Our Inventory With Thousands Of Cars And More Cars Are
+                                Adding On Daily Basis</p>
+                        </div>
+                        <a href="#" class="btn-q">Read More</a>
+                    </div>
+                    <div class="footer-q">
+                        <div class="footer-q-side">
+                            <p class="footer-q-title">DO YOU WANT TO SELL A CAR?</p>
+                            <p class="footer-q-text">Search Our Inventory With Thousands Of Cars And More Cars Are
+                                Adding On Daily Basis</p>
+                        </div>
+                        <a href="#" class="btn-q">Read More</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-in">
+                <div class="footer-bottom-side">
+                    <p>©Car Dealer Developed by <span style="color: #DB2D2E;">Anton Kulyk</span></p>
+                </div>
+                <div class="footer-bottom-side">
+                    <ul>
+                        <li>Privacy Policy</li>
+                        <li>Terms and Conditions</li>
+                        <li>Contact Us</li>
+                    </ul>
                 </div>
             </div>
+
         </div>
     </section>
 </footer>
