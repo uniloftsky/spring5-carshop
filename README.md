@@ -1,2 +1,5 @@
-# spring5-carshop
-Spring web application for car shop website
+# Spring5 web application - Car Shop
+Spring5 web application for college work.
+Used:
+IDE: IntelliJ IDEA
+Framework: Spring5 Framework(Spring Boot, Spring Security, Spring Data, Spring Web)
