@@ -858,10 +858,17 @@ Forms
     height: 155px;
 }
 
+.customer-img-block {
+    margin-top: -2em;
+    z-index: 1;
+    position: relative;
+}
+
 .customer-img {
     width: 75px;
     border-radius: 50%;
-    margin: -2em auto 0;
+    margin: 0 auto;
+    border: 5px solid white;
 }
 
 .customer-block {
@@ -885,4 +892,118 @@ Forms
 
 .customer-block i {
     font-size: 1.75rem;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    color: #999999;
+    text-shadow: none;
+}
+
+.footer-info {
+    width: 24%;
+    text-align: left;
+    font-size: 1.1rem;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer-info-title {
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 600;
+    position: relative;
+    margin-bottom: 2em;
+}
+
+.footer-info-title:after {
+    content: '';
+    height: 3px;
+    width: 8%;
+    background: #DB2D2E;
+    position: absolute;
+    bottom: -.5em;
+    left: 0;
+
+}
+
+.logo-footer-img-block {
+    margin-bottom: 2em;
+}
+
+.logo-footer-img {
+    width: 90%;
+}
+
+.recent-cars {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-self: flex-start;
+}
+
+.recent-car {
+    display: flex;
+}
+
+.recent-car-info div {
+    display: flex;
+}
+
+.recent-car-img-block {
+    width: 40%;
+}
+
+.recent-car-img {
+    width: 80%;
+}
+
+.link-block {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+    border-bottom: 1px solid #261C1D;
+    padding-bottom: 1em;
+}
+
+.link-block:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+}
+
+.link-block a {
+    text-decoration: none;
+    color: #999999;
+}
+
+.link-block i {
+    font-size: .65rem;
+    margin-right: 1em;
+}
+
+.footer-text {
+    margin-bottom: 1em;
+}
+
+.footer-contact-in {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.footer-contact-in i {
+    font-size: 1rem;
+}
+
+.footer-contact {
+    width: 85%;
+    margin-bottom: 1em;
+}
+
+.footer-content {
+    margin-bottom: auto;
 }
