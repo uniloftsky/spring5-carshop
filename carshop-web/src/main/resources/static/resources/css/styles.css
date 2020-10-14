@@ -865,7 +865,9 @@ Forms
 }
 
 .customer-img {
+    object-fit: cover;
     width: 75px;
+    height: 75px;
     border-radius: 50%;
     margin: 0 auto;
     border: 5px solid white;
@@ -874,6 +876,9 @@ Forms
 .customer-block {
     padding: 0 1em 1em;
     color: #999999;
+    display: flex;
+    flex-direction: column;
+    min-height: 262px;
 }
 
 .customer-name {
@@ -891,6 +896,7 @@ Forms
 }
 
 .customer-block i {
+    margin-top: auto;
     font-size: 1.75rem;
 }
 
@@ -999,11 +1005,17 @@ Forms
 .link-block a {
     text-decoration: none;
     color: #999999;
+    transition: .5s;
+}
+
+.link-block:hover a, .link-block:hover i {
+    color: #DB2D2E;
 }
 
 .link-block i {
     font-size: .65rem;
     margin-right: 1em;
+    transition: .5s;
 }
 
 .footer-text {
@@ -1143,4 +1155,14 @@ Forms
 
 .footer-bottom-side ul li:last-child {
     border-right: 0;
+}
+
+.footer-bottom-side ul a {
+    text-decoration: none;
+    color: white;
+    transition: .5s;
+}
+
+.footer-bottom-side ul a:hover {
+    color: #DB2D2E;
 }

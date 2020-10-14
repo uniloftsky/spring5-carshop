@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap"
+          rel="stylesheet">
+    <link th:href="@{resources/css/styles.css}"
+          href="../static/resources/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="img/favicon.png" th:href="@{/resources/images/favicon.jpg}" type="img/jpg">
+    <title>UniCar - Автосалон</title>
+</head>
+<body>
+<header>
+    <div class="wrap">
+        <section class="top-bar">
+            <section class="top-bar-section">
+                <div class="top-bar-inner">
+                    <img class="top-bar-icon" src="../static/resources/images/icons/email.png"
+                         th:src="@{resources/images/icons/email.png}">
+                    <p class="top-bar-section-text">uniloftsky@gmail.com</p>
+                </div>
+                <div class="top-bar-inner">
+                    <img class="top-bar-icon" src="../static/resources/images/icons/four-oclock.png"
+                         th:src="@{resources/images/icons/four-oclock.png}">
+                    <p class="top-bar-section-text" th:text="${currentDate}">20.12.2002 02:00 AM</p>
+                </div>
+            </section>
+            <section class="top-bar-section">
+                <div class="top-bar-inner">
+                    <img class="top-bar-icon" src="../static/resources/images/icons/phone-call.png"
+                         th:src="@{resources/images/icons/phone-call.png}">
+                    <p class="top-bar-section-text">(097)127-93-32</p>
+                </div>
+            </section>
+        </section>
+    </div>
+</header>
+<main>
+    <div class="wrap">
+
+        <section class="logo-block">
+            <img class="logo-img" src="../static/resources/images/logo.png" th:src="@{resources/images/logo.png}">
+        </section>
+
+        <nav>
+            <ul>
+                <li><a href="#" th:href="@{/}">Головна</a></li>
+                <li><a href="#">Купити авто</a></li>
+                <li><a href="#">Тест-драйв авто</a></li>
+                <li><a href="#" th:href="@{/about}">Про нас</a></li>
+            </ul>
+        </nav>
+
+    </div>
+
+    </div>
+
+</main>
+<footer>
+
+    <section class="parallax-window footer-section" data-parallax="scroll"
+             data-image-src="../static/resources/images/background-car3.jpg"
+             th:data-image-src="@{resources/images/background-car3.jpg}"
+             style="padding-bottom: 1.5em; padding-left: 0; padding-right: 0;">
+        <div class="wrap">
+            <div class="footer-section-in">
+                <div class="footer-top">
+                    <div class="footer-info">
+                        <div class="logo-footer-img-block">
+                            <img class="logo-footer-img" src="../static/resources/images/logo-light.png"
+                                 th:src="@{resources/images/logo-light.png}">
+                        </div>
+                        <div class="footer-content">
+                            <p class="footer-text">We provide everything you need to build an amazing dealership website
+                                developed especially for car sellers dealers or auto motor retailers.</p>
+                        </div>
+                        <div class="contacts">
+                            <div class="footer-contact-in">
+                                <i class="fa fa-map-marker"></i>
+                                <p class="footer-contact">вул. Соборна, 18</p>
+                            </div>
+                            <div class="footer-contact-in">
+                                <i class="fa fa-phone"></i>
+                                <p class="footer-contact">(007) 123 456 7890</p>
+                            </div>
+                            <div class="footer-contact-in">
+                                <i class="fa fa-envelope-o"></i>
+                                <p class="footer-contact">support@website.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-info">
+                        <p class="footer-info-title">Useful Links</p>
+                        <div class="link-block">
+                            <i class="fa fa-angle-double-right"></i>
+                            <a href="#" class="footer-link">Change Oil And Filter</a>
+                        </div>
+                        <div class="link-block">
+                            <i class="fa fa-angle-double-right"></i>
+                            <a href="#" class="footer-link">Brake Pads Replacement</a>
+                        </div>
+                        <div class="link-block">
+                            <i class="fa fa-angle-double-right"></i>
+                            <a href="#" class="footer-link">Timing Belt Replacement</a>
+                        </div>
+                        <div class="link-block">
+                            <i class="fa fa-angle-double-right"></i>
+                            <a href="#" class="footer-link">Pre-purchase Car Inspection</a>
+                        </div>
+                        <div class="link-block">
+                            <i class="fa fa-angle-double-right"></i>
+                            <a href="#" class="footer-link">Starter Replacement</a>
+                        </div>
+                    </div>
+                    <div class="footer-info">
+                        <p class="footer-info-title">Recent Cars</p>
+                        <div class="recent-cars">
+                            <div class="recent-car" th:each="car : ${featuredCars}">
+                                <div class="recent-car-img-block">
+                                    <img class="recent-car-img" src="../static/resources/images/mercedes.jpg"
+                                         th:src="${car.image}">
+                                </div>
+                                <div class="recent-car-info">
+                                    <p class="recent-car-name"
+                                       th:text="${car.brand.brandName} + ' ' + ${car.model.modelName}">Mercedes Benz</p>
+                                    <div>
+                                        <i class="fa fa-calendar"></i>
+                                        <p class="recent-car-date" th:text="${currentDate}">12.20.2001</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-info">
+                        <p class="footer-info-title">Subscribe our newsletter</p>
+                        <p class="footer-text">Keep up on our always evolving products features and technology. Enter
+                            your e-mail and subscribe to our newsletter.</p>
+                        <form class="footer-form">
+                            <input type="email" placeholder="Enter your Email" name="email-sub">
+                            <br>
+                            <input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-q">
+                        <div class="footer-q-side">
+                            <p class="footer-q-title">ARE YOU LOOKING FOR A CAR?</p>
+                            <p class="footer-q-text">Search Our Inventory With Thousands Of Cars And More Cars Are
+                                Adding On Daily Basis</p>
+                        </div>
+                        <a href="#" class="btn-q">Read More</a>
+                    </div>
+                    <div class="footer-q">
+                        <div class="footer-q-side">
+                            <p class="footer-q-title">DO YOU WANT TO SELL A CAR?</p>
+                            <p class="footer-q-text">Search Our Inventory With Thousands Of Cars And More Cars Are
+                                Adding On Daily Basis</p>
+                        </div>
+                        <a href="#" class="btn-q">Read More</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-in">
+                <div class="footer-bottom-side">
+                    <p>©Car Dealer Developed by <span style="color: #DB2D2E;">Anton Kulyk</span></p>
+                </div>
+                <div class="footer-bottom-side">
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms and Conditions</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="../static/resources/js/numbercount.js" th:src="@{resources/js/numbercount.js}"></script>
+<script type="text/javascript" src="../static/resources/js/parallax.js" th:src="@{resources/js/parallax.js}"></script>
+<script src="../static/resources/js/chainedselects.js" type="text/javascript"
+        th:src="@{resources/js/chainedselects.js}"></script>
+<script src="../static/resources/js/slider.js" type="text/javascript" th:src="@{resources/js/slider.js}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://kit.fontawesome.com/de94abba4d.js" crossorigin="anonymous"></script>
+</body>
+</html>

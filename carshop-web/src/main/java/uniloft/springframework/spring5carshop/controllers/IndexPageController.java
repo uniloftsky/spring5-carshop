@@ -35,8 +35,6 @@ public class IndexPageController {
     @RequestMapping({"", "/", "index", "index.html", "home", "home.html"})
     public String getIndexPage(Model model) {
         model.addAttribute("carTypes", carTypeService.getCarTypes());
-        model.addAttribute("currentDate", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
-        model.addAttribute("cars", carService.getCars());
         model.addAttribute("colors", colorService.getColors());
         model.addAttribute("featuredCars", carService.getCars().stream().limit(3).collect(Collectors.toSet()));
         model.addAttribute("carCount", carService.getCarsCount());
@@ -44,6 +42,21 @@ public class IndexPageController {
         model.addAttribute("models", carBrandService.getBrandModels());
         model.addAttribute("bodies", carBrandService.getModelBodies());
         return "index";
+    }
+
+    @ModelAttribute("cars")
+    public Set<Car> getCars() {
+        return carService.getCars();
+    }
+
+    @ModelAttribute("featuredCars")
+    public Set<Car> getFeaturedCars() {
+        return carService.getCars().stream().limit(3).collect(Collectors.toSet());
+    }
+
+    @ModelAttribute("currentDate")
+    public String getCurrentDate() {
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
     @GetMapping("car/{id}/show")
@@ -56,6 +69,11 @@ public class IndexPageController {
     public String foundedListCar(@PathVariable String id, Model model) {
         model.addAttribute("cars", carRepository.findCarsByCarType_Id(Long.valueOf(id)));
         return "car/list";
+    }
+
+    @GetMapping("about")
+    public String getAboutPage() {
+        return "about";
     }
 
     /*@PostMapping("findCar")

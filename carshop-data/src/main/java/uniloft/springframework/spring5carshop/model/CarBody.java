@@ -16,5 +16,4 @@ public class CarBody extends BaseEntity {
     @ManyToOne
     private CarModel model;
 
-
 }
