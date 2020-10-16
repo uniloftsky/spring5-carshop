@@ -13,51 +13,88 @@
     <title>UniCar - Автосалон</title>
 </head>
 <body>
-<header>
-    <div class="wrap">
-        <section class="top-bar">
-            <section class="top-bar-section">
-                <div class="top-bar-inner">
-                    <img class="top-bar-icon" src="../static/resources/images/icons/email.png"
-                         th:src="@{resources/images/icons/email.png}">
-                    <p class="top-bar-section-text">uniloftsky@gmail.com</p>
-                </div>
-                <div class="top-bar-inner">
-                    <img class="top-bar-icon" src="../static/resources/images/icons/four-oclock.png"
-                         th:src="@{resources/images/icons/four-oclock.png}">
-                    <p class="top-bar-section-text" th:text="${currentDate}">20.12.2002 02:00 AM</p>
-                </div>
+<header class="not-index">
+    <section class="parallax-window header-section" data-parallax="scroll"
+             data-image-src="../static/resources/images/background-car2.jpg"
+             th:data-image-src="@{resources/images/background-car2.jpg}"
+             style="padding: 1em 0 1.5em;">
+        <div class="wrap">
+            <section class="top-bar">
+                <section class="top-bar-section">
+                    <div class="top-bar-inner">
+                        <img class="top-bar-icon" src="../static/resources/images/icons/email.png"
+                             th:src="@{resources/images/icons/email.png}">
+                        <p class="top-bar-section-text">uniloftsky@gmail.com</p>
+                    </div>
+                    <div class="top-bar-inner">
+                        <img class="top-bar-icon" src="../static/resources/images/icons/four-oclock.png"
+                             th:src="@{resources/images/icons/four-oclock.png}">
+                        <p class="top-bar-section-text" th:text="${currentDate}">20.12.2002 02:00 AM</p>
+                    </div>
+                </section>
+                <section class="top-bar-section">
+                    <div class="top-bar-inner">
+                        <img class="top-bar-icon" src="../static/resources/images/icons/phone-call.png"
+                             th:src="@{resources/images/icons/phone-call.png}">
+                        <p class="top-bar-section-text">(097)127-93-32</p>
+                    </div>
+                </section>
             </section>
-            <section class="top-bar-section">
-                <div class="top-bar-inner">
-                    <img class="top-bar-icon" src="../static/resources/images/icons/phone-call.png"
-                         th:src="@{resources/images/icons/phone-call.png}">
-                    <p class="top-bar-section-text">(097)127-93-32</p>
+        </div>
+        <section class="sub-header-section">
+            <div class="wrap">
+                <div class="sub-header-in">
+                    <div class="sub-header">
+                        <section class="logo-block">
+                            <img class="logo-img" src="../static/resources/images/logo-light.png"
+                                 th:src="@{resources/images/logo-light.png}">
+                        </section>
+                        <nav>
+                            <ul>
+                                <li><a href="#" th:href="@{/}">Головна</a></li>
+                                <li><a href="#">Купити авто</a></li>
+                                <li><a href="#">Тест-драйв авто</a></li>
+                                <li><a href="#" th:href="@{/about}">Про нас</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="sub-header">
+                        <h2>Про нас</h2>
+                        <div class="header-path">
+                            <div>
+                                <i class="fa fa-home"></i>
+                                <a href="#">Головна</a>
+                            </div>
+                            <div>
+                                <i class="fa fa-angle-double-right"></i>
+                                <a href="#">Про нас</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </section>
+
+            </div>
         </section>
-    </div>
+    </section>
 </header>
 <main>
-    <div class="wrap">
-
-        <section class="logo-block">
-            <img class="logo-img" src="../static/resources/images/logo.png" th:src="@{resources/images/logo.png}">
-        </section>
-
-        <nav>
-            <ul>
-                <li><a href="#" th:href="@{/}">Головна</a></li>
-                <li><a href="#">Купити авто</a></li>
-                <li><a href="#">Тест-драйв авто</a></li>
-                <li><a href="#" th:href="@{/about}">Про нас</a></li>
-            </ul>
-        </nav>
-
-    </div>
-
-    </div>
-
+    <section class="about-section">
+        <div class="wrap">
+            <h4>Вітаємо у</h4>
+            <h2>Онлайн-автосалоні</h2>
+            <hr class="featurecar-hr1">
+            <hr class="featurecar-hr2">
+            <p class="about-sub-title">Наш автосалон вже декілька років існує на ринку. За цей час ми стали однією із
+                провідних компаній країни. З нами співпрацюють усі відомі бренди автомобілів і автосервісів. Наша якість
+                підтверджена численною кількістью позитивних відгуків.</p>
+            <div>
+                <div class="about-img-block">
+                    <img class="about-img" src="../static/resources/images/car.jpg" th:src="@{/resources/images/car.jpg}">
+                </div>
+                <p></p>
+            </div>
+        </div>
+    </section>
 </main>
 <footer>
 

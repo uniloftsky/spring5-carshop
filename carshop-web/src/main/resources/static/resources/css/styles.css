@@ -68,6 +68,12 @@ header {
     z-index: 1;
 }
 
+.not-index {
+    background: none;
+    padding: 0;
+    position: relative;
+}
+
 footer {
     margin-top: 5em;
 }
@@ -1165,4 +1171,91 @@ Forms
 
 .footer-bottom-side ul a:hover {
     color: #DB2D2E;
+}
+
+/*
+==================
+About page
+==================
+*/
+
+.sub-header-section {
+    border-top: 1px solid white;
+    border-color: rgba(255, 255, 255, 0.25);
+    margin-top: 1em;
+}
+
+.sub-header-in {
+    min-height: 425px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sub-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sub-header .logo-block {
+    display: block;
+}
+
+.sub-header .logo-img {
+    width: 40%;
+}
+
+.sub-header nav ul {
+    width: 100%;
+    margin: 0;
+}
+
+.sub-header nav a {
+    color: white;
+}
+
+.header-path {
+    display: flex;
+    justify-content: space-between;
+    width: 18%;
+}
+
+.header-path i {
+    margin-right: .25em;
+}
+
+.header-path a {
+    color: white;
+    text-decoration: none;
+    transition: .75s;
+}
+
+.header-path a:hover {
+    color: #DB2D2E;
+}
+
+.about-section {
+    text-align: center;
+    padding-top: 5em;
+}
+
+.about-section:hover .featurecar-hr1 {
+    width: 10%;
+}
+
+.about-section:hover .featurecar-hr2 {
+    width: 4.5%;
+}
+
+.about-section h4 {
+    color: #999999;
+    font-weight: 300;
+}
+
+.about-sub-title {
+    width: 80%;
+    font-size: 1.1rem;
+    color: #999999;
+    margin: 2em auto 0;
 }
