@@ -87,13 +87,231 @@
             <p class="about-sub-title">Наш автосалон вже декілька років існує на ринку. За цей час ми стали однією із
                 провідних компаній країни. З нами співпрацюють усі відомі бренди автомобілів і автосервісів. Наша якість
                 підтверджена численною кількістью позитивних відгуків.</p>
-            <div>
+            <div class="about-section-in">
                 <div class="about-img-block">
-                    <img class="about-img" src="../static/resources/images/car.jpg" th:src="@{/resources/images/car.jpg}">
+                    <img class="about-img" src="../static/resources/images/car.jpg"
+                         th:src="@{/resources/images/car.jpg}">
                 </div>
-                <p></p>
+                <div class="about-text-block">
+                    <p class="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore
+                        et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore
+                        et dolore magna aliqua.</p>
+                    <p class="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore
+                        et dolore magna aliqua.</p>
+                    <p class="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore
+                        et dolore magna aliqua.</p>
+                </div>
+            </div>
+            <div class="about-points">
+                <div class="point">
+                    <div class="icon-block">
+                        <i class="fa fa-car"></i>
+                    </div>
+                    <div class="point-info">
+                        <p class="point-title">ALL BRANDS</p>
+                        <p class="point-text">Obcaecati adipisci vero dolorum pariatur</p>
+                    </div>
+                </div>
+                <div class="point">
+                    <div class="icon-block">
+                        <i class="fa fa-comments"></i>
+                    </div>
+                    <div class="point-info">
+                        <p class="point-title">FREE SUPPORT</p>
+                        <p class="point-text">Obcaecati adipisci vero dolorum pariatur</p>
+                    </div>
+                </div>
+                <div class="point">
+                    <div class="icon-block">
+                        <i class="fa fa-key"></i>
+                    </div>
+                    <div class="point-info">
+                        <p class="point-title">DEALERSHIP</p>
+                        <p class="point-text">Obcaecati adipisci vero dolorum pariatur</p>
+                    </div>
+                </div>
+                <div class="point">
+                    <div class="icon-block">
+                        <i class="fa fa-tag"></i>
+                    </div>
+                    <div class="point-info">
+                        <p class="point-title">AFFORDABLE</p>
+                        <p class="point-text">Obcaecati adipisci vero dolorum pariatur</p>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
+    <section class="timeline-section">
+        <div class="wrap">
+            <h4>Car dealer's 30 year timeline from the beginning</h4>
+            <h2>OUR HISTORY</h2>
+            <hr class="featurecar-hr1">
+            <hr class="featurecar-hr2">
+            <div class="timeline">
+                <div class="container left">
+                    <div class="content">
+                        <p class="timeline-title">THE BEGINNING</p>
+                        <p class="timeline-text">From the beginning lorem ipsum dolor sit amet, consectetur sed do eiusmod tempor incididunt
+                            ut labore.</p>
+                    </div>
+                </div>
+                <div class="container right">
+                    <div class="content">
+                        <p class="timeline-title">NEW SERVICE GARAGE</p>
+                        <p class="timeline-text">We own our own New Service Garage incididunt Lorem ipsum dolor sit amet consectetur
+                            adipiscing elit.</p>
+                    </div>
+                </div>
+                <div class="container left">
+                    <div class="content">
+                        <p class="timeline-title">NEW MAIN OFFICE</p>
+                        <p class="timeline-text">With new super cool office elit lorem ipsum dolor sit amet sed do eiusmod tempor incididunt
+                            ut labore.</p>
+                    </div>
+                </div>
+                <div class="container right">
+                    <div class="content">
+                        <p class="timeline-title">NEW WEBSITE LAUNCH</p>
+                        <p class="timeline-text">Start online business tempor lorem ipsum dolor sit amet, consectetur adipiscing elit
+                            incididunt ut labore.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section class="parallax-window footer-section" data-parallax="scroll"
+             data-image-src="../static/resources/images/background-car.jpg"
+             th:data-image-src="@{resources/images/background-car.jpg}"
+             style=" padding-left: 0; padding-right: 0;">
+        <div class="wrap">
+            <div id="counter" class="counters-block">
+                <div class="counter">
+                    <div class="left-side">
+                    </div>
+                    <div class="counter-info">
+                        <p class="counter-title">АВТОМО У НАЯВНОСТІ</p>
+                        <div class="counter-in">
+                            <i class="fa fa-car"></i>
+                            <p class="counter-numb" th:data-num="${carCount}">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="counter">
+                    <div class="left-side">
+                    </div>
+                    <div class="counter-info">
+                        <p class="counter-title">ВІДГУКИ</p>
+                        <div class="counter-in">
+                            <i class="fa fa-comments"></i>
+                            <p class="counter-numb" data-num="856">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="counter">
+                    <div class="left-side">
+                    </div>
+                    <div class="counter-info">
+                        <p class="counter-title">ЩАСЛИВІ ПОКУПЦІ</p>
+                        <div class="counter-in">
+                            <i class="fas fa-user-circle"></i>
+                            <p class="counter-numb" data-num="789">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="counter">
+                    <div class="left-side">
+                    </div>
+                    <div class="counter-info">
+                        <p class="counter-title">НАГОРОДИ</p>
+                        <div class="counter-in">
+                            <i class="fas fa-trophy"></i>
+                            <p class="counter-numb" data-num="356">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feedback-section">
+
+        <div class="wrap">
+            <div class="feedback-section-in">
+                <h4>Що про нас говорять наші щасливі клєінти</h4>
+                <h2>Наша характеристика</h2>
+                <hr class="featurecar-hr1">
+                <hr class="featurecar-hr2">
+                <div class="feedbacks">
+                    <div class="feedback">
+                        <div class="feedback-img-block">
+                            <img class="feedback-img" th:src="@{resources/images/mazda6.jpg}"
+                                 src="../static/resources/images/mazda6.jpg">
+                        </div>
+                        <div class="feedback-info">
+                            <div class="customer-img-block">
+                                <img class="customer-img" th:src="@{resources/images/portrait1.jpg}"
+                                     src="../static/resources/images/portrait1.jpg">
+                            </div>
+                            <div class="customer-block">
+                                <p class="customer-name">Антон</p>
+                                <p class="customer-pos">Клієнт</p>
+                                <p class="customer-text">Пропонує якість та вишуканість, піднесені на ще вищий
+                                    рівень. Вирізняється на дорозі завдяки ретельно продуманому, елегантному та
+                                    витонченому дизайну екстер’єру.</p>
+                                <i class="fa fa-quote-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feedback">
+                        <div class="feedback-img-block">
+                            <img class="feedback-img" th:src="@{resources/images/teramont.jpg}"
+                                 src="../static/resources/images/teramont.jpg">
+                        </div>
+                        <div class="feedback-info">
+                            <div class="customer-img-block">
+                                <img class="customer-img" th:src="@{resources/images/portrait2.jpg}"
+                                     src="../static/resources/images/portrait2.jpg">
+                            </div>
+                            <div class="customer-block">
+                                <p class="customer-name">Гліб</p>
+                                <p class="customer-pos">Клієнт</p>
+                                <p class="customer-text">Справляє незабутнє враження з
+                                    першого погляду. І у міських джунглях, і вирвавшись з них на бездоріжжя, він всюди
+                                    виглядає однаково органічно.</p>
+                                <i class="fa fa-quote-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feedback">
+                        <div class="feedback-img-block">
+                            <img class="feedback-img" th:src="@{resources/images/e34.jpg}"
+                                 src="../static/resources/images/e34.jpg">
+                        </div>
+                        <div class="feedback-info">
+                            <div class="customer-img-block">
+                                <img class="customer-img" th:src="@{resources/images/favicon.jpg}"
+                                     src="../static/resources/images/favicon.jpg">
+                            </div>
+                            <div class="customer-block">
+                                <p class="customer-name">Anton</p>
+                                <p class="customer-pos">Customer</p>
+                                <p class="customer-text">Text of the printin a galley of type and bled it to a type
+                                    specimen book. It has survived not only five centuries make Lorem Ipsum is simply
+                                    dummy.</p>
+                                <i class="fa fa-quote-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 </main>
 <footer>

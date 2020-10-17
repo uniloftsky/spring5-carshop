@@ -44,6 +44,11 @@ public class IndexPageController {
         return "index";
     }
 
+    @ModelAttribute("carCount")
+    public Long getCarsCount() {
+        return carService.getCarsCount();
+    }
+
     @ModelAttribute("cars")
     public Set<Car> getCars() {
         return carService.getCars();

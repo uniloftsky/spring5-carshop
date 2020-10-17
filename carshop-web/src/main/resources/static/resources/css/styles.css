@@ -52,6 +52,7 @@ Layout
 
 img {
     display: block;
+    max-width: 100%;
 }
 
 .wrap {
@@ -1213,6 +1214,11 @@ About page
 
 .sub-header nav a {
     color: white;
+    transition: .75s;
+}
+
+.sub-header nav a:hover {
+    color: #DB2D2E;
 }
 
 .header-path {
@@ -1238,6 +1244,9 @@ About page
 .about-section {
     text-align: center;
     padding-top: 5em;
+    border-bottom: 1px solid #DEDEDE;
+    padding-bottom: 5em;
+    margin-bottom: 4em;
 }
 
 .about-section:hover .featurecar-hr1 {
@@ -1257,5 +1266,227 @@ About page
     width: 80%;
     font-size: 1.1rem;
     color: #999999;
-    margin: 2em auto 0;
+    margin: 2em auto 4em;
+}
+
+.about-section-in {
+    display: flex;
+    justify-content: space-between;
+    color: #999999;
+    font-size: 1.1rem;
+}
+
+.about-img-block {
+    width: 48%;
+}
+
+.about-section-in div {
+    width: 48%;
+    text-align: left;
+}
+
+.about-text-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.about-points {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3em;
+    text-align: left;
+}
+
+.point {
+    display: flex;
+    align-items: center;
+}
+
+.icon-block {
+    border: 1px solid #f6f6f6;
+    border-radius: 50%;
+    padding: .5em;
+    margin-right: 1em;
+    transition: .75s;
+}
+
+.point:hover .icon-block, .point:hover .icon-block i {
+    border-color: #DB2D2E;
+    color: #DB2D2E;
+}
+
+.point:hover .icon-block i {
+    background: #DB2D2E;
+    color: #f6f6f6;
+}
+
+.icon-block i {
+    font-size: 1.5rem;
+    color: #999999;
+    background: #F6F6F6;
+    padding: .6em;
+    border-radius: 50%;
+    transition: .75s;
+}
+
+.point-title {
+    font-weight: 600;
+}
+
+.point-text {
+    font-size: 1.1rem;
+    color: #999999;
+}
+
+.timeline-section {
+    margin-bottom: 5em;
+}
+
+.timeline-section h4, .timeline-section h2 {
+    text-align: center;
+}
+
+.timeline-section h4 {
+    color: #999999;
+    font-weight: 300;
+}
+
+.timeline-section:hover .featurecar-hr1 {
+    width: 10%;
+}
+
+.timeline-section:hover .featurecar-hr2 {
+    width: 4.5%;
+}
+
+/* timeline */
+
+.timeline {
+    position: relative;
+    max-width: 100%;
+    margin: 4em auto 0;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    background-color: #DEDEDE;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+}
+
+/* Container around content */
+.container {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+/* The circles on the timeline */
+.container::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -15px;
+    background-color: white;
+    border: 1px solid #DEDEDE;
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Place the container to the left */
+.left {
+    left: 0;
+}
+
+/* Place the container to the right */
+.right {
+    left: 50%;
+}
+
+/* Add arrows to the left container (pointing right) */
+.left::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: 30px;
+    border: medium solid #DB2D2E;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent #DB2D2E;
+}
+
+/* Add arrows to the right container (pointing left) */
+.right::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    left: 30px;
+    border: 1px solid #DB2D2E;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #DB2D2E transparent transparent;
+}
+
+/* Fix the circle for containers on the right side */
+.right::after {
+    left: -12px;
+}
+
+/* The actual content */
+.content {
+    padding: 1em;
+    background-color: white;
+    border: 1px solid #DEDEDE;
+    position: relative;
+    min-height: 175px;
+    transition: .75s;
+}
+
+.content:hover {
+    background: #DB2D2E;
+    color: white;
+}
+
+.content:hover .timeline-text {
+    color: white;
+}
+
+.content:hover .timeline-title:after {
+    background: white;
+}
+
+.timeline-title {
+    font-weight: 600;
+    margin-bottom: 1em;
+    position: relative;
+    padding-bottom: .5em;
+}
+
+.timeline-title:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 5%;
+    background: #DB2D2E;
+    height: 2px;
+    transition: .75s;
+}
+
+.timeline-text {
+    font-size: 1.1rem;
+    color: #999999;
+    transition: .75s;
 }
