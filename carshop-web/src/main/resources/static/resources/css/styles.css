@@ -1518,3 +1518,95 @@ About page
 .page-link {
     text-decoration: none;
 }
+
+/* accordion */
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    border-bottom: 1px solid #DEDEDE;
+}
+
+.accordion-in {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.panel {
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    border-left: 1px solid #DEDEDE;
+    border-right: 1px solid #DEDEDE;
+    border-bottom: 1px solid #DEDEDE;
+}
+
+.panel-in {
+    padding: .25em .5em;
+}
+
+/* catalog */
+
+.catalog-section-in {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4em;
+}
+
+.filter-section {
+    width: 20%;
+}
+
+.catalog {
+    width: 75%;
+}
+
+.check-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.catalog {
+    display: flex;
+    flex-direction: column;
+}
+
+.catalog-car {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #DEDEDE;
+    padding: .5em;
+    margin-bottom: 1.5em;
+}
+
+.catalog-car-img-block {
+    width: 35%;
+}
+
+.catalog-car-info {
+    width: 60%;
+}
+
+.catalog-car-extra ul {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+}
+
+.catalog-car-extra ul li {
+    display: flex;
+}

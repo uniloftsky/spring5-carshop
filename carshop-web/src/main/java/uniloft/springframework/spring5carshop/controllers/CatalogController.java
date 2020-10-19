@@ -6,13 +6,18 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import uniloft.springframework.spring5carshop.model.Car;
+import uniloft.springframework.spring5carshop.model.CarBody;
+import uniloft.springframework.spring5carshop.model.CarBrand;
+import uniloft.springframework.spring5carshop.model.CarModel;
 import uniloft.springframework.spring5carshop.services.CarBrandService;
 import uniloft.springframework.spring5carshop.services.CarService;
 import uniloft.springframework.spring5carshop.services.CarTypeService;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -41,6 +46,21 @@ public class CatalogController {
         model.addAttribute("pageNumbers", pageNumbers);
         model.addAttribute("currentPage", pages.getNumber());
         return "catalog/index";
+    }
+
+    @ModelAttribute("brands")
+    public Set<CarBrand> getBrands() {
+        return carBrandService.getBrands();
+    }
+
+    @ModelAttribute("models")
+    public Set<CarModel> getModels() {
+        return carBrandService.getBrandModels();
+    }
+
+    @ModelAttribute("bodies")
+    public Set<CarBody> getBodies() {
+        return carBrandService.getModelBodies();
     }
 
 }
