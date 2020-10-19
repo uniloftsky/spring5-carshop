@@ -1,5 +1,7 @@
 package uniloft.springframework.spring5carshop.services;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import uniloft.springframework.spring5carshop.model.Car;
 import uniloft.springframework.spring5carshop.services.repositories.CarRepository;
@@ -36,5 +38,10 @@ public class CarServiceImpl implements CarService {
     @Override
     public Long getCarsCount() {
         return carRepository.count();
+    }
+
+    @Override
+    public Page<Car> findAll(Pageable pageable) {
+        return carRepository.findAll(pageable);
     }
 }

@@ -1490,3 +1490,31 @@ About page
     color: #999999;
     transition: .75s;
 }
+
+/* pagination test */
+
+.pagination {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    margin-bottom: 2em;
+    width: 30%;
+}
+
+.page-item {
+    padding: 1em 2em;
+    border: 1px solid black;
+}
+
+.texter {
+    min-width: 160px;
+}
+
+.active {
+    background-color: blue;
+    color: white;
+}
+
+.page-link {
+    text-decoration: none;
+}
