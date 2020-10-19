@@ -63,4 +63,9 @@ public class CatalogController {
         return carBrandService.getModelBodies();
     }
 
+    @ModelAttribute("featuredCars")
+    public Set<Car> getFeaturedCars() {
+        return carService.getCars().stream().limit(3).collect(Collectors.toSet());
+    }
+
 }

@@ -1497,22 +1497,35 @@ About page
     list-style: none;
     padding-left: 0;
     display: flex;
-    margin-bottom: 2em;
     width: 30%;
+    margin: 0 auto 2em;
+    justify-content: space-between;
 }
 
 .page-item {
-    padding: 1em 2em;
-    border: 1px solid black;
+    width: 40px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #DEDEDE;
+    color: black;
 }
 
-.texter {
-    min-width: 160px;
+.active-page {
+    background: #DB2D2E;
 }
 
-.active {
-    background-color: blue;
+.page-item a {
+    color: black;
+}
+
+.active-page a {
     color: white;
+}
+
+.arrow {
+    font-size: .75rem;
 }
 
 .page-link {
@@ -1522,15 +1535,18 @@ About page
 /* accordion */
 
 .accordion {
-    background-color: #eee;
-    color: #444;
     cursor: pointer;
+    background: none;
     padding: 18px;
     width: 100%;
     text-align: left;
-    border: none;
     outline: none;
     transition: 0.4s;
+    border: 1px solid #DEDEDE;
+    border-bottom: none;
+}
+
+.accordion:last-child {
     border-bottom: 1px solid #DEDEDE;
 }
 
@@ -1540,18 +1556,21 @@ About page
     align-items: baseline;
 }
 
-.active, .accordion:hover {
-    background-color: #ccc;
-}
-
 .panel {
     background-color: white;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
-    border-left: 1px solid #DEDEDE;
-    border-right: 1px solid #DEDEDE;
+    border: 1px solid #DEDEDE;
+    border-bottom: none;
+}
+
+.panel:last-child {
     border-bottom: 1px solid #DEDEDE;
+}
+
+.active {
+    color: inherit;
 }
 
 .panel-in {
@@ -1571,7 +1590,7 @@ About page
 }
 
 .catalog {
-    width: 75%;
+    width: 77.5%;
 }
 
 .check-title {
@@ -1589,7 +1608,7 @@ About page
     justify-content: space-between;
     align-items: center;
     border: 1px solid #DEDEDE;
-    padding: .5em;
+    padding: .75em;
     margin-bottom: 1.5em;
 }
 
@@ -1609,4 +1628,64 @@ About page
 
 .catalog-car-extra ul li {
     display: flex;
+    border: 1px solid #DEDEDE;
+    align-items: center;
+    margin-right: .25em;
+    font-size: 1rem;
+    padding: .5em;
+    color: #999999;
+}
+
+.catalog-car-extra ul li i {
+    margin-right: .25em;
+}
+
+.catalog-car-price-ext {
+    display: flex;
+    justify-content: space-between;
+}
+
+.catalog-car-title {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: .5em;
+    padding-bottom: .25em;
+    position: relative;
+}
+
+.catalog-car-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #DB2D2E;
+    width: 4.5%;
+    height: 2px;
+}
+
+.catalog-car-desc {
+    font-size: 1.1rem;
+    color: #999999;
+    margin-bottom: .75em;
+}
+
+.catalog-car-price {
+    color: #DB2D2E;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: .75em;
+}
+
+.catalog-car-more {
+    text-decoration: none;
+    color: white;
+    background: #DB2D2E;
+    font-size: 1.1rem;
+    padding: .5em 1em;
+    align-self: flex-start;
+    transition: .75s;
+}
+
+.catalog-car-more:hover {
+    background: #261C1D;
 }

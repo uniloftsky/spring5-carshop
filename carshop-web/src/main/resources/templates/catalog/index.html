@@ -87,10 +87,12 @@
 
                     </div>-->
 
-                    <button class="accordion"><div class="accordion-in">
-                        <span class="check-title">Бренд</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div></button>
+                    <button class="accordion">
+                        <div class="accordion-in">
+                            <span class="check-title">Бренд</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </button>
                     <div class="panel">
                         <div class="panel-in">
                             <input type="checkbox" name="all-brands">
@@ -102,10 +104,12 @@
                         </div>
                     </div>
 
-                    <button class="accordion"><div class="accordion-in">
-                        <span class="check-title">Модель</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div></button>
+                    <button class="accordion">
+                        <div class="accordion-in">
+                            <span class="check-title">Модель</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </button>
                     <div class="panel">
                         <div class="panel-in">
                             <input type="checkbox" name="all-models">
@@ -135,122 +139,51 @@
                     </div>
                 </div>
                 <div class="catalog">
-                    <div class="catalog-car">
+                    <div class="catalog-car" th:each="page : ${page}">
                         <div class="catalog-car-img-block">
-                            <img class="catalog-car-img" th:src="@{resources/images/e200.jpg}">
+                            <img class="catalog-car-img" th:src="${page.image}">
                         </div>
                         <div class="catalog-car-info">
-                            <p class="catalog-car-title">ACURA RSX</p>
-                            <p class="catalog-car-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero numquam repellendus non voluptate. Harum blanditiis ullam deleniti.</p>
+                            <p class="catalog-car-title"
+                               th:text="${page.brand.brandName} + ' ' + ${page.model.modelName}">ACURA RSX</p>
+                            <p class="catalog-car-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero
+                                numquam repellendus non voluptate.</p>
                             <div class="catalog-car-price-ext">
-                                <p class="catalog-class-price">$32,698</p>
-                                <a href="#" class="catalog-class-more">Details</a>
+                                <p class="catalog-car-price" th:text="'₴' + ${page.price}">$32,698</p>
+                                <a href="#" class="catalog-car-more">Детальніше</a>
                             </div>
                             <div class="catalog-car-extra">
                                 <ul>
                                     <li>
                                         <i class="fa fa-paint-brush"></i>
-                                        <p>Color</p>
+                                        <p th:text="${page.color.color}">Color</p>
                                     </li>
                                     <li>
                                         <i class="fa fa-cogs"></i>
-                                        <p>Diesel</p>
+                                        <p th:text="${page.engine.type.description}">Diesel</p>
                                     </li>
                                     <li>
                                         <i class="fa fa-car"></i>
-                                        <p>Sedan</p>
+                                        <p th:text="${page.carType.typeName}">Sedan</p>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="catalog-car">
-                        <div class="catalog-car-img-block">
-                            <img class="catalog-car-img" th:src="@{resources/images/e200.jpg}">
-                        </div>
-                        <div class="catalog-car-info">
-                            <p class="catalog-car-title">ACURA RSX</p>
-                            <p class="catalog-car-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero numquam repellendus non voluptate. Harum blanditiis ullam deleniti.</p>
-                            <div class="catalog-car-price-ext">
-                                <p class="catalog-class-price">$32,698</p>
-                                <a href="#" class="catalog-class-more">Details</a>
-                            </div>
-                            <div class="catalog-car-extra">
-                                <ul>
-                                    <li>
-                                        <i class="fa fa-paint-brush"></i>
-                                        <p>Color</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-cogs"></i>
-                                        <p>Diesel</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-car"></i>
-                                        <p>Sedan</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="catalog-car">
-                        <div class="catalog-car-img-block">
-                            <img class="catalog-car-img" th:src="@{resources/images/e200.jpg}">
-                        </div>
-                        <div class="catalog-car-info">
-                            <p class="catalog-car-title">ACURA RSX</p>
-                            <p class="catalog-car-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero numquam repellendus non voluptate. Harum blanditiis ullam deleniti.</p>
-                            <div class="catalog-car-price-ext">
-                                <p class="catalog-class-price">$32,698</p>
-                                <a href="#" class="catalog-class-more">Details</a>
-                            </div>
-                            <div class="catalog-car-extra">
-                                <ul>
-                                    <li>
-                                        <i class="fa fa-paint-brush"></i>
-                                        <p>Color</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-cogs"></i>
-                                        <p>Diesel</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-car"></i>
-                                        <p>Sedan</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="catalog-car">
-                        <div class="catalog-car-img-block">
-                            <img class="catalog-car-img" th:src="@{resources/images/e200.jpg}">
-                        </div>
-                        <div class="catalog-car-info">
-                            <p class="catalog-car-title">ACURA RSX</p>
-                            <p class="catalog-car-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero numquam repellendus non voluptate. Harum blanditiis ullam deleniti.</p>
-                            <div class="catalog-car-price-ext">
-                                <p class="catalog-class-price">$32,698</p>
-                                <a href="#" class="catalog-class-more">Details</a>
-                            </div>
-                            <div class="catalog-car-extra">
-                                <ul>
-                                    <li>
-                                        <i class="fa fa-paint-brush"></i>
-                                        <p>Color</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-cogs"></i>
-                                        <p>Diesel</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-car"></i>
-                                        <p>Sedan</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link arrow"
+                               th:href="${currentPage == 0} ? '#' : @{/catalog(size=5, page=${currentPage - 1})}"><i class="fas fa-angle-double-left"></i></a>
+                        </li>
+                        <th:block th:each="pageNumber : ${pageNumbers}">
+                            <li class="page-item" th:class="${pageNumber==page.number + 1} ? 'page-item active-page' : 'page-item'"><a class="page-link"
+                                                     th:href="@{/catalog(size=5, page=${pageNumber - 1})}"
+                                                     th:text="${pageNumber}"></a></li>
+                        </th:block>
+                        <li class="page-item">
+                            <a class="page-link arrow" th:href="@{/catalog(size=5, page=${currentPage + 1})}"><i class="fas fa-angle-double-right"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
