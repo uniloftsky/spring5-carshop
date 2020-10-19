@@ -95,9 +95,11 @@
                     </button>
                     <div class="panel">
                         <div class="panel-in">
-                            <input type="checkbox" name="all-brands">
-                            <label>Всі бренди</label>
-                            <div class="brand-block" th:each="brand : ${brands}">
+                            <div class="check-block">
+                                <input type="checkbox" name="all-brands">
+                                <label>Всі бренди</label>
+                            </div>
+                            <div class="check-block" th:each="brand : ${brands}">
                                 <input type="checkbox" name="brand_name">
                                 <label th:text="${brand.brandName}"></label>
                             </div>
@@ -112,9 +114,11 @@
                     </button>
                     <div class="panel">
                         <div class="panel-in">
-                            <input type="checkbox" name="all-models">
-                            <label>Всі моделі</label>
-                            <div class="model-block" th:each="model : ${models}">
+                            <div class="check-block">
+                                <input type="checkbox" name="all-models">
+                                <label>Всі моделі</label>
+                            </div>
+                            <div class="check-block" th:each="model : ${models}">
                                 <input type="checkbox" name="brand_name">
                                 <label th:text="${model.modelName}"></label>
                             </div>
@@ -129,9 +133,11 @@
                     </button>
                     <div class="panel">
                         <div class="panel-in">
-                            <input type="checkbox" name="all-bodies">
-                            <label>Всі моделі кузова</label>
-                            <div class="body-block" th:each="body : ${bodies}">
+                            <div class="check-block">
+                                <input type="checkbox" name="all-bodies">
+                                <label>Всі моделі кузова</label>
+                            </div>
+                            <div class="check-block" th:each="body : ${bodies}">
                                 <input type="checkbox" name="brand_name">
                                 <label th:text="${body.bodyName}"></label>
                             </div>

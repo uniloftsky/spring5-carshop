@@ -1577,6 +1577,14 @@ About page
     padding: .25em .5em;
 }
 
+.check-block {
+    margin-bottom: .5em;
+}
+
+.check-block input {
+    margin-right: .5em;
+}
+
 /* catalog */
 
 .catalog-section-in {
@@ -1651,6 +1659,7 @@ About page
     margin-bottom: .5em;
     padding-bottom: .25em;
     position: relative;
+    text-transform: uppercase;
 }
 
 .catalog-car-title:after {
@@ -1666,14 +1675,14 @@ About page
 .catalog-car-desc {
     font-size: 1.1rem;
     color: #999999;
-    margin-bottom: .75em;
+    margin-bottom: 1em;
 }
 
 .catalog-car-price {
     color: #DB2D2E;
     font-weight: 600;
     font-size: 1.25rem;
-    margin-bottom: .75em;
+    margin-bottom: 1em;
 }
 
 .catalog-car-more {
