@@ -36,8 +36,6 @@ public class IndexPageController {
     public String getIndexPage(Model model) {
         model.addAttribute("carTypes", carTypeService.getCarTypes());
         model.addAttribute("colors", colorService.getColors());
-        model.addAttribute("featuredCars", carService.getCars().stream().limit(3).collect(Collectors.toSet()));
-        model.addAttribute("carCount", carService.getCarsCount());
         model.addAttribute("brands", carBrandService.getBrands());
         model.addAttribute("models", carBrandService.getBrandModels());
         model.addAttribute("bodies", carBrandService.getModelBodies());
@@ -79,6 +77,11 @@ public class IndexPageController {
     @GetMapping("about")
     public String getAboutPage() {
         return "about";
+    }
+
+    @GetMapping("contact")
+    public String getContactPage() {
+        return "contact";
     }
 
     /*@PostMapping("findCar")

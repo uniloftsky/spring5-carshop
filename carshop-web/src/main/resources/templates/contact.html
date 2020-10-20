@@ -15,8 +15,8 @@
 <body>
 <header class="not-index">
     <section class="parallax-window header-section" data-parallax="scroll"
-             data-image-src="../static/resources/images/background-car4.jpg"
-             th:data-image-src="@{resources/images/background-car4.jpg}"
+             data-image-src="../static/resources/images/background-car2.jpg"
+             th:data-image-src="@{resources/images/background-car2.jpg}"
              style="padding: 1em 0 1.5em;">
         <div class="wrap">
             <section class="top-bar">
@@ -59,7 +59,7 @@
                         </nav>
                     </div>
                     <div class="sub-header">
-                        <h2>Каталог</h2>
+                        <h2>Зв'язатися</h2>
                         <div class="header-path">
                             <div>
                                 <i class="fa fa-home"></i>
@@ -67,7 +67,7 @@
                             </div>
                             <div>
                                 <i class="fa fa-angle-double-right"></i>
-                                <a href="#">Каталог</a>
+                                <a href="#">Зв'язатися</a>
                             </div>
                         </div>
                     </div>
@@ -78,124 +78,6 @@
     </section>
 </header>
 <main>
-
-    <section class="catalog-section">
-        <div class="wrap">
-            <div class="catalog-section-in">
-                <div class="filter-section">
-                    <!--<div class="price-check">
-
-                    </div>-->
-
-                    <button class="accordion">
-                        <div class="accordion-in">
-                            <span class="check-title">Бренд</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                    </button>
-                    <div class="panel">
-                        <div class="panel-in">
-                            <div class="check-block">
-                                <input type="checkbox" name="all-brands">
-                                <label>Всі бренди</label>
-                            </div>
-                            <div class="check-block" th:each="brand : ${brands}">
-                                <input type="checkbox" name="brand_name">
-                                <label th:text="${brand.brandName}"></label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="accordion">
-                        <div class="accordion-in">
-                            <span class="check-title">Модель</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                    </button>
-                    <div class="panel">
-                        <div class="panel-in">
-                            <div class="check-block">
-                                <input type="checkbox" name="all-models">
-                                <label>Всі моделі</label>
-                            </div>
-                            <div class="check-block" th:each="model : ${models}">
-                                <input type="checkbox" name="brand_name">
-                                <label th:text="${model.modelName}"></label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="accordion">
-                        <div class="accordion-in">
-                            <span class="check-title">Модель кузова</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                    </button>
-                    <div class="panel">
-                        <div class="panel-in">
-                            <div class="check-block">
-                                <input type="checkbox" name="all-bodies">
-                                <label>Всі моделі кузова</label>
-                            </div>
-                            <div class="check-block" th:each="body : ${bodies}">
-                                <input type="checkbox" name="brand_name">
-                                <label th:text="${body.bodyName}"></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="catalog">
-                    <div class="catalog-car" th:each="page : ${page}">
-                        <div class="catalog-car-img-block">
-                            <img class="catalog-car-img" th:src="${page.image}">
-                        </div>
-                        <div class="catalog-car-info">
-                            <p class="catalog-car-title"
-                               th:text="${page.brand.brandName} + ' ' + ${page.model.modelName}">ACURA RSX</p>
-                            <p class="catalog-car-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero
-                                numquam repellendus non voluptate.</p>
-                            <div class="catalog-car-price-ext">
-                                <p class="catalog-car-price" th:text="'₴' + ${page.price}">$32,698</p>
-                                <a href="#" class="catalog-car-more">Детальніше</a>
-                            </div>
-                            <div class="catalog-car-extra">
-                                <ul>
-                                    <li>
-                                        <i class="fa fa-paint-brush"></i>
-                                        <p th:text="${page.color.color}">Color</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-cogs"></i>
-                                        <p th:text="${page.engine.type.description}">Diesel</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-car"></i>
-                                        <p th:text="${page.carType.typeName}">Sedan</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link arrow"
-                               th:href="${currentPage == 0} ? '#' : @{/catalog(size=5, page=${currentPage - 1})}"><i class="fas fa-angle-double-left"></i></a>
-                        </li>
-                        <th:block th:each="pageNumber : ${pageNumbers}">
-                            <li class="page-item" th:class="${pageNumber==page.number + 1} ? 'page-item active-page' : 'page-item'"><a class="page-link"
-                                                     th:href="@{/catalog(size=5, page=${pageNumber - 1})}"
-                                                     th:text="${pageNumber}"></a></li>
-                        </th:block>
-                        <li class="page-item">
-                            <a class="page-link arrow" th:href="@{/catalog(size=5, page=${currentPage + 1})}"><i class="fas fa-angle-double-right"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
 </main>
 <footer>
 
@@ -212,8 +94,7 @@
                                  th:src="@{resources/images/logo-light.png}">
                         </div>
                         <div class="footer-content">
-                            <p class="footer-text">Пропонуємо найкращі послуги з найкращою якістю і найкращим
-                                сервісом!</p>
+                            <p class="footer-text">Пропонуємо найкращі послуги з найкращою якістю і найкращим сервісом!</p>
                         </div>
                         <div class="contacts">
                             <div class="footer-contact-in">
@@ -274,8 +155,7 @@
                     </div>
                     <div class="footer-info">
                         <p class="footer-info-title">Підпишіться на наші новини</p>
-                        <p class="footer-text">Будьте в курсі останніх новинок і останніх автомобілів. Залиште свою
-                            пошту.</p>
+                        <p class="footer-text">Будьте в курсі останніх новинок і останніх автомобілів. Залиште свою пошту.</p>
                         <form class="footer-form">
                             <input type="email" placeholder="Введіть свою пошту" name="email-sub">
                             <br>
@@ -294,8 +174,7 @@
                     <div class="footer-q">
                         <div class="footer-q-side">
                             <p class="footer-q-title">Бажаєте продати своє авто?</p>
-                            <p class="footer-q-text">Ми співпрацюємо з компаніями, що забезпечують швидку продажу вашого
-                                авто.</p>
+                            <p class="footer-q-text">Ми співпрацюємо з компаніями, що забезпечують швидку продажу вашого авто.</p>
                         </div>
                         <a href="#" class="btn-q">Детальніше</a>
                     </div>
@@ -325,24 +204,8 @@
 <script type="text/javascript" src="../static/resources/js/parallax.js" th:src="@{resources/js/parallax.js}"></script>
 <script src="../static/resources/js/chainedselects.js" type="text/javascript"
         th:src="@{resources/js/chainedselects.js}"></script>
-<script th:src="@{resources/js/accordion.js}" type="text/javascript" src="../static/resources/js/accordion.js"></script>
 <script src="../static/resources/js/slider.js" type="text/javascript" th:src="@{resources/js/slider.js}"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://kit.fontawesome.com/de94abba4d.js" crossorigin="anonymous"></script>
 </body>
 </html>
-
-<!--<ul class="pagination">
-        <li class="page-item texter">
-            <a class="page-link" th:text="${currentPage == 0} ? Pages : Previous" th:href="${currentPage == 0} ? '#' : @{/catalog(size=5, page=${currentPage - 1})}">Pages</a>
-        </li>
-        <th:block th:each="pageNumber : ${pageNumbers}">
-            <li class="page-item"><a th:class="${pageNumber==page.number + 1} ? active" th:href="@{/catalog(size=5, page=${pageNumber - 1})}" th:text="${pageNumber}"></a></li>
-        </th:block>
-        <li class="page-item texter">
-            <a class="page-link" th:href="@{/catalog(size=5, page=${currentPage + 1})}">Next</a>
-        </li>
-    </ul>
-    <div th:each="page : ${page}">
-        <div th:text="${page.model.modelName}"></div>
-    </div>-->
