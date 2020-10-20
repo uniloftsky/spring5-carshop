@@ -57,6 +57,11 @@ public class IndexPageController {
         return carService.getCars().stream().limit(3).collect(Collectors.toSet());
     }
 
+    @ModelAttribute("recentCars")
+    public Set<Car> getRecentCars() {
+        return carService.getSortedCars();
+    }
+
     @ModelAttribute("currentDate")
     public String getCurrentDate() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));

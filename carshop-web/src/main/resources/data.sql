@@ -133,6 +133,8 @@ INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, 
 VALUES (3, 1, 1, 2, 2, 4, 2523, 'resources/images/e200.jpg');
 INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, image)
 VALUES (3, 1, 4, 5, 7, 4, 2523, 'resources/images/gtr35.jpg');
+INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, image)
+VALUES (3, 2, 4, 5, 7, 4, 2523, 'resources/images/gtr35.jpg');
 
 -- Car buys
 INSERT INTO buy_car (car_id, customer_id, date, count, price)
