@@ -3,12 +3,11 @@ package uniloft.springframework.spring5carshop.services;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import uniloft.springframework.spring5carshop.comparators.CarComparatorImpl;
+import uniloft.springframework.spring5carshop.comparators.CarDescendingComparatorImpl;
 import uniloft.springframework.spring5carshop.model.Car;
 import uniloft.springframework.spring5carshop.services.repositories.CarRepository;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -20,16 +19,13 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public TreeSet<Car> getSortedCars() {
-        Comparator<Car> comparator = new CarComparatorImpl();
+    public TreeSet<Car> getSortedCars(Comparator<Car> comparator) {
+        comparator = new CarDescendingComparatorImpl();
         Set<Car> cars = new HashSet<>();
         carRepository.findAll().iterator().forEachRemaining(cars::add);
         TreeSet<Car> set = new TreeSet<>(comparator);
         cars.stream().iterator().forEachRemaining(set::add);
-        Set<Car> sortedSet = set.stream().limit(3).collect(Collectors.toSet());
-        TreeSet<Car> finalSet = new TreeSet<>(comparator);
-        sortedSet.stream().iterator().forEachRemaining(finalSet::add);
-        return finalSet;
+        return set;
     }
 
     @Override

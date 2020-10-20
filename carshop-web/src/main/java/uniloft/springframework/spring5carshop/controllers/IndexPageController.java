@@ -3,6 +3,7 @@ package uniloft.springframework.spring5carshop.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import uniloft.springframework.spring5carshop.comparators.CarDescendingComparatorImpl;
 import uniloft.springframework.spring5carshop.model.Car;
 import uniloft.springframework.spring5carshop.services.CarBrandService;
 import uniloft.springframework.spring5carshop.services.CarService;
@@ -12,7 +13,9 @@ import uniloft.springframework.spring5carshop.services.repositories.CarRepositor
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 @Controller
@@ -59,7 +62,11 @@ public class IndexPageController {
 
     @ModelAttribute("recentCars")
     public Set<Car> getRecentCars() {
-        return carService.getSortedCars();
+        Comparator<Car> comparator = new CarDescendingComparatorImpl();
+        Set<Car> sortedSet = carService.getSortedCars(comparator).stream().limit(3).collect(Collectors.toSet());
+        TreeSet<Car> finalSet = new TreeSet<>(comparator);
+        sortedSet.stream().iterator().forEachRemaining(finalSet::add);
+        return finalSet;
     }
 
     @ModelAttribute("currentDate")

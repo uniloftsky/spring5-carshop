@@ -169,7 +169,7 @@
                     <div class="footer-info">
                         <p class="footer-info-title">Останні авто</p>
                         <div class="recent-cars">
-                            <div class="recent-car" th:each="car : ${featuredCars}">
+                            <div class="recent-car" th:each="car : ${recentCars}">
                                 <div class="recent-car-img-block">
                                     <img class="recent-car-img" src="../static/resources/images/mercedes.jpg"
                                          th:src="${car.image}">
