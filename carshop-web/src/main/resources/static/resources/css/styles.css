@@ -1592,6 +1592,10 @@ About page
 
 /* catalog */
 
+.catalog-section {
+    min-height: 1367px;
+}
+
 .catalog-section-in {
     display: flex;
     justify-content: space-between;

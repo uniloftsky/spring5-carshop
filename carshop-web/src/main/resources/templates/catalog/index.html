@@ -80,6 +80,10 @@
 </header>
 <main>
 
+    <div th:each="test : ${test}">
+        <p th:text="${test.brand.brandName} + ' ' + ${test.model.modelName}"></p>
+    </div>
+
     <section class="catalog-section">
         <div class="wrap">
             <div class="catalog-section-in">
@@ -129,7 +133,6 @@
                                 </div>
                                 <div class="check-block" th:each="model : ${models}">
                                     <input type="checkbox" name="modelName" th:value="*{model.modelName}">
-
                                     <label th:text="${model.modelName}"></label>
                                 </div>
                             </div>
@@ -336,6 +339,7 @@
 
         </div>
     </section>
+
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script src="../static/resources/js/numbercount.js" th:src="@{/resources/js/numbercount.js}"></script>

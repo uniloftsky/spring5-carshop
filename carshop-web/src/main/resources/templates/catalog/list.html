@@ -10,5 +10,9 @@
     <p th:text="${foundedCar.model.modelName}"></p>
     <p th:text="${foundedCar.body.bodyName}"></p>
 </div>
+<div th:each="test : ${test}">
+    <div th:text="${test.brand.brandName}"></div>
+</div>
+<p>prikol</p>
 </body>
 </html>

@@ -128,7 +128,7 @@ VALUES (1, 1, 1, 14, 1, 1, 5376, 'resources/images/s500.jpg');
 INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, image)
 VALUES (1, 1, 1, 15, 1, 1, 5376, 'resources/images/s500.jpg');
 INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, image)
-VALUES (2, 1, 3, 3, 3, 2, 3964, 'resources/images/s170.jpg');
+VALUES (2, 1, 3, 3, 5, 2, 3964, 'resources/images/s170.jpg');
 INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, image)
 VALUES (3, 1, 2, 4, 6, 4, 2523, 'resources/images/e34.jpg');
 INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, image)
