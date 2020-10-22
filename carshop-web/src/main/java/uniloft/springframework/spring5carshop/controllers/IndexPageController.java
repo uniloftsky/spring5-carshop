@@ -3,7 +3,7 @@ package uniloft.springframework.spring5carshop.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import uniloft.springframework.spring5carshop.comparators.CarDescendingComparatorImpl;
+import uniloft.springframework.spring5carshop.comparators.CarDescendingComparatorById;
 import uniloft.springframework.spring5carshop.model.Car;
 import uniloft.springframework.spring5carshop.services.CarBrandService;
 import uniloft.springframework.spring5carshop.services.CarService;
@@ -62,7 +62,7 @@ public class IndexPageController {
 
     @ModelAttribute("recentCars")
     public Set<Car> getRecentCars() {
-        Comparator<Car> comparator = new CarDescendingComparatorImpl();
+        Comparator<Car> comparator = new CarDescendingComparatorById();
         Set<Car> sortedSet = carService.getSortedCars(comparator).stream().limit(3).collect(Collectors.toSet());
         TreeSet<Car> finalSet = new TreeSet<>(comparator);
         sortedSet.stream().iterator().forEachRemaining(finalSet::add);

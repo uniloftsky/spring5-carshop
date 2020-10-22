@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap"
           rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
     <link th:href="@{resources/css/styles.css}"
           href="../static/resources/css/styles.css" rel="stylesheet" type="text/css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -145,6 +146,14 @@
                     </div>
                 </div>
                 <div class="catalog">
+                    <div class="price-range-block">
+                        <p class="price-range-title">Ціна</p>
+                        <div class="price-range-slider">
+                            <span>Від: ₴</span><input type="number" id="min_price" class="price-range-field"/>
+                            <span>До: ₴</span><input type="number" id="max_price" class="price-range-field"/>
+                        </div>
+                        <div id="slider-range" class="price-filter-range" name="rangeInput"></div>
+                    </div>
                     <div class="catalog-car" th:each="page : ${page}">
                         <div class="catalog-car-img-block">
                             <img class="catalog-car-img" th:src="${page.image}">
@@ -179,15 +188,19 @@
                     <ul class="pagination">
                         <li class="page-item">
                             <a class="page-link arrow"
-                               th:href="${currentPage == 0} ? '#' : @{/catalog(size=5, page=${currentPage - 1})}"><i class="fas fa-angle-double-left"></i></a>
+                               th:href="${currentPage == 0} ? '#' : @{/catalog(size=5, page=${currentPage - 1})}"><i
+                                    class="fas fa-angle-double-left"></i></a>
                         </li>
                         <th:block th:each="pageNumber : ${pageNumbers}">
-                            <li class="page-item" th:class="${pageNumber==page.number + 1} ? 'page-item active-page' : 'page-item'"><a class="page-link"
-                                                     th:href="@{/catalog(size=5, page=${pageNumber - 1})}"
-                                                     th:text="${pageNumber}"></a></li>
+                            <li class="page-item"
+                                th:class="${pageNumber==page.number + 1} ? 'page-item active-page' : 'page-item'"><a
+                                    class="page-link"
+                                    th:href="@{/catalog(size=5, page=${pageNumber - 1})}"
+                                    th:text="${pageNumber}"></a></li>
                         </th:block>
                         <li class="page-item">
-                            <a class="page-link arrow" th:href="@{/catalog(size=5, page=${currentPage + 1})}"><i class="fas fa-angle-double-right"></i></a>
+                            <a class="page-link arrow" th:href="@{/catalog(size=5, page=${currentPage + 1})}"><i
+                                    class="fas fa-angle-double-right"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -327,8 +340,69 @@
         th:src="@{resources/js/chainedselects.js}"></script>
 <script th:src="@{resources/js/accordion.js}" type="text/javascript" src="../static/resources/js/accordion.js"></script>
 <script src="../static/resources/js/slider.js" type="text/javascript" th:src="@{resources/js/slider.js}"></script>
+<!--<script src="../static/resources/js/pricerange.js" type="text/javascript" th:src="@{resources/js/pricerange.js}"></script>-->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://kit.fontawesome.com/de94abba4d.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        $("#min_price,#max_price").on("paste keyup", function () {
+
+            $('#price-range-submit').show();
+
+            var min_price_range = parseInt($("#min_price").val());
+
+            var max_price_range = parseInt($("#max_price").val());
+
+            if (min_price_range == max_price_range) {
+
+                max_price_range = min_price_range + 100;
+
+                $("#min_price").val(min_price_range);
+                $("#max_price").val(max_price_range);
+            }
+
+            $("#slider-range").slider({
+                values: [min_price_range, max_price_range]
+            });
+
+        });
+
+
+        $(function () {
+            $("#slider-range").slider({
+                range: true,
+                orientation: "horizontal",
+                min: [(${minPrice})],
+                max: [(${maxPrice})],
+                values: [1000, 8000],
+                step: 1,
+
+                slide: function (event, ui) {
+                    if (ui.values[0] == ui.values[1]) {
+                        return false;
+                    }
+
+                    $("#min_price").val(ui.values[0]);
+                    $("#max_price").val(ui.values[1]);
+                }
+            });
+
+            $("#min_price").val($("#slider-range").slider("values", 0));
+            $("#max_price").val($("#slider-range").slider("values", 1));
+
+        });
+
+        $("#slider-range,#price-range-submit").click(function () {
+
+            var min_price = $('#min_price').val();
+            var max_price = $('#max_price').val();
+            $("#searchResults").text("Here List of products will be shown which are cost between " + min_price  +" "+ "and" + " "+ max_price + ".");
+        });
+
+    });
+</script>
 </body>
 </html>
 

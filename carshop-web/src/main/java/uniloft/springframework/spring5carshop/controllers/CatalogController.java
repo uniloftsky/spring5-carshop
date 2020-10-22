@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import uniloft.springframework.spring5carshop.comparators.CarDescendingComparatorImpl;
+import uniloft.springframework.spring5carshop.comparators.CarDescendingComparatorById;
 import uniloft.springframework.spring5carshop.model.Car;
 import uniloft.springframework.spring5carshop.model.CarBody;
 import uniloft.springframework.spring5carshop.model.CarBrand;
@@ -17,6 +17,7 @@ import uniloft.springframework.spring5carshop.services.CarBrandService;
 import uniloft.springframework.spring5carshop.services.CarService;
 import uniloft.springframework.spring5carshop.services.CarTypeService;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
@@ -42,7 +43,7 @@ public class CatalogController {
     }
 
     @RequestMapping({"index", "", "/"})
-    public String getCatalogPage(Model model, @PageableDefault(sort = {"brand.brandName"}, direction = Sort.Direction.ASC) Pageable pageable) {
+    public String getCatalogPage(Model model, @PageableDefault(sort = {"brand.brandName"}, direction = Sort.Direction.ASC, size = 5, page = 0) Pageable pageable) {
         Page<Car> pages = carService.findAll(pageable);
         Integer maxPage = pages.getTotalPages();
         model.addAttribute("maxPage", maxPage);
@@ -78,9 +79,19 @@ public class CatalogController {
         return carService.getCars().stream().limit(3).collect(Collectors.toSet());
     }
 
+    @ModelAttribute("minPrice")
+    public BigDecimal getMinPrice() {
+        return carService.findMinPrice();
+    }
+
+    @ModelAttribute("maxPrice")
+    public BigDecimal getMaxPrice() {
+        return carService.findMaxPrice();
+    }
+
     @ModelAttribute("recentCars")
     public TreeSet<Car> getRecentCars() {
-        Comparator<Car> comparator = new CarDescendingComparatorImpl();
+        Comparator<Car> comparator = new CarDescendingComparatorById();
         Set<Car> sortedSet = carService.getSortedCars(comparator).stream().limit(3).collect(Collectors.toSet());
         TreeSet<Car> finalSet = new TreeSet<>(comparator);
         sortedSet.stream().iterator().forEachRemaining(finalSet::add);

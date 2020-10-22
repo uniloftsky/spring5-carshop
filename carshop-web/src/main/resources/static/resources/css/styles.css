@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+*::selection {
+    background: #DB2D2E;
+    color: white;
+}
+
 body {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 1.25rem;
@@ -1697,6 +1702,75 @@ About page
 
 .catalog-car-more:hover {
     background: #261C1D;
+}
+
+/* slider */
+
+.price-range-block {
+    border: 1px solid #DEDEDE;
+    padding: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.ui-slider-horizontal {
+    width: 350px;
+    height: 7px;
+    margin-bottom: 20px;
+}
+
+.ui-widget-header {
+    background: #DB2D2E;
+}
+
+.ui-widget.ui-widget-content {
+    background: #EEEEEE;
+    border: none;
+}
+
+.ui-slider-handle.ui-corner-all.ui-state-default {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background: white;
+    border: 1px solid #DB2D2E;
+    outline: none;
+}
+
+.ui-corner-all {
+    border-radius: 0;
+}
+
+.price-range-slider {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.price-range-slider span {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #888888;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.price-range-field {
+    font-family: 'Source Sans Pro', sans-serif;
+    width: 70px;
+    color: #888888;
+    font-size: 1.25rem;
+    font-weight: 600;
+    border: 0;
+}
+
+.search-results-block {
+    position: relative;
+    display: block;
+    clear: both;
+    margin-top: 20px;
+}
+
+.price-range-title {
+    color: #363636;
+    font-size: 1.1rem;
 }
 
 /* contact section */
