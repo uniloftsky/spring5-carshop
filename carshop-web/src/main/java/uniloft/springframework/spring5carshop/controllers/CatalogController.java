@@ -7,7 +7,9 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import uniloft.springframework.spring5carshop.comparators.CarDescendingComparatorById;
 import uniloft.springframework.spring5carshop.model.Car;
 import uniloft.springframework.spring5carshop.model.CarBody;
@@ -20,10 +22,7 @@ import uniloft.springframework.spring5carshop.services.CarTypeService;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -52,6 +51,40 @@ public class CatalogController {
         model.addAttribute("pageNumbers", pageNumbers);
         model.addAttribute("currentPage", pages.getNumber());
         return "catalog/index";
+    }
+
+    @PostMapping("/filterCars")
+    public String getFoundedCars(Model model, @RequestParam String brandName, @RequestParam String modelName, @RequestParam String bodyName) {
+        Set<Car> foundedCars = new HashSet<>();
+        String newBrandName, newModelName, newBodyName;
+        if(brandName.equals("allBrands") && modelName.equals("allModels") && bodyName.equals("allBodies")) {
+            foundedCars = carService.getCars();
+        }
+        if(!brandName.equals("allBrands")) {
+            newBrandName = brandName.substring(10, brandName.length());
+            foundedCars = carService.findCarsByBrand_BrandName(newBrandName);
+        }
+        if(!brandName.equals("allBrands") && !modelName.equals("allModels")) {
+            newBrandName = brandName.substring(10, brandName.length());
+            newModelName = modelName.substring(10, modelName.length());
+            foundedCars = carService.findCarsByBrand_BrandNameAndModel_ModelName(newBrandName, newModelName);
+            System.out.println(newBrandName + " " + newModelName + " ");
+        }
+        if(!brandName.equals("allBrands") && !modelName.equals("allModels") && !bodyName.equals("allBodies")) {
+            newBrandName = brandName.substring(10, brandName.length());
+            newModelName = modelName.substring(10, modelName.length());
+            newBodyName = bodyName.substring(10, bodyName.length());
+            foundedCars = carService.findCarsByBrand_BrandNameAndModel_ModelNameAndBody_BodyName(newBrandName, newModelName, newBodyName);
+        }
+        //System.out.println(brandName + " " + modelName + " " + bodyName);
+        /*else if(!brandName.equals("allBrands") && !modelName.equals("allModels")) {
+
+        }*/
+        /*else if(brandName.equals("allBrands")) {
+            foundedCars = carService.findCarsByModel_ModelNameAndBody_BodyName(modelName, bodyName);
+        }*/
+        model.addAttribute("foundedCars", foundedCars);
+        return "catalog/list";
     }
 
     @ModelAttribute("brands")

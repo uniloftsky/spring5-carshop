@@ -70,4 +70,54 @@ public class CarServiceImpl implements CarService {
         carRepository.findAll().iterator().forEachRemaining(cars::add);
         return cars.last().getPrice();
     }
+
+    @Override
+    public Set<Car> findCarsByBrand_BrandNameAndModel_ModelNameAndBody_BodyName(String brandName, String modelName, String bodyName) {
+        return carRepository.findCarsByBrand_BrandNameAndModel_ModelNameAndBody_BodyName(brandName, modelName, bodyName);
+    }
+
+    @Override
+    public Set<Car> findCarsByModel_ModelNameAndBody_BodyName(String modelName, String bodyName) {
+        return carRepository.findCarsByModel_ModelNameAndBody_BodyName(modelName, bodyName);
+    }
+
+    @Override
+    public Set<Car> findCarsByBrand_BrandName(String brandName) {
+        return carRepository.findCarsByBrand_BrandName(brandName);
+    }
+
+    @Override
+    public Set<Car> findCarsByBrand_BrandNameAndModel_ModelName(String brandName, String modelName) {
+        return carRepository.findCarsByBrand_BrandNameAndModel_ModelName(brandName, modelName);
+    }
+
+    /*    @Override
+    public Set<Car> findCarsByBrand_BrandName(String brandName) {
+        return carRepository.findCarsByBrand_BrandName(brandName);
+    }
+
+    @Override
+    public Set<Car> findCarsByModel_ModelName(String modelName) {
+        return carRepository.findCarsByModel_ModelName(modelName);
+    }
+
+    @Override
+    public Set<Car> findCarsByBody_BodyName(String bodyName) {
+        return carRepository.findCarsByBody_BodyName(bodyName);
+    }
+
+    @Override
+    public Set<Car> findCarsByBrand_BrandNameAndModel_ModelName(String brandName, String modelName) {
+        return carRepository.findCarsByBrand_BrandNameAndModel_ModelName(brandName, modelName);
+    }
+
+    @Override
+    public Set<Car> findCarsByBrand_BrandNameAndBody_BodyName(String brandName, String bodyName) {
+        return carRepository.findCarsByBrand_BrandNameAndBody_BodyName(brandName, bodyName);
+    }
+
+    @Override
+    public Set<Car> findCarsByModel_ModelNameAndBody_BodyName(String modelName, String bodyName) {
+        return carRepository.findCarsByModel_ModelNameAndBody_BodyName(modelName, bodyName);
+    }*/
 }

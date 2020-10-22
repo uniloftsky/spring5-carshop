@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
-    <link th:href="@{resources/css/styles.css}"
+    <link th:href="@{/resources/css/styles.css}"
           href="../static/resources/css/styles.css" rel="stylesheet" type="text/css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -24,19 +24,19 @@
                 <section class="top-bar-section">
                     <div class="top-bar-inner">
                         <img class="top-bar-icon" src="../static/resources/images/icons/email.png"
-                             th:src="@{resources/images/icons/email.png}">
+                             th:src="@{/resources/images/icons/email.png}">
                         <p class="top-bar-section-text">uniloftsky@gmail.com</p>
                     </div>
                     <div class="top-bar-inner">
                         <img class="top-bar-icon" src="../static/resources/images/icons/four-oclock.png"
-                             th:src="@{resources/images/icons/four-oclock.png}">
+                             th:src="@{/resources/images/icons/four-oclock.png}">
                         <p class="top-bar-section-text" th:text="${currentDate}">20.12.2002 02:00 AM</p>
                     </div>
                 </section>
                 <section class="top-bar-section">
                     <div class="top-bar-inner">
                         <img class="top-bar-icon" src="../static/resources/images/icons/phone-call.png"
-                             th:src="@{resources/images/icons/phone-call.png}">
+                             th:src="@{/resources/images/icons/phone-call.png}">
                         <p class="top-bar-section-text">(097)127-93-32</p>
                     </div>
                 </section>
@@ -48,7 +48,7 @@
                     <div class="sub-header">
                         <section class="logo-block">
                             <img class="logo-img" src="../static/resources/images/logo-light.png"
-                                 th:src="@{resources/images/logo-light.png}">
+                                 th:src="@{/resources/images/logo-light.png}">
                         </section>
                         <nav>
                             <ul>
@@ -84,76 +84,80 @@
         <div class="wrap">
             <div class="catalog-section-in">
                 <div class="filter-section">
-                    <!--<div class="price-check">
+                    <form method="post" th:action="@{/catalog/filterCars}">
+                        <!--<div class="price-range-block">
+                            <p class="price-range-title">Ціна</p>
+                            <div class="price-range-slider">
+                                <span>₴</span><input type="number" id="min_price" class="price-range-field" name="minNumber"/>
+                                <span>₴</span><input type="number" id="max_price" class="price-range-field" name="maxNumber"/>
+                            </div>
+                            <div id="slider-range" class="price-filter-range" name="rangeInput"></div>
+                        </div>-->
+                        <button type="button" class="accordion">
+                            <div class="accordion-in">
+                                <span class="check-title">Бренд</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </button>
+                        <div class="panel">
+                            <div class="panel-in">
+                                <div class="check-block">
+                                    <!--<input type="checkbox" name="brandName" value="allBrands">
+                                    <label>Всі бренди</label>-->
+                                    <input type="hidden" name="brandName" value="allBrands">
+                                </div>
+                                <div class="check-block" th:each="brand : ${brands}">
+                                    <input type="checkbox" name="brandName" th:value="*{brand.brandName}">
 
-                    </div>-->
+                                    <label th:text="${brand.brandName}"></label>
+                                </div>
+                            </div>
+                        </div>
 
-                    <button class="accordion">
-                        <div class="accordion-in">
-                            <span class="check-title">Бренд</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                    </button>
-                    <div class="panel">
-                        <div class="panel-in">
-                            <div class="check-block">
-                                <input type="checkbox" name="all-brands">
-                                <label>Всі бренди</label>
+                        <button type="button" class="accordion">
+                            <div class="accordion-in">
+                                <span class="check-title">Модель</span>
+                                <i class="fas fa-chevron-down"></i>
                             </div>
-                            <div class="check-block" th:each="brand : ${brands}">
-                                <input type="checkbox" name="brand_name">
-                                <label th:text="${brand.brandName}"></label>
-                            </div>
-                        </div>
-                    </div>
+                        </button>
+                        <div class="panel">
+                            <div class="panel-in">
+                                <div class="check-block">
+                                    <!--<input type="checkbox" name="modelName" value="allModels">
+                                    <label>Всі моделі</label>-->
+                                    <input type="hidden" name="modelName" value="allModels">
+                                </div>
+                                <div class="check-block" th:each="model : ${models}">
+                                    <input type="checkbox" name="modelName" th:value="*{model.modelName}">
 
-                    <button class="accordion">
-                        <div class="accordion-in">
-                            <span class="check-title">Модель</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                    </button>
-                    <div class="panel">
-                        <div class="panel-in">
-                            <div class="check-block">
-                                <input type="checkbox" name="all-models">
-                                <label>Всі моделі</label>
-                            </div>
-                            <div class="check-block" th:each="model : ${models}">
-                                <input type="checkbox" name="brand_name">
-                                <label th:text="${model.modelName}"></label>
+                                    <label th:text="${model.modelName}"></label>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <button type="button" class="accordion">
+                            <div class="accordion-in">
+                                <span class="check-title">Модель кузова</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </button>
+                        <div class="panel">
+                            <div class="panel-in">
+                                <div class="check-block">
+                                   <!-- <input type="checkbox" name="bodyName" value="allBodies">
+                                    <label>Всі моделі кузова</label>-->
+                                    <input type="hidden" name="bodyName" value="allBodies">
+                                </div>
+                                <div class="check-block" th:each="body : ${bodies}">
+                                    <input type="checkbox" name="bodyName" th:value="*{body.bodyName}">
 
-                    <button class="accordion">
-                        <div class="accordion-in">
-                            <span class="check-title">Модель кузова</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                    </button>
-                    <div class="panel">
-                        <div class="panel-in">
-                            <div class="check-block">
-                                <input type="checkbox" name="all-bodies">
-                                <label>Всі моделі кузова</label>
-                            </div>
-                            <div class="check-block" th:each="body : ${bodies}">
-                                <input type="checkbox" name="brand_name">
-                                <label th:text="${body.bodyName}"></label>
+                                    <label th:text="${body.bodyName}"></label>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <input type="submit">
+                    </form>
                 </div>
                 <div class="catalog">
-                    <div class="price-range-block">
-                        <p class="price-range-title">Ціна</p>
-                        <div class="price-range-slider">
-                            <span>Від: ₴</span><input type="number" id="min_price" class="price-range-field"/>
-                            <span>До: ₴</span><input type="number" id="max_price" class="price-range-field"/>
-                        </div>
-                        <div id="slider-range" class="price-filter-range" name="rangeInput"></div>
-                    </div>
                     <div class="catalog-car" th:each="page : ${page}">
                         <div class="catalog-car-img-block">
                             <img class="catalog-car-img" th:src="${page.image}">
@@ -188,7 +192,7 @@
                     <ul class="pagination">
                         <li class="page-item">
                             <a class="page-link arrow"
-                               th:href="${currentPage == 0} ? '#' : @{/catalog(size=5, page=${currentPage - 1})}"><i
+                               th:href="${currentPage == 0} ? '#' : @{catalog(size=5, page=${currentPage - 1})}"><i
                                     class="fas fa-angle-double-left"></i></a>
                         </li>
                         <th:block th:each="pageNumber : ${pageNumbers}">
@@ -214,7 +218,7 @@
 
     <section class="parallax-window footer-section" data-parallax="scroll"
              data-image-src="../static/resources/images/background-car3.jpg"
-             th:data-image-src="@{resources/images/background-car3.jpg}"
+             th:data-image-src="@{/resources/images/background-car3.jpg}"
              style="padding-bottom: 1.5em; padding-left: 0; padding-right: 0;">
         <div class="wrap">
             <div class="footer-section-in">
@@ -222,7 +226,7 @@
                     <div class="footer-info">
                         <div class="logo-footer-img-block">
                             <img class="logo-footer-img" src="../static/resources/images/logo-light.png"
-                                 th:src="@{resources/images/logo-light.png}">
+                                 th:src="@{/resources/images/logo-light.png}">
                         </div>
                         <div class="footer-content">
                             <p class="footer-text">Пропонуємо найкращі послуги з найкращою якістю і найкращим
@@ -334,12 +338,12 @@
     </section>
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script src="../static/resources/js/numbercount.js" th:src="@{resources/js/numbercount.js}"></script>
-<script type="text/javascript" src="../static/resources/js/parallax.js" th:src="@{resources/js/parallax.js}"></script>
+<script src="../static/resources/js/numbercount.js" th:src="@{/resources/js/numbercount.js}"></script>
+<script type="text/javascript" src="../static/resources/js/parallax.js" th:src="@{/resources/js/parallax.js}"></script>
 <script src="../static/resources/js/chainedselects.js" type="text/javascript"
-        th:src="@{resources/js/chainedselects.js}"></script>
-<script th:src="@{resources/js/accordion.js}" type="text/javascript" src="../static/resources/js/accordion.js"></script>
-<script src="../static/resources/js/slider.js" type="text/javascript" th:src="@{resources/js/slider.js}"></script>
+        th:src="@{/resources/js/chainedselects.js}"></script>
+<script th:src="@{/resources/js/accordion.js}" type="text/javascript" src="../static/resources/js/accordion.js"></script>
+<script src="../static/resources/js/slider.js" type="text/javascript" th:src="@{/resources/js/slider.js}"></script>
 <!--<script src="../static/resources/js/pricerange.js" type="text/javascript" th:src="@{resources/js/pricerange.js}"></script>-->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://kit.fontawesome.com/de94abba4d.js" crossorigin="anonymous"></script>
@@ -394,12 +398,12 @@
 
         });
 
-        $("#slider-range,#price-range-submit").click(function () {
+/*        $("#slider-range,#price-range-submit").click(function () {
 
             var min_price = $('#min_price').val();
             var max_price = $('#max_price').val();
             $("#searchResults").text("Here List of products will be shown which are cost between " + min_price  +" "+ "and" + " "+ max_price + ".");
-        });
+        });*/
 
     });
 </script>
