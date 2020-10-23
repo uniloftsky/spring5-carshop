@@ -6,6 +6,7 @@ import uniloft.springframework.spring5carshop.model.Car;
 
 import java.math.BigDecimal;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -18,12 +19,12 @@ public interface CarService {
     Page<Car> findAll(Pageable pageable);
     BigDecimal findMinPrice();
     BigDecimal findMaxPrice();
-    Page<Car> findCarsByBrand_BrandNameAndModel_ModelNameAndBody_BodyName(String brandName, String modelName, String bodyName, Pageable pageable);
-    Page<Car> findCarsByModel_ModelNameAndBody_BodyName(String modelName, String bodyName, Pageable pageable);
-    Page<Car> findCarsByBrand_BrandName(String brandName, Pageable pageable);
-    Page<Car> findCarsByBrand_BrandNameAndModel_ModelName(String brandName, String modelName, Pageable pageable);
-    Page<Car> findCarsByModel_ModelName(String modelName, Pageable pageable);
-    Page<Car> findCarsByBody_BodyName(String bodyName, Pageable pageable);
-    Page<Car> findCarsByBrand_BrandNameAndBody_BodyName(String brandName, String bodyName, Pageable pageable);
+    Page<Car> findCarsByBrand_BrandNameAndModel_ModelNameAndBody_BodyName(List<String> brandName, List<String> modelName, List<String> bodyName, Pageable pageable);
+    Page<Car> findCarsByModel_ModelNameAndBody_BodyName(List<String> modelName, List<String> bodyName, Pageable pageable);
+    Page<Car> findCarsByBrand_BrandName(List<String> brandName, Pageable pageable);
+    Page<Car> findCarsByBrand_BrandNameAndModel_ModelName(List<String> brandName, List<String> modelName, Pageable pageable);
+    Page<Car> findCarsByModel_ModelName(List<String> modelName, Pageable pageable);
+    Page<Car> findCarsByBody_BodyName(List<String> bodyName, Pageable pageable);
+    Page<Car> findCarsByBrand_BrandNameAndBody_BodyName(List<String> brandName, List<String> bodyName, Pageable pageable);
 
 }
