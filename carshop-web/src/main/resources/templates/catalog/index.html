@@ -89,14 +89,19 @@
             <div class="catalog-section-in">
                 <div class="filter-section">
                     <form method="post" th:action="@{/catalog/filterCars}">
-                        <!--<div class="price-range-block">
-                            <p class="price-range-title">Ціна</p>
+                        <div class="price-range-block">
+                            <p class="price-range-title">Ціна:</p>
                             <div class="price-range-slider">
-                                <span>₴</span><input type="number" id="min_price" class="price-range-field" name="minNumber"/>
-                                <span>₴</span><input type="number" id="max_price" class="price-range-field" name="maxNumber"/>
+                                <div>
+                                    <input type="number" id="min_price" class="price-range-field" name="minPrice"/><span>₴</span>
+                                </div>
+                                <div>
+                                    <input type="number" id="max_price" class="price-range-field" name="maxPrice"/><span>₴</span>
+                                </div>
+
                             </div>
                             <div id="slider-range" class="price-filter-range" name="rangeInput"></div>
-                        </div>-->
+                        </div>
                         <button type="button" class="accordion">
                             <div class="accordion-in">
                                 <span class="check-title">Бренд</span>
@@ -143,7 +148,7 @@
                                 <i class="fas fa-chevron-down"></i>
                             </div>
                         </button>
-                        <div class="panel">
+                        <div class="panel" id="test-panel">
                             <div class="panel-in">
                                 <div class="check-block">
                                    <!-- <input type="checkbox" name="bodyName" value="allBodies">
@@ -157,7 +162,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="submit">
+                        <input class="filter-submit-btn" type="submit">
                     </form>
                 </div>
                 <div class="catalog">
@@ -351,7 +356,7 @@
 <!--<script src="../static/resources/js/pricerange.js" type="text/javascript" th:src="@{resources/js/pricerange.js}"></script>-->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://kit.fontawesome.com/de94abba4d.js" crossorigin="anonymous"></script>
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
     $(document).ready(function () {
 
 
@@ -379,12 +384,17 @@
 
 
         $(function () {
+            var minSelectedPrice = [(${minSelectedPrice})];
+            var maxSelectedPrice = [(${maxSelectedPrice})];
             $("#slider-range").slider({
+
                 range: true,
                 orientation: "horizontal",
                 min: [(${minPrice})],
                 max: [(${maxPrice})],
-                values: [1000, 8000],
+
+                values: [minSelectedPrice, maxSelectedPrice],
+
                 step: 1,
 
                 slide: function (event, ui) {

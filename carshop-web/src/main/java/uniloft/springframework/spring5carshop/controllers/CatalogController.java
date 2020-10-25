@@ -49,6 +49,16 @@ public class CatalogController {
         return "catalog/index";
     }
 
+    @ModelAttribute("minSelectedPrice")
+    public BigDecimal getMinSelectedPrice() {
+        return carService.findMinPrice();
+    }
+
+    @ModelAttribute("maxSelectedPrice")
+    public BigDecimal getMaxSelectedPrice() {
+        return carService.findMaxPrice();
+    }
+
     @ModelAttribute("page")
     public Page<Car> getAllCarsPage(Model model, @PageableDefault(sort = {"brand.brandName"}, direction = Sort.Direction.ASC, size = 5, page = 0) Pageable pageable) {
         Page<Car> foundedCars = carService.findAll(pageable);
@@ -63,13 +73,13 @@ public class CatalogController {
 
 
     @RequestMapping("/filterCars")
-    public String getFoundedCars(RedirectAttributes ra, Model model, @RequestParam String brandName, @RequestParam String modelName, @RequestParam String bodyName, @PageableDefault(direction = Sort.Direction.ASC, size = 5, page = 0) Pageable pageable) {
+    public String getFoundedCars(RedirectAttributes ra, Model model, @RequestParam String brandName, @RequestParam String modelName, @RequestParam String bodyName, @RequestParam BigDecimal minPrice, @RequestParam BigDecimal maxPrice, @PageableDefault(direction = Sort.Direction.ASC, size = 5, page = 0) Pageable pageable) {
         Page<Car> foundedCars = null;
         String newBrandName, newModelName, newBodyName;
         Integer maxPage;
 
-        if(brandName.equals("allBrands") && modelName.equals("allModels") && bodyName.equals("allBodies")) {
-            foundedCars = carService.findAll(pageable);
+        if (brandName.equals("allBrands") && modelName.equals("allModels") && bodyName.equals("allBodies")) {
+            foundedCars = carService.findCars(minPrice, maxPrice, pageable);
             maxPage = foundedCars.getTotalPages();
             ra.addFlashAttribute("maxPage", maxPage);
             ra.addFlashAttribute("page", foundedCars);
@@ -77,11 +87,11 @@ public class CatalogController {
             ra.addFlashAttribute("pageNumbers", pageNumbers);
             ra.addFlashAttribute("currentPage", foundedCars.getNumber());
         }
-        if(!brandName.equals("allBrands")) {
+        if (!brandName.equals("allBrands")) {
             newBrandName = brandName.substring(10, brandName.length());
-            String [] carsTest = newBrandName.split(",");
+            String[] carsTest = newBrandName.split(",");
             List<String> cars = new ArrayList<>(Arrays.asList(carsTest));
-            foundedCars = carService.findCarsByBrand_BrandName(cars, pageable);
+            foundedCars = carService.findCarsByBrand_BrandName(cars, minPrice, maxPrice, pageable);
             maxPage = foundedCars.getTotalPages();
             ra.addFlashAttribute("maxPage", maxPage);
             ra.addFlashAttribute("page", foundedCars);
@@ -89,15 +99,15 @@ public class CatalogController {
             ra.addFlashAttribute("pageNumbers", pageNumbers);
             ra.addFlashAttribute("currentPage", foundedCars.getNumber());
         }
-        if(!brandName.equals("allBrands") && !modelName.equals("allModels")) {
+        if (!brandName.equals("allBrands") && !modelName.equals("allModels")) {
             newBrandName = brandName.substring(10, brandName.length());
             newModelName = modelName.substring(10, modelName.length());
             List<String> brandList, modelList;
-            String [] brands = newBrandName.split(",");
-            String [] models = newModelName.split(",");
+            String[] brands = newBrandName.split(",");
+            String[] models = newModelName.split(",");
             brandList = new ArrayList<>(Arrays.asList(brands));
             modelList = new ArrayList<>(Arrays.asList(models));
-            foundedCars = carService.findCarsByBrand_BrandNameAndModel_ModelName(brandList, modelList, pageable);
+            foundedCars = carService.findCarsByBrand_BrandNameAndModel_ModelName(brandList, modelList, minPrice, maxPrice, pageable);
             maxPage = foundedCars.getTotalPages();
             ra.addFlashAttribute("maxPage", maxPage);
             ra.addFlashAttribute("page", foundedCars);
@@ -105,18 +115,18 @@ public class CatalogController {
             ra.addFlashAttribute("pageNumbers", pageNumbers);
             ra.addFlashAttribute("currentPage", foundedCars.getNumber());
         }
-        if(!brandName.equals("allBrands") && !modelName.equals("allModels") && !bodyName.equals("allBodies")) {
+        if (!brandName.equals("allBrands") && !modelName.equals("allModels") && !bodyName.equals("allBodies")) {
             newBrandName = brandName.substring(10, brandName.length());
             newModelName = modelName.substring(10, modelName.length());
             newBodyName = bodyName.substring(10, bodyName.length());
             List<String> brandList, modelList, bodyList;
-            String [] brands = newBrandName.split(",");
-            String [] models = newModelName.split(",");
-            String [] bodies = newBodyName.split(",");
+            String[] brands = newBrandName.split(",");
+            String[] models = newModelName.split(",");
+            String[] bodies = newBodyName.split(",");
             brandList = new ArrayList<>(Arrays.asList(brands));
             modelList = new ArrayList<>(Arrays.asList(models));
             bodyList = new ArrayList<>(Arrays.asList(bodies));
-            foundedCars = carService.findCarsByBrand_BrandNameAndModel_ModelNameAndBody_BodyName(brandList, modelList, bodyList, pageable);
+            foundedCars = carService.findCarsByBrand_BrandNameAndModel_ModelNameAndBody_BodyName(brandList, modelList, bodyList, minPrice, maxPrice, pageable);
             maxPage = foundedCars.getTotalPages();
             ra.addFlashAttribute("maxPage", maxPage);
             ra.addFlashAttribute("page", foundedCars);
@@ -124,12 +134,12 @@ public class CatalogController {
             ra.addFlashAttribute("pageNumbers", pageNumbers);
             ra.addFlashAttribute("currentPage", foundedCars.getNumber());
         }
-        if(brandName.equals("allBrands") && !modelName.equals("allModels")) {
+        if (brandName.equals("allBrands") && !modelName.equals("allModels")) {
             newModelName = modelName.substring(10, modelName.length());
             List<String> modelList;
-            String [] models = newModelName.split(",");
+            String[] models = newModelName.split(",");
             modelList = new ArrayList<>(Arrays.asList(models));
-            foundedCars = carService.findCarsByModel_ModelName(modelList, pageable);
+            foundedCars = carService.findCarsByModel_ModelName(modelList, minPrice, maxPrice, pageable);
             maxPage = foundedCars.getTotalPages();
             ra.addFlashAttribute("maxPage", maxPage);
             ra.addFlashAttribute("page", foundedCars);
@@ -137,12 +147,12 @@ public class CatalogController {
             ra.addFlashAttribute("pageNumbers", pageNumbers);
             ra.addFlashAttribute("currentPage", foundedCars.getNumber());
         }
-        if(brandName.equals("allBrands") && modelName.equals("allModels") && !bodyName.equals("allBodies")) {
+        if (brandName.equals("allBrands") && modelName.equals("allModels") && !bodyName.equals("allBodies")) {
             newBodyName = bodyName.substring(10, bodyName.length());
             List<String> bodyList;
-            String [] bodies = newBodyName.split(",");
+            String[] bodies = newBodyName.split(",");
             bodyList = new ArrayList<>(Arrays.asList(bodies));
-            foundedCars = carService.findCarsByBody_BodyName(bodyList, pageable);
+            foundedCars = carService.findCarsByBody_BodyName(bodyList, minPrice, maxPrice, pageable);
             maxPage = foundedCars.getTotalPages();
             ra.addFlashAttribute("maxPage", maxPage);
             ra.addFlashAttribute("page", foundedCars);
@@ -150,15 +160,15 @@ public class CatalogController {
             ra.addFlashAttribute("pageNumbers", pageNumbers);
             ra.addFlashAttribute("currentPage", foundedCars.getNumber());
         }
-        if(brandName.equals("allBrands") && !modelName.equals("allModels") && !bodyName.equals("allBodies")) {
+        if (brandName.equals("allBrands") && !modelName.equals("allModels") && !bodyName.equals("allBodies")) {
             newModelName = modelName.substring(10, modelName.length());
             newBodyName = bodyName.substring(10, bodyName.length());
             List<String> modelList, bodyList;
-            String [] models = newModelName.split(",");
-            String [] bodies = newBodyName.split(",");
+            String[] models = newModelName.split(",");
+            String[] bodies = newBodyName.split(",");
             modelList = new ArrayList<>(Arrays.asList(models));
             bodyList = new ArrayList<>(Arrays.asList(bodies));
-            foundedCars = carService.findCarsByModel_ModelNameAndBody_BodyName(modelList, bodyList, pageable);
+            foundedCars = carService.findCarsByModel_ModelNameAndBody_BodyName(modelList, bodyList, minPrice, maxPrice, pageable);
             maxPage = foundedCars.getTotalPages();
             ra.addFlashAttribute("maxPage", maxPage);
             ra.addFlashAttribute("page", foundedCars);
@@ -166,16 +176,16 @@ public class CatalogController {
             ra.addFlashAttribute("pageNumbers", pageNumbers);
             ra.addFlashAttribute("currentPage", foundedCars.getNumber());
         }
-        if(!brandName.equals("allBrands") && modelName.equals("allModels") && !bodyName.equals("allBodies")) {
+        if (!brandName.equals("allBrands") && modelName.equals("allModels") && !bodyName.equals("allBodies")) {
             newBrandName = brandName.substring(10, brandName.length());
             newBodyName = bodyName.substring(10, bodyName.length());
             List<String> brandList, bodyList;
-            String [] brands = newBrandName.split(",");
-            String [] bodies = newBodyName.split(",");
+            String[] brands = newBrandName.split(",");
+            String[] bodies = newBodyName.split(",");
             brandList = new ArrayList<>(Arrays.asList(brands));
             bodyList = new ArrayList<>(Arrays.asList(bodies));
             System.out.println(newBodyName);
-            foundedCars = carService.findCarsByBrand_BrandNameAndBody_BodyName(brandList, bodyList, pageable);
+            foundedCars = carService.findCarsByBrand_BrandNameAndBody_BodyName(brandList, bodyList, minPrice, maxPrice, pageable);
             maxPage = foundedCars.getTotalPages();
             ra.addFlashAttribute("maxPage", maxPage);
             ra.addFlashAttribute("page", foundedCars);
@@ -185,6 +195,8 @@ public class CatalogController {
         }
 
         ra.addFlashAttribute("page", foundedCars);
+        ra.addFlashAttribute("minSelectedPrice", minPrice);
+        ra.addFlashAttribute("maxSelectedPrice", maxPrice);
         return "redirect:/catalog";
     }
 

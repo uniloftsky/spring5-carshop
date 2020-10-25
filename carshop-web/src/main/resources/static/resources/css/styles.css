@@ -1570,7 +1570,7 @@ About page
     border-bottom: none;
 }
 
-.panel:last-child {
+#test-panel {
     border-bottom: 1px solid #DEDEDE;
 }
 
@@ -1582,12 +1582,28 @@ About page
     padding: .25em .5em;
 }
 
+
 .check-block {
     margin-bottom: .5em;
 }
 
 .check-block input {
     margin-right: .5em;
+}
+
+.filter-submit-btn {
+    background: #DB2D2E;
+    color: white;
+    padding: .5em .75em;
+    border: 1px solid #DEDEDE;
+    width: 100%;
+    margin-top: 2em;
+    transition: .75s;
+    cursor: pointer;
+}
+
+.filter-submit-btn:hover {
+    background: #261C1D;
 }
 
 /* catalog */
@@ -1712,7 +1728,7 @@ About page
 
 .price-range-block {
     border: 1px solid #DEDEDE;
-    padding: 1.5em;
+    padding: 1em;
     margin-bottom: 1.5em;
 }
 
@@ -1747,13 +1763,15 @@ About page
 .price-range-slider {
     margin-top: 1em;
     margin-bottom: 1em;
+    display: flex;
+    justify-content: space-between;
 }
 
 .price-range-slider span {
     font-family: 'Source Sans Pro', sans-serif;
-    color: #888888;
+    color: #363636;
     font-size: 1.25rem;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .price-range-field {
@@ -1762,7 +1780,7 @@ About page
     color: #888888;
     font-size: 1.25rem;
     font-weight: 600;
-    border: 0;
+    border: 1px solid #DEDEDE;
 }
 
 .search-results-block {
@@ -1774,7 +1792,8 @@ About page
 
 .price-range-title {
     color: #363636;
-    font-size: 1.1rem;
+    font-weight: 700;
+    font-size: 1.35rem;
 }
 
 /* contact section */

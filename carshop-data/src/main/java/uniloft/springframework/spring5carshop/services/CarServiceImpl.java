@@ -56,6 +56,11 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public Page<Car> findCars(BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
+        return carRepository.findCars(minPrice, maxPrice, pageable);
+    }
+
+    @Override
     public BigDecimal findMinPrice() {
         Comparator<Car> comparator = new CarAscendingComparatorByPrice();
         TreeSet<Car> cars = new TreeSet<>(comparator);
@@ -72,37 +77,37 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Page<Car> findCarsByBrand_BrandNameAndModel_ModelNameAndBody_BodyName(List<String> brandName, List<String> modelName, List<String> bodyName, Pageable pageable) {
-        return carRepository.findCarsByBrand_BrandNameAndModel_ModelNameAndBody_BodyName(brandName, modelName, bodyName, pageable);
+    public Page<Car> findCarsByBrand_BrandNameAndModel_ModelNameAndBody_BodyName(List<String> brandName, List<String> modelName, List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
+        return carRepository.findCarsByBrand_BrandNameAndModel_ModelNameAndBody_BodyName(brandName, modelName, bodyName, minPrice, maxPrice, pageable);
     }
 
     @Override
-    public Page<Car> findCarsByModel_ModelNameAndBody_BodyName(List<String> modelName, List<String> bodyName, Pageable pageable) {
-        return carRepository.findCarsByModel_ModelNameAndBody_BodyName(modelName, bodyName, pageable);
+    public Page<Car> findCarsByModel_ModelNameAndBody_BodyName(List<String> modelName, List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
+        return carRepository.findCarsByModel_ModelNameAndBody_BodyName(modelName, bodyName, minPrice, maxPrice, pageable);
     }
 
     @Override
-    public Page<Car> findCarsByBrand_BrandName(List<String> brandName, Pageable pageable) {
-        return carRepository.findCarsByBrand_BrandName(brandName, pageable);
+    public Page<Car> findCarsByBrand_BrandName(List<String> brandName, BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
+        return carRepository.findCarsByBrand_BrandName(brandName, minPrice, maxPrice, pageable);
     }
 
     @Override
-    public Page<Car> findCarsByBrand_BrandNameAndModel_ModelName(List<String> brandName, List<String> modelName, Pageable pageable) {
-        return carRepository.findCarsByBrand_BrandNameAndModel_ModelName(brandName, modelName, pageable);
+    public Page<Car> findCarsByBrand_BrandNameAndModel_ModelName(List<String> brandName, List<String> modelName, BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
+        return carRepository.findCarsByBrand_BrandNameAndModel_ModelName(brandName, modelName, minPrice, maxPrice, pageable);
     }
 
     @Override
-    public Page<Car> findCarsByModel_ModelName(List<String> modelName, Pageable pageable) {
-        return carRepository.findCarsByModel_ModelName(modelName, pageable);
+    public Page<Car> findCarsByModel_ModelName(List<String> modelName, BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
+        return carRepository.findCarsByModel_ModelName(modelName, minPrice, maxPrice, pageable);
     }
 
     @Override
-    public Page<Car> findCarsByBody_BodyName(List<String> bodyName, Pageable pageable) {
-        return carRepository.findCarsByBody_BodyName(bodyName, pageable);
+    public Page<Car> findCarsByBody_BodyName(List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
+        return carRepository.findCarsByBody_BodyName(bodyName, minPrice, maxPrice, pageable);
     }
 
     @Override
-    public Page<Car> findCarsByBrand_BrandNameAndBody_BodyName(List<String> brandName, List<String> bodyName, Pageable pageable) {
-        return carRepository.findCarsByBrand_BrandNameAndBody_BodyName(brandName, bodyName, pageable);
+    public Page<Car> findCarsByBrand_BrandNameAndBody_BodyName(List<String> brandName, List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
+        return carRepository.findCarsByBrand_BrandNameAndBody_BodyName(brandName, bodyName, minPrice, maxPrice, pageable);
     }
 }
