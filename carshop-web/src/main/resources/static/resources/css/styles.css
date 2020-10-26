@@ -1611,6 +1611,7 @@ About page
 
 .catalog-section {
     min-height: 1367px;
+    margin-bottom: 5em;
 }
 
 .catalog-section-in {
@@ -2033,4 +2034,5 @@ About page
     min-width: 100%;
     margin-top: 5em;
     min-height: 475px;
+    pointer-events: none;
 }
