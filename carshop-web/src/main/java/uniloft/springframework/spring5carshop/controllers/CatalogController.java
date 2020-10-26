@@ -203,7 +203,7 @@ public class CatalogController {
 
     @ModelAttribute("brands")
     public Set<CarBrand> getBrands() {
-        return carBrandService.getBrands();
+        return carBrandService.getCarBrands();
     }
 
     @ModelAttribute("currentDate")

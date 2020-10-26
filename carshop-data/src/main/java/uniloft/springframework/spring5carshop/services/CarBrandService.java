@@ -8,7 +8,7 @@ import java.util.Set;
 
 public interface CarBrandService {
 
-    Set<CarBrand> getBrands();
+    Set<CarBrand> getCarBrands();
     Set<CarModel> getBrandModels();
     Set<CarBody> getModelBodies();
 

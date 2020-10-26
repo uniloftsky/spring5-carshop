@@ -53,7 +53,7 @@
                             <ul>
                                 <li><a href="#" th:href="@{/}">Головна</a></li>
                                 <li><a th:href="@{/catalog(page=0, size=5)}">Каталог авто</a></li>
-                                <li><a href="#">Зв'язатися</a></li>
+                                <li><a href="#" th:href="@{/contact}">Зв'язатися</a></li>
                                 <li><a href="#" th:href="@{/about}">Про нас</a></li>
                             </ul>
                         </nav>
@@ -63,11 +63,11 @@
                         <div class="header-path">
                             <div>
                                 <i class="fa fa-home"></i>
-                                <a href="#">Головна</a>
+                                <a href="#" th:href="@{/}">Головна</a>
                             </div>
                             <div>
                                 <i class="fa fa-angle-double-right"></i>
-                                <a href="#">Зв'язатися</a>
+                                <a href="#" th:href="@{/contact}">Зв'язатися</a>
                             </div>
                         </div>
                     </div>
@@ -107,6 +107,91 @@
                     <p class="contact-info">(007) 123 456 7890</p>
                 </div>
             </div>
+
+            <div class="contact-form-block">
+                <form class="contact-form">
+                    <div class="contact-form-in">
+                        <div class="contact-form-inputs">
+                            <input type="text" name="contactName" placeholder="Name*">
+                            <input type="text" name="contactEmail" placeholder="Email*">
+                            <input type="text" name="contactPhone" placeholder="Phone*">
+                        </div>
+                        <div class="contact-form-message">
+                            <textarea placeholder="Comment*" name="contactMessage"></textarea>
+                        </div>
+                        <input type="submit">
+                    </div>
+                    <div class="contact-form-in">
+                        <p class="contact-time-title">OPENING HOURS</p>
+                        <div class="contact-times">
+                            <div class="contact-time">
+                                <p class="contact-time-day">Monday</p>
+                                <p class="contact-work">9:00 AM to 9:00 PM</p>
+                            </div>
+                            <div class="contact-time">
+                                <p class="contact-time-day">Tuesday</p>
+                                <p class="contact-work">9:00 AM to 9:00 PM</p>
+                            </div>
+                            <div class="contact-time">
+                                <p class="contact-time-day">Wednesday</p>
+                                <p class="contact-work">9:00 AM to 9:00 PM</p>
+                            </div>
+                            <div class="contact-time">
+                                <p class="contact-time-day">Thursday</p>
+                                <p class="contact-work">9:00 AM to 9:00 PM</p>
+                            </div>
+                            <div class="contact-time">
+                                <p class="contact-time-day">Friday</p>
+                                <p class="contact-work">9:00 AM to 9:00 PM</p>
+                            </div>
+                            <div class="contact-time">
+                                <p class="contact-time-day">Saturday</p>
+                                <p class="contact-work">9:00 AM to 9:00 PM</p>
+                            </div>
+                            <div class="contact-time">
+                                <p class="contact-time-day">Sunday</p>
+                                <p class="contact-work closed">closed</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="contact-features">
+                <div class="contact-feature">
+                    <div class="contact-feature-icon">
+                        <i class="fa fa-clock-o"></i>
+                    </div>
+                    <div class="contact-feature-content">
+                        <p class="feature-title">OPENING HOURS</p>
+                        <p class="feature-text">Voluptatem accusanoremque sed ut perspiciatis unde omnis</p>
+                    </div>
+                </div>
+                <div class="contact-feature">
+                    <div class="contact-feature-icon">
+                        <i class="fa fa-support"></i>
+                    </div>
+                    <div class="contact-feature-content">
+                        <p class="feature-title">OUR SUPPORT CENTER</p>
+                        <p class="feature-text">Iste natus error sit sed ut perspiciatis unde omnis volu</p>
+                    </div>
+                </div>
+                <div class="contact-feature">
+                    <div class="contact-feature-icon">
+                        <i class="fa fa-info"></i>
+                    </div>
+                    <div class="contact-feature-content">
+                        <p class="feature-title">SOME INFORMATION</p>
+                        <p class="feature-text">Totam rem aperiam sed ut perspiciatis unde omnis iste natus error sit.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="map-section">
+        <div style="overflow:hidden;position: relative;">
+            <iframe class="map-frame" src="https://maps.google.com/maps?hl=en&amp;q=London+(%D0%9A%D0%B0%D1%80%D1%82%D0%B0)&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+            </iframe>
         </div>
     </section>
 
@@ -126,7 +211,8 @@
                                  th:src="@{resources/images/logo-light.png}">
                         </div>
                         <div class="footer-content">
-                            <p class="footer-text">Пропонуємо найкращі послуги з найкращою якістю і найкращим сервісом!</p>
+                            <p class="footer-text">Пропонуємо найкращі послуги з найкращою якістю і найкращим
+                                сервісом!</p>
                         </div>
                         <div class="contacts">
                             <div class="footer-contact-in">
@@ -187,7 +273,8 @@
                     </div>
                     <div class="footer-info">
                         <p class="footer-info-title">Підпишіться на наші новини</p>
-                        <p class="footer-text">Будьте в курсі останніх новинок і останніх автомобілів. Залиште свою пошту.</p>
+                        <p class="footer-text">Будьте в курсі останніх новинок і останніх автомобілів. Залиште свою
+                            пошту.</p>
                         <form class="footer-form">
                             <input type="email" placeholder="Введіть свою пошту" name="email-sub">
                             <br>
@@ -206,7 +293,8 @@
                     <div class="footer-q">
                         <div class="footer-q-side">
                             <p class="footer-q-title">Бажаєте продати своє авто?</p>
-                            <p class="footer-q-text">Ми співпрацюємо з компаніями, що забезпечують швидку продажу вашого авто.</p>
+                            <p class="footer-q-text">Ми співпрацюємо з компаніями, що забезпечують швидку продажу вашого
+                                авто.</p>
                         </div>
                         <a href="#" class="btn-q">Детальніше</a>
                     </div>

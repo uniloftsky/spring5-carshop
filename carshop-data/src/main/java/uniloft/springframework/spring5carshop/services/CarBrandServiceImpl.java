@@ -2,13 +2,17 @@ package uniloft.springframework.spring5carshop.services;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import uniloft.springframework.spring5carshop.comparators.CarBodyAscendingComparatorByName;
+import uniloft.springframework.spring5carshop.comparators.CarModelAscendingComparatorByName;
 import uniloft.springframework.spring5carshop.model.CarBody;
 import uniloft.springframework.spring5carshop.model.CarBrand;
 import uniloft.springframework.spring5carshop.model.CarModel;
 import uniloft.springframework.spring5carshop.services.repositories.CarBrandRepository;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 @Slf4j
 @Service
@@ -21,30 +25,30 @@ public class CarBrandServiceImpl implements CarBrandService {
     }
 
     @Override
-    public Set<CarBrand> getBrands() {
-        Set<CarBrand> carBrands = new HashSet<>();
-        carBrandRepository.findAll().iterator().forEachRemaining(carBrands::add);
-        return carBrands;
+    public Set<CarBrand> getCarBrands() {
+        return carBrandRepository.getCarBrands();
     }
 
     @Override
     public Set<CarModel> getBrandModels() {
-        Set<CarModel> carModels = new HashSet<>();
+        Comparator<CarModel> comparator = new CarModelAscendingComparatorByName();
         Set<CarBrand> carBrands = new HashSet<>();
+        TreeSet<CarModel> cars = new TreeSet<>(comparator);
         carBrandRepository.findAll().iterator().forEachRemaining(carBrands::add);
-        carBrands.iterator().forEachRemaining(carBrand -> carBrand.getCarModelSet().iterator().forEachRemaining(carModels::add));
-        return carModels;
+        carBrands.iterator().forEachRemaining(carBrand -> carBrand.getCarModelSet().iterator().forEachRemaining(cars::add));
+        return cars;
     }
 
     public Set<CarBody> getModelBodies() {
+        Comparator<CarBody> comparator = new CarBodyAscendingComparatorByName();
         Set<CarBrand> carBrands = new HashSet<>();
-        Set<CarBody> carBodies = new HashSet<>();
+        TreeSet<CarBody> cars = new TreeSet<>(comparator);
         carBrandRepository.findAll().iterator().forEachRemaining(carBrands::add);
         carBrands.iterator().forEachRemaining(carBrand -> carBrand.getCarModelSet()
                 .iterator()
                 .forEachRemaining(carModel -> carModel.getCarBodySet()
                         .iterator()
-                        .forEachRemaining(carBodies::add)));
-        return carBodies;
+                        .forEachRemaining(cars::add)));
+        return cars;
     }
 }

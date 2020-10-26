@@ -39,7 +39,7 @@ public class IndexPageController {
     public String getIndexPage(Model model) {
         model.addAttribute("carTypes", carTypeService.getCarTypes());
         model.addAttribute("colors", colorService.getColors());
-        model.addAttribute("brands", carBrandService.getBrands());
+        model.addAttribute("brands", carBrandService.getCarBrands());
         model.addAttribute("models", carBrandService.getBrandModels());
         model.addAttribute("bodies", carBrandService.getModelBodies());
         return "index";
