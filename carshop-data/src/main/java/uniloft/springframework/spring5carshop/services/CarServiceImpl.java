@@ -1,7 +1,5 @@
 package uniloft.springframework.spring5carshop.services;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import uniloft.springframework.spring5carshop.comparators.CarAscendingComparatorByPrice;
 import uniloft.springframework.spring5carshop.comparators.CarDescendingComparatorById;
@@ -50,14 +48,13 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Page<Car> findAll(Pageable pageable) {
-        pageable.first();
-        return carRepository.findAll(pageable);
+    public Set<Car> findAll() {
+        return carRepository.findAll();
     }
 
     @Override
-    public Page<Car> findCars(BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
-        return carRepository.findCars(minPrice, maxPrice, pageable);
+    public Set<Car> findCars(BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCars(minPrice, maxPrice);
     }
 
     @Override
@@ -77,37 +74,37 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Page<Car> findCarsByBrand_BrandNameAndModel_ModelNameAndBody_BodyName(List<String> brandName, List<String> modelName, List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
-        return carRepository.findCarsByBrand_BrandNameAndModel_ModelNameAndBody_BodyName(brandName, modelName, bodyName, minPrice, maxPrice, pageable);
+    public Set<Car> findCarsByBrand_BrandNameAndModel_ModelNameAndBody_BodyName(List<String> brandName, List<String> modelName, List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByBrand_BrandNameAndModel_ModelNameAndBody_BodyName(brandName, modelName, bodyName, minPrice, maxPrice);
     }
 
     @Override
-    public Page<Car> findCarsByModel_ModelNameAndBody_BodyName(List<String> modelName, List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
-        return carRepository.findCarsByModel_ModelNameAndBody_BodyName(modelName, bodyName, minPrice, maxPrice, pageable);
+    public Set<Car> findCarsByModel_ModelNameAndBody_BodyName(List<String> modelName, List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByModel_ModelNameAndBody_BodyName(modelName, bodyName, minPrice, maxPrice);
     }
 
     @Override
-    public Page<Car> findCarsByBrand_BrandName(List<String> brandName, BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
-        return carRepository.findCarsByBrand_BrandName(brandName, minPrice, maxPrice, pageable);
+    public Set<Car> findCarsByBrand_BrandName(List<String> brandName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByBrand_BrandName(brandName, minPrice, maxPrice);
     }
 
     @Override
-    public Page<Car> findCarsByBrand_BrandNameAndModel_ModelName(List<String> brandName, List<String> modelName, BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
-        return carRepository.findCarsByBrand_BrandNameAndModel_ModelName(brandName, modelName, minPrice, maxPrice, pageable);
+    public Set<Car> findCarsByBrand_BrandNameAndModel_ModelName(List<String> brandName, List<String> modelName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByBrand_BrandNameAndModel_ModelName(brandName, modelName, minPrice, maxPrice);
     }
 
     @Override
-    public Page<Car> findCarsByModel_ModelName(List<String> modelName, BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
-        return carRepository.findCarsByModel_ModelName(modelName, minPrice, maxPrice, pageable);
+    public Set<Car> findCarsByModel_ModelName(List<String> modelName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByModel_ModelName(modelName, minPrice, maxPrice);
     }
 
     @Override
-    public Page<Car> findCarsByBody_BodyName(List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
-        return carRepository.findCarsByBody_BodyName(bodyName, minPrice, maxPrice, pageable);
+    public Set<Car> findCarsByBody_BodyName(List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByBody_BodyName(bodyName, minPrice, maxPrice);
     }
 
     @Override
-    public Page<Car> findCarsByBrand_BrandNameAndBody_BodyName(List<String> brandName, List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
-        return carRepository.findCarsByBrand_BrandNameAndBody_BodyName(brandName, bodyName, minPrice, maxPrice, pageable);
+    public Set<Car> findCarsByBrand_BrandNameAndBody_BodyName(List<String> brandName, List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByBrand_BrandNameAndBody_BodyName(brandName, bodyName, minPrice, maxPrice);
     }
 }

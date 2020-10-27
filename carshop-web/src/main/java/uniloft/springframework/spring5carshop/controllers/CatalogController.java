@@ -1,12 +1,9 @@
 package uniloft.springframework.spring5carshop.controllers;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -20,14 +17,14 @@ import uniloft.springframework.spring5carshop.services.CarService;
 import uniloft.springframework.spring5carshop.services.CarTypeService;
 import uniloft.springframework.spring5carshop.services.repositories.CarRepository;
 
+import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-
+//@SessionAttributes({"page", "pageNumbers", "currentPage"})
 @RequestMapping("/catalog")
 @Controller
 public class CatalogController {
@@ -59,46 +56,27 @@ public class CatalogController {
         return carService.findMaxPrice();
     }
 
-    @ModelAttribute("page")
-    public Page<Car> getAllCarsPage(Model model, @PageableDefault(sort = {"brand.brandName"}, direction = Sort.Direction.ASC, size = 5, page = 0) Pageable pageable) {
-        Page<Car> foundedCars = carService.findAll(pageable);
-        Integer maxPage = foundedCars.getTotalPages();
-        model.addAttribute("maxPage", maxPage);
-        model.addAttribute("page", foundedCars);
-        List<Integer> pageNumbers = IntStream.rangeClosed(1, foundedCars.getTotalPages()).boxed().collect(Collectors.toList());
-        model.addAttribute("pageNumbers", pageNumbers);
-        model.addAttribute("currentPage", foundedCars.getNumber());
-        return foundedCars;
-    }
-
-
+    @PostMapping
     @RequestMapping("/filterCars")
-    public String getFoundedCars(RedirectAttributes ra, Model model, @RequestParam String brandName, @RequestParam String modelName, @RequestParam String bodyName, @RequestParam BigDecimal minPrice, @RequestParam BigDecimal maxPrice, @PageableDefault(direction = Sort.Direction.ASC, size = 5, page = 0) Pageable pageable) {
-        Page<Car> foundedCars = null;
+    public String getFoundedCars(HttpSession httpSession, RedirectAttributes ra, Model model, @RequestParam String brandName, @RequestParam String modelName, @RequestParam String bodyName, @RequestParam BigDecimal minPrice, @RequestParam BigDecimal maxPrice) {
         String newBrandName, newModelName, newBodyName;
         Integer maxPage;
+        Set<Car> filterCars = carService.findCars(minPrice, maxPrice);
+        List<Integer> pageNumbers = null;
+        int currentPage = 0;
 
         if (brandName.equals("allBrands") && modelName.equals("allModels") && bodyName.equals("allBodies")) {
-            foundedCars = carService.findCars(minPrice, maxPrice, pageable);
-            maxPage = foundedCars.getTotalPages();
-            ra.addFlashAttribute("maxPage", maxPage);
-            ra.addFlashAttribute("page", foundedCars);
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, foundedCars.getTotalPages()).boxed().collect(Collectors.toList());
-            ra.addFlashAttribute("pageNumbers", pageNumbers);
-            ra.addFlashAttribute("currentPage", foundedCars.getNumber());
+            filterCars = carService.findCars(minPrice, maxPrice);
+            model.addAttribute("page", filterCars);
         }
         if (!brandName.equals("allBrands")) {
             newBrandName = brandName.substring(10, brandName.length());
             String[] carsTest = newBrandName.split(",");
             List<String> cars = new ArrayList<>(Arrays.asList(carsTest));
-            foundedCars = carService.findCarsByBrand_BrandName(cars, minPrice, maxPrice, pageable);
-            maxPage = foundedCars.getTotalPages();
-            ra.addFlashAttribute("maxPage", maxPage);
-            ra.addFlashAttribute("page", foundedCars);
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, foundedCars.getTotalPages()).boxed().collect(Collectors.toList());
-            ra.addFlashAttribute("pageNumbers", pageNumbers);
-            ra.addFlashAttribute("currentPage", foundedCars.getNumber());
+            filterCars = carService.findCarsByBrand_BrandName(cars, minPrice, maxPrice);
+            model.addAttribute("page", filterCars);
         }
+
         if (!brandName.equals("allBrands") && !modelName.equals("allModels")) {
             newBrandName = brandName.substring(10, brandName.length());
             newModelName = modelName.substring(10, modelName.length());
@@ -107,13 +85,8 @@ public class CatalogController {
             String[] models = newModelName.split(",");
             brandList = new ArrayList<>(Arrays.asList(brands));
             modelList = new ArrayList<>(Arrays.asList(models));
-            foundedCars = carService.findCarsByBrand_BrandNameAndModel_ModelName(brandList, modelList, minPrice, maxPrice, pageable);
-            maxPage = foundedCars.getTotalPages();
-            ra.addFlashAttribute("maxPage", maxPage);
-            ra.addFlashAttribute("page", foundedCars);
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, foundedCars.getTotalPages()).boxed().collect(Collectors.toList());
-            ra.addFlashAttribute("pageNumbers", pageNumbers);
-            ra.addFlashAttribute("currentPage", foundedCars.getNumber());
+            filterCars = carService.findCarsByBrand_BrandNameAndModel_ModelName(brandList, modelList, minPrice, maxPrice);
+            model.addAttribute("page", filterCars);
         }
         if (!brandName.equals("allBrands") && !modelName.equals("allModels") && !bodyName.equals("allBodies")) {
             newBrandName = brandName.substring(10, brandName.length());
@@ -126,39 +99,24 @@ public class CatalogController {
             brandList = new ArrayList<>(Arrays.asList(brands));
             modelList = new ArrayList<>(Arrays.asList(models));
             bodyList = new ArrayList<>(Arrays.asList(bodies));
-            foundedCars = carService.findCarsByBrand_BrandNameAndModel_ModelNameAndBody_BodyName(brandList, modelList, bodyList, minPrice, maxPrice, pageable);
-            maxPage = foundedCars.getTotalPages();
-            ra.addFlashAttribute("maxPage", maxPage);
-            ra.addFlashAttribute("page", foundedCars);
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, foundedCars.getTotalPages()).boxed().collect(Collectors.toList());
-            ra.addFlashAttribute("pageNumbers", pageNumbers);
-            ra.addFlashAttribute("currentPage", foundedCars.getNumber());
+            filterCars = carService.findCarsByBrand_BrandNameAndModel_ModelNameAndBody_BodyName(brandList, modelList, bodyList, minPrice, maxPrice);
+            model.addAttribute("page", filterCars);
         }
         if (brandName.equals("allBrands") && !modelName.equals("allModels")) {
             newModelName = modelName.substring(10, modelName.length());
             List<String> modelList;
             String[] models = newModelName.split(",");
             modelList = new ArrayList<>(Arrays.asList(models));
-            foundedCars = carService.findCarsByModel_ModelName(modelList, minPrice, maxPrice, pageable);
-            maxPage = foundedCars.getTotalPages();
-            ra.addFlashAttribute("maxPage", maxPage);
-            ra.addFlashAttribute("page", foundedCars);
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, foundedCars.getTotalPages()).boxed().collect(Collectors.toList());
-            ra.addFlashAttribute("pageNumbers", pageNumbers);
-            ra.addFlashAttribute("currentPage", foundedCars.getNumber());
+            filterCars = carService.findCarsByModel_ModelName(modelList, minPrice, maxPrice);
+            model.addAttribute("page", filterCars);
         }
         if (brandName.equals("allBrands") && modelName.equals("allModels") && !bodyName.equals("allBodies")) {
             newBodyName = bodyName.substring(10, bodyName.length());
             List<String> bodyList;
             String[] bodies = newBodyName.split(",");
             bodyList = new ArrayList<>(Arrays.asList(bodies));
-            foundedCars = carService.findCarsByBody_BodyName(bodyList, minPrice, maxPrice, pageable);
-            maxPage = foundedCars.getTotalPages();
-            ra.addFlashAttribute("maxPage", maxPage);
-            ra.addFlashAttribute("page", foundedCars);
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, foundedCars.getTotalPages()).boxed().collect(Collectors.toList());
-            ra.addFlashAttribute("pageNumbers", pageNumbers);
-            ra.addFlashAttribute("currentPage", foundedCars.getNumber());
+            filterCars = carService.findCarsByBody_BodyName(bodyList, minPrice, maxPrice);
+            model.addAttribute("page", filterCars);
         }
         if (brandName.equals("allBrands") && !modelName.equals("allModels") && !bodyName.equals("allBodies")) {
             newModelName = modelName.substring(10, modelName.length());
@@ -168,13 +126,8 @@ public class CatalogController {
             String[] bodies = newBodyName.split(",");
             modelList = new ArrayList<>(Arrays.asList(models));
             bodyList = new ArrayList<>(Arrays.asList(bodies));
-            foundedCars = carService.findCarsByModel_ModelNameAndBody_BodyName(modelList, bodyList, minPrice, maxPrice, pageable);
-            maxPage = foundedCars.getTotalPages();
-            ra.addFlashAttribute("maxPage", maxPage);
-            ra.addFlashAttribute("page", foundedCars);
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, foundedCars.getTotalPages()).boxed().collect(Collectors.toList());
-            ra.addFlashAttribute("pageNumbers", pageNumbers);
-            ra.addFlashAttribute("currentPage", foundedCars.getNumber());
+            filterCars = carService.findCarsByModel_ModelNameAndBody_BodyName(modelList, bodyList, minPrice, maxPrice);
+            model.addAttribute("page", filterCars);
         }
         if (!brandName.equals("allBrands") && modelName.equals("allModels") && !bodyName.equals("allBodies")) {
             newBrandName = brandName.substring(10, brandName.length());
@@ -185,21 +138,21 @@ public class CatalogController {
             brandList = new ArrayList<>(Arrays.asList(brands));
             bodyList = new ArrayList<>(Arrays.asList(bodies));
             System.out.println(newBodyName);
-            foundedCars = carService.findCarsByBrand_BrandNameAndBody_BodyName(brandList, bodyList, minPrice, maxPrice, pageable);
-            maxPage = foundedCars.getTotalPages();
-            ra.addFlashAttribute("maxPage", maxPage);
-            ra.addFlashAttribute("page", foundedCars);
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, foundedCars.getTotalPages()).boxed().collect(Collectors.toList());
-            ra.addFlashAttribute("pageNumbers", pageNumbers);
-            ra.addFlashAttribute("currentPage", foundedCars.getNumber());
+            filterCars = carService.findCarsByBrand_BrandNameAndBody_BodyName(brandList, bodyList, minPrice, maxPrice);
+            model.addAttribute("page", filterCars);
         }
-
-        ra.addFlashAttribute("page", foundedCars);
+        ra.addFlashAttribute("page", filterCars);
         ra.addFlashAttribute("minSelectedPrice", minPrice);
         ra.addFlashAttribute("maxSelectedPrice", maxPrice);
         return "redirect:/catalog";
     }
 
+    @ModelAttribute("page")
+    public Set<Car> getAllCarsPage(HttpSession httpSession, Model model) {
+        Set<Car> filterCars = carService.findAll();
+        model.addAttribute("page", filterCars);
+        return filterCars;
+    }
 
     @ModelAttribute("brands")
     public Set<CarBrand> getBrands() {

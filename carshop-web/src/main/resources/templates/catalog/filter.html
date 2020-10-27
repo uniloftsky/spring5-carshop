@@ -17,7 +17,7 @@
 <header class="not-index">
     <section class="parallax-window header-section" data-parallax="scroll"
              data-image-src="../static/resources/images/background-car4.jpg"
-             th:data-image-src="@{resources/images/background-car4.jpg}"
+             th:data-image-src="@{/resources/images/background-car4.jpg}"
              style="padding: 1em 0 1.5em;">
         <div class="wrap">
             <section class="top-bar">
@@ -88,7 +88,7 @@
         <div class="wrap">
             <div class="catalog-section-in">
                 <div class="filter-section">
-                    <form method="post" th:action="@{/catalog/filterCars}">
+                    <form method="get" th:action="@{/catalog/filterCars}">
                         <div class="price-range-block">
                             <p class="price-range-title">Ціна:</p>
                             <div class="price-range-slider">
@@ -151,8 +151,8 @@
                         <div class="panel" id="test-panel">
                             <div class="panel-in">
                                 <div class="check-block">
-                                   <!-- <input type="checkbox" name="bodyName" value="allBodies">
-                                    <label>Всі моделі кузова</label>-->
+                                    <!-- <input type="checkbox" name="bodyName" value="allBodies">
+                                     <label>Всі моделі кузова</label>-->
                                     <input type="hidden" name="bodyName" value="allBodies">
                                 </div>
                                 <div class="check-block" th:each="body : ${bodies}">
@@ -168,7 +168,7 @@
                 <div class="catalog" th:if="${not #lists.isEmpty(page)}">
                     <div class="catalog-car" th:each="page : ${page}">
                         <div class="catalog-car-img-block">
-                            <img class="catalog-car-img" th:src="${page.image}">
+                            <img class="catalog-car-img" th:src="'/' + ${page.image}">
                         </div>
                         <div class="catalog-car-info">
                             <p class="catalog-car-title"
@@ -207,7 +207,7 @@
 
     <section class="parallax-window footer-section" data-parallax="scroll"
              data-image-src="../static/resources/images/background-car3.jpg"
-             th:data-image-src="@{resources/images/background-car3.jpg}"
+             th:data-image-src="@{/resources/images/background-car3.jpg}"
              style="padding-bottom: 1.5em; padding-left: 0; padding-right: 0;">
         <div class="wrap">
             <div class="footer-section-in">
@@ -392,30 +392,7 @@
             $("#max_price").val($("#slider-range").slider("values", 1));
 
         });
-
-/*        $("#slider-range,#price-range-submit").click(function () {
-
-            var min_price = $('#min_price').val();
-            var max_price = $('#max_price').val();
-            $("#searchResults").text("Here List of products will be shown which are cost between " + min_price  +" "+ "and" + " "+ max_price + ".");
-        });*/
-
     });
 </script>
 </body>
 </html>
-
-<!--<ul class="pagination">
-        <li class="page-item texter">
-            <a class="page-link" th:text="${currentPage == 0} ? Pages : Previous" th:href="${currentPage == 0} ? '#' : @{/catalog(size=5, page=${currentPage - 1})}">Pages</a>
-        </li>
-        <th:block th:each="pageNumber : ${pageNumbers}">
-            <li class="page-item"><a th:class="${pageNumber==page.number + 1} ? active" th:href="@{/catalog(size=5, page=${pageNumber - 1})}" th:text="${pageNumber}"></a></li>
-        </th:block>
-        <li class="page-item texter">
-            <a class="page-link" th:href="@{/catalog(size=5, page=${currentPage + 1})}">Next</a>
-        </li>
-    </ul>
-    <div th:each="page : ${page}">
-        <div th:text="${page.model.modelName}"></div>
-    </div>-->
