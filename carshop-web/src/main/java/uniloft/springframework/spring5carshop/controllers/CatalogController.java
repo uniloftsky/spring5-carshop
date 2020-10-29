@@ -2,8 +2,8 @@ package uniloft.springframework.spring5carshop.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -17,7 +17,6 @@ import uniloft.springframework.spring5carshop.services.CarService;
 import uniloft.springframework.spring5carshop.services.CarTypeService;
 import uniloft.springframework.spring5carshop.services.repositories.CarRepository;
 
-import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -56,9 +55,8 @@ public class CatalogController {
         return carService.findMaxPrice();
     }
 
-    @PostMapping
-    @RequestMapping("/filterCars")
-    public String getFoundedCars(HttpSession httpSession, RedirectAttributes ra, Model model, @RequestParam String brandName, @RequestParam String modelName, @RequestParam String bodyName, @RequestParam BigDecimal minPrice, @RequestParam BigDecimal maxPrice) {
+    @GetMapping("/filterCars")
+    public String getFoundedCars(Model model, @RequestParam String brandName, @RequestParam String modelName, @RequestParam String bodyName, @RequestParam BigDecimal minPrice, @RequestParam BigDecimal maxPrice) {
         String newBrandName, newModelName, newBodyName;
         Integer maxPage;
         Set<Car> filterCars = carService.findCars(minPrice, maxPrice);
@@ -141,14 +139,13 @@ public class CatalogController {
             filterCars = carService.findCarsByBrand_BrandNameAndBody_BodyName(brandList, bodyList, minPrice, maxPrice);
             model.addAttribute("page", filterCars);
         }
-        ra.addFlashAttribute("page", filterCars);
-        ra.addFlashAttribute("minSelectedPrice", minPrice);
-        ra.addFlashAttribute("maxSelectedPrice", maxPrice);
-        return "redirect:/catalog";
+        model.addAttribute("minSelectedPrice", minPrice);
+        model.addAttribute("maxSelectedPrice", maxPrice);
+        return "catalog/index";
     }
 
     @ModelAttribute("page")
-    public Set<Car> getAllCarsPage(HttpSession httpSession, Model model) {
+    public Set<Car> getAllCarsPage(Model model) {
         Set<Car> filterCars = carService.findAll();
         model.addAttribute("page", filterCars);
         return filterCars;
