@@ -8,10 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uniloft.springframework.spring5carshop.comparators.CarDescendingComparatorById;
-import uniloft.springframework.spring5carshop.model.Car;
-import uniloft.springframework.spring5carshop.model.CarBody;
-import uniloft.springframework.spring5carshop.model.CarBrand;
-import uniloft.springframework.spring5carshop.model.CarModel;
+import uniloft.springframework.spring5carshop.model.*;
 import uniloft.springframework.spring5carshop.services.CarBrandService;
 import uniloft.springframework.spring5carshop.services.CarService;
 import uniloft.springframework.spring5carshop.services.CarTypeService;
@@ -56,7 +53,7 @@ public class CatalogController {
     }
 
     @GetMapping("/filterCars")
-    public String getFoundedCars(Model model, @RequestParam String brandName, @RequestParam String modelName, @RequestParam String bodyName, @RequestParam BigDecimal minPrice, @RequestParam BigDecimal maxPrice) {
+    public String getFoundedCars(Model model, @RequestParam String brandName, @RequestParam String modelName, @RequestParam String bodyName, @RequestParam String engineType, @RequestParam BigDecimal minPrice, @RequestParam BigDecimal maxPrice) {
         String newBrandName, newModelName, newBodyName;
         Integer maxPage;
         Set<Car> filterCars = carService.findCars(minPrice, maxPrice);
@@ -135,8 +132,99 @@ public class CatalogController {
             String[] bodies = newBodyName.split(",");
             brandList = new ArrayList<>(Arrays.asList(brands));
             bodyList = new ArrayList<>(Arrays.asList(bodies));
-            System.out.println(newBodyName);
             filterCars = carService.findCarsByBrand_BrandNameAndBody_BodyName(brandList, bodyList, minPrice, maxPrice);
+            model.addAttribute("page", filterCars);
+        }
+        if(!engineType.equals("allEngines")) {
+            List<String> engineList;
+            String[] engines = engineType.split(",");
+            engineList = new ArrayList<>(Arrays.asList(engines));
+            filterCars = carService.findCarsByEngine_Type_Description(engineList, minPrice, maxPrice);
+            model.addAttribute("page", filterCars);
+        }
+        if(!engineType.equals("allEngines") && !brandName.equals("allBrands")) {
+            newBrandName = brandName.substring(10, brandName.length());
+            List<String> brandList, engineList;
+            String[] brands = newBrandName.split(",");
+            String[] engines = engineType.split(",");
+            brandList = new ArrayList<>(Arrays.asList(brands));
+            engineList = new ArrayList<>(Arrays.asList(engines));
+            filterCars = carService.findCarsByEngine_Type_DescriptionAndBrand_BrandName(engineList, brandList, minPrice, maxPrice);
+            model.addAttribute("page", filterCars);
+        }
+        if(!engineType.equals("allEngines") && !modelName.equals("allModels")) {
+            newModelName = modelName.substring(10, modelName.length());
+            List<String> modelList, engineList;
+            String[] models = newModelName.split(",");
+            String[] engines = engineType.split(",");
+            modelList = new ArrayList<>(Arrays.asList(models));
+            engineList = new ArrayList<>(Arrays.asList(engines));
+            filterCars = carService.findCarsByEngine_Type_DescriptionAndModel_ModelName(engineList, modelList, minPrice, maxPrice);
+            model.addAttribute("page", filterCars);
+        }
+        if(!engineType.equals("allEngines") && !bodyName.equals("allBodies")) {
+            newBodyName = bodyName.substring(10, bodyName.length());
+            List<String> bodyList, engineList;
+            String[] bodies = newBodyName.split(",");
+            String[] engines = engineType.split(",");
+            bodyList = new ArrayList<>(Arrays.asList(bodies));
+            engineList = new ArrayList<>(Arrays.asList(engines));
+            filterCars = carService.findCarsByEngine_Type_DescriptionAndBody_BodyName(engineList, bodyList, minPrice, maxPrice);
+            model.addAttribute("page", filterCars);
+        }
+        if(!engineType.equals("allEngines") && !brandName.equals("allBrands") && !modelName.equals("allModelds")) {
+            newBrandName = brandName.substring(10, brandName.length());
+            newModelName = modelName.substring(10, modelName.length());
+            List<String> brandList, modelList, engineList;
+            String[] brands = newBrandName.split(",");
+            String[] models = newModelName.split(",");
+            String[] engines = engineType.split(",");
+            brandList = new ArrayList<>(Arrays.asList(brands));
+            modelList = new ArrayList<>(Arrays.asList(models));
+            engineList = new ArrayList<>(Arrays.asList(engines));
+            filterCars = carService.findCarsByEngine_Type_DescriptionAndBrand_BrandNameAndModel_ModelName(engineList, brandList, modelList, minPrice, maxPrice);
+            model.addAttribute("page", filterCars);
+        }
+        if(!engineType.equals("allEngines") && !brandName.equals("allBrands") && !bodyName.equals("allBodies")) {
+            newBrandName = brandName.substring(10, brandName.length());
+            newBodyName = bodyName.substring(10, bodyName.length());
+            List<String> brandList, bodyList, engineList;
+            String[] brands = newBrandName.split(",");
+            String[] bodies = newBodyName.split(",");
+            String[] engines = engineType.split(",");
+            brandList = new ArrayList<>(Arrays.asList(brands));
+            bodyList = new ArrayList<>(Arrays.asList(bodies));
+            engineList = new ArrayList<>(Arrays.asList(engines));
+            filterCars = carService.findCarsByEngine_Type_DescriptionAndBrand_BrandNameAndBody_BodyName(engineList, brandList, bodyList, minPrice, maxPrice);
+            model.addAttribute("page", filterCars);
+        }
+        if(!engineType.equals("allEngines") && !bodyName.equals("allBodies") && !modelName.equals("allModels")) {
+            newModelName = modelName.substring(10, modelName.length());
+            newBodyName = bodyName.substring(10, bodyName.length());
+            List<String> modelList, bodyList, engineList;
+            String[] models = newModelName.split(",");
+            String[] bodies = newBodyName.split(",");
+            String[] engines = engineType.split(",");
+            modelList = new ArrayList<>(Arrays.asList(models));
+            bodyList = new ArrayList<>(Arrays.asList(bodies));
+            engineList = new ArrayList<>(Arrays.asList(engines));
+            filterCars = carService.findCarsByEngine_Type_DescriptionAndModel_ModelNameAndBody_BodyName(engineList, modelList, bodyList, minPrice, maxPrice);
+            model.addAttribute("page", filterCars);
+        }
+        if(!engineType.equals("allEngines") && !bodyName.equals("allBodies") && !modelName.equals("allModels") && !brandName.equals("allBrands")) {
+            newBrandName = brandName.substring(10, brandName.length());
+            newModelName = modelName.substring(10, modelName.length());
+            newBodyName = bodyName.substring(10, bodyName.length());
+            List<String> brandList, modelList, bodyList, engineList;
+            String[] brands = newBrandName.split(",");
+            String[] models = newModelName.split(",");
+            String[] bodies = newBodyName.split(",");
+            String[] engines = engineType.split(",");
+            brandList = new ArrayList<>(Arrays.asList(brands));
+            modelList = new ArrayList<>(Arrays.asList(models));
+            bodyList = new ArrayList<>(Arrays.asList(bodies));
+            engineList = new ArrayList<>(Arrays.asList(engines));
+            filterCars = carService.findCarsByEngine_Type_DescriptionAndBrand_BrandNameAndBody_BodyNameAndModel_ModelName(engineList, brandList, modelList, bodyList, minPrice, maxPrice);
             model.addAttribute("page", filterCars);
         }
         model.addAttribute("minSelectedPrice", minPrice);
@@ -154,6 +242,11 @@ public class CatalogController {
     @ModelAttribute("brands")
     public Set<CarBrand> getBrands() {
         return carBrandService.getCarBrands();
+    }
+
+    @ModelAttribute("carTypes")
+    public Set<CarType> getCarTypes() {
+        return carTypeService.getCarTypes();
     }
 
     @ModelAttribute("currentDate")

@@ -148,7 +148,7 @@
                                 <i class="fas fa-chevron-down"></i>
                             </div>
                         </button>
-                        <div class="panel" id="test-panel">
+                        <div class="panel">
                             <div class="panel-in">
                                 <div class="check-block">
                                    <!-- <input type="checkbox" name="bodyName" value="allBodies">
@@ -159,6 +159,46 @@
                                     <input type="checkbox" name="bodyName" th:value="*{body.bodyName}">
 
                                     <label th:text="${body.bodyName}"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="accordion">
+                            <div class="accordion-in">
+                                <span class="check-title">Тип кузова</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </button>
+                        <div class="panel">
+                            <div class="panel-in">
+                                <div class="check-block">
+                                    <!-- <input type="checkbox" name="bodyName" value="allBodies">
+                                     <label>Всі моделі кузова</label>-->
+                                    <input type="hidden" name="carType" value="allTypes">
+                                </div>
+                                <div class="check-block" th:each="carType : ${carTypes}">
+                                    <input type="checkbox" name="carType" th:value="*{carType.typeName}">
+
+                                    <label th:text="${carType.typeName}"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="accordion">
+                            <div class="accordion-in">
+                                <span class="check-title">Тип двигуна</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </button>
+                        <div class="panel" id="test-panel">
+                            <div class="panel-in">
+                                <div class="check-block">
+                                    <!-- <input type="checkbox" name="bodyName" value="allBodies">
+                                     <label>Всі моделі кузова</label>-->
+                                    <input type="hidden" name="engineType" value="allEngines">
+                                </div>
+                                <div class="check-block" th:each="type : ${T(uniloft.springframework.spring5carshop.model.enums.EngineType).values()}">
+                                    <input type="checkbox" name="engineType" th:value="*{type}">
+
+                                    <label th:text="${type.description}"></label>
                                 </div>
                             </div>
                         </div>

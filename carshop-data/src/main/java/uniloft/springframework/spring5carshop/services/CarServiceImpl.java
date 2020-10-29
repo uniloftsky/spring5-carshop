@@ -36,7 +36,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public Car findById(Long id) {
         Optional<Car> carOptional = carRepository.findById(id);
-        if(carOptional.isEmpty()) {
+        if (carOptional.isEmpty()) {
             throw new RuntimeException("Expected car not found!");
         }
         return carOptional.get();
@@ -106,5 +106,125 @@ public class CarServiceImpl implements CarService {
     @Override
     public Set<Car> findCarsByBrand_BrandNameAndBody_BodyName(List<String> brandName, List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice) {
         return carRepository.findCarsByBrand_BrandNameAndBody_BodyName(brandName, bodyName, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByEngine_Type_Description(List<String> engineType, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByEngine_Type_Description(engineType, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByEngine_Type_DescriptionAndBrand_BrandName(List<String> engineType, List<String> brandName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByEngine_Type_DescriptionAndBrand_BrandName(engineType, brandName, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByEngine_Type_DescriptionAndModel_ModelName(List<String> engineType, List<String> modelName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByEngine_Type_DescriptionAndModel_ModelName(engineType, modelName, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByEngine_Type_DescriptionAndBody_BodyName(List<String> engineType, List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByEngine_Type_DescriptionAndBody_BodyName(engineType, bodyName, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByEngine_Type_DescriptionAndBrand_BrandNameAndModel_ModelName(List<String> engineType, List<String> brandName, List<String> modelName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByEngine_Type_DescriptionAndBrand_BrandNameAndModel_ModelName(engineType, brandName, modelName, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByEngine_Type_DescriptionAndBrand_BrandNameAndBody_BodyName(List<String> engineType, List<String> brandName, List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByEngine_Type_DescriptionAndBrand_BrandNameAndBody_BodyName(engineType, brandName, bodyName, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByEngine_Type_DescriptionAndBrand_BrandNameAndBody_BodyNameAndModel_ModelName(List<String> engineType, List<String> brandName, List<String> modelName, List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByEngine_Type_DescriptionAndBrand_BrandNameAndBody_BodyNameAndModel_ModelName(engineType, brandName, modelName, bodyName, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByCarType_TypeName(List<String> carType, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByCarType_TypeName(carType, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByCarType_TypeNameAndEngine_Type_Description(List<String> carType, List<String> engineType, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByCarType_TypeNameAndEngine_Type_Description(carType, engineType, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByCarType_TypeNameAndBrand_BrandName(List<String> carType, List<String> brandName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByCarType_TypeNameAndBrand_BrandName(carType, brandName, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByCarType_TypeNameAndModel_ModelName(List<String> carType, List<String> modelName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByCarType_TypeNameAndEngine_Type_Description(carType, modelName, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByCarType_TypeNameAndBody_BodyName(List<String> carType, List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByCarType_TypeNameAndBody_BodyName(carType, bodyName, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByCarType_TypeNameAndBrand_BrandNameAndModel_ModelName(List<String> carType, List<String> brandName, List<String> modelName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByCarType_TypeNameAndBrand_BrandNameAndModel_ModelName(carType, brandName, modelName, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByCarType_TypeNameAndBrand_BrandNameAndBody_BodyName(List<String> carType, List<String> brandName, List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByCarType_TypeNameAndBrand_BrandNameAndBody_BodyName(carType, brandName, bodyName, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByCarType_TypeNameAndModel_ModelNameAndBody_BodyName(List<String> carType, List<String> modelName, List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByCarType_TypeNameAndModel_ModelNameAndBody_BodyName(carType, modelName, bodyName, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByCarType_TypeNameAndBrand_BrandNameAndModel_ModelNameAndBody_BodyName(List<String> carType, List<String> brandName, List<String> modelName, List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByCarType_TypeNameAndBrand_BrandNameAndModel_ModelNameAndBody_BodyName(carType, brandName, modelName, bodyName, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByCarType_TypeNameAndBrand_BrandNameAndEngine_Type_Description(List<String> carType, List<String> brandName, List<String> engineType, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByCarType_TypeNameAndBrand_BrandNameAndEngine_Type_Description(carType, brandName, engineType, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByCarType_TypeNameAndModel_ModelNameAndEngine_Type_Description(List<String> carType, List<String> modelName, List<String> engineType, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByCarType_TypeNameAndModel_ModelNameAndEngine_Type_Description(carType, modelName, engineType, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByCarType_TypeNameAndBody_BodyNameAndEngine_Type_Description(List<String> carType, List<String> bodyName, List<String> engineType, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByCarType_TypeNameAndBody_BodyNameAndEngine_Type_Description(carType, bodyName, engineType, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByCarType_TypeNameAndBrand_BrandNameAndModel_ModelNameAndEngine_Type_Description(List<String> carType, List<String> brandName, List<String> modelName, List<String> engineType, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByCarType_TypeNameAndBrand_BrandNameAndModel_ModelNameAndEngine_Type_Description(carType, brandName, modelName, engineType, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByCarType_TypeNameAndBrand_BrandNameAndBody_BodyNameAndEngine_Type_Description(List<String> carType, List<String> brandName, List<String> bodyName, List<String> engineType, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByCarType_TypeNameAndBrand_BrandNameAndBody_BodyNameAndEngine_Type_Description(carType, brandName, bodyName, engineType, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByCarType_TypeNameAndModel_ModelNameAndBody_BodyNameAndEngine_Type_Description(List<String> carType, List<String> modelName, List<String> bodyName, List<String> engineType, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByCarType_TypeNameAndModel_ModelNameAndBody_BodyNameAndEngine_Type_Description(carType, modelName, bodyName, engineType, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByCarType_TypeNameAndBrand_BrandNameAndModel_ModelNameAndBody_BodyNameAndEngine_Type_Description(List<String> carType, List<String> brandName, List<String> modelName, List<String> bodyName, List<String> engineType, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByCarType_TypeNameAndBrand_BrandNameAndModel_ModelNameAndBody_BodyNameAndEngine_Type_Description(carType, brandName, modelName, bodyName, engineType, minPrice, maxPrice);
+    }
+
+    @Override
+    public Set<Car> findCarsByEngine_Type_DescriptionAndModel_ModelNameAndBody_BodyName(List<String> engineType, List<String> modelName, List<String> bodyName, BigDecimal minPrice, BigDecimal maxPrice) {
+        return carRepository.findCarsByEngine_Type_DescriptionAndModel_ModelNameAndBody_BodyName(engineType, modelName, bodyName, minPrice, maxPrice);
     }
 }

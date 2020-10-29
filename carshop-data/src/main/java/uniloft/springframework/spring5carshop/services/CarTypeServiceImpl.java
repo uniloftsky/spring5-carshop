@@ -2,12 +2,14 @@ package uniloft.springframework.spring5carshop.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import uniloft.springframework.spring5carshop.comparators.CarTypeAscendingComparatorByName;
 import uniloft.springframework.spring5carshop.model.CarType;
 import uniloft.springframework.spring5carshop.services.repositories.CarTypeRepository;
 
-import java.util.HashSet;
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeSet;
 
 @AllArgsConstructor
 @Service
@@ -17,7 +19,8 @@ public class CarTypeServiceImpl implements CarTypeService {
 
     @Override
     public Set<CarType> getCarTypes() {
-        Set<CarType> types = new HashSet<>();
+        Comparator<CarType> comparator = new CarTypeAscendingComparatorByName();
+        TreeSet<CarType> types = new TreeSet<>(comparator);
         carTypeRepository.findAll().iterator().forEachRemaining(types::add);
         return types;
     }

@@ -1601,6 +1601,7 @@ About page
     margin-top: 2em;
     transition: .75s;
     cursor: pointer;
+    margin-bottom: 5em;
 }
 
 .filter-submit-btn:hover {
@@ -1610,7 +1611,7 @@ About page
 /* catalog */
 
 .catalog-section {
-    min-height: 1367px;
+    min-height: 2020px;
     margin-bottom: 5em;
 }
 
