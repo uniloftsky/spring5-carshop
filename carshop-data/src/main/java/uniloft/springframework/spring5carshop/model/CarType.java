@@ -11,5 +11,4 @@ import javax.persistence.Entity;
 public class CarType extends BaseEntity {
 
     private String typeName;
-    private String add;
 }

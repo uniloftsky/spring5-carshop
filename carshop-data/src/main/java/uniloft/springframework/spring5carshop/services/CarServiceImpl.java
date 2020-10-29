@@ -160,7 +160,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Set<Car> findCarsByCarType_TypeNameAndModel_ModelName(List<String> carType, List<String> modelName, BigDecimal minPrice, BigDecimal maxPrice) {
-        return carRepository.findCarsByCarType_TypeNameAndEngine_Type_Description(carType, modelName, minPrice, maxPrice);
+        return carRepository.findCarsByCarType_TypeNameAndModel_ModelName(carType, modelName, minPrice, maxPrice);
     }
 
     @Override
