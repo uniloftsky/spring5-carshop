@@ -2,15 +2,19 @@
 
 Index page view<br>
 <img src="carshop-web/src/main/resources/git/index-image.png">
+<hr>
 
 Catalog page view<b>
 <img src="carshop-web/src/main/resources/git/catalog-image.png">
+<hr>
 
 Contact page view<b>
 <img src="carshop-web/src/main/resources/git/contact-image.png">
+<hr>
 
 About page view<b>
 <img src="carshop-web/src/main/resources/git/about-image.png">
+<hr>
 
 Spring5 web application for college work.<br>
 Used:
