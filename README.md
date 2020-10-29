@@ -1,4 +1,7 @@
 # Spring5 web application - Car Shop
+
+<img src="carshop-web/src/main/resources/git/main-image.png">
+
 Spring5 web application for college work.<br>
 Used:
 <ul>
