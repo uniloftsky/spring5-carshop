@@ -4,15 +4,15 @@ Index page view<br>
 <img src="carshop-web/src/main/resources/git/index-image.png">
 <hr>
 
-Catalog page view<b>
+Catalog page view<br>
 <img src="carshop-web/src/main/resources/git/catalog-image.png">
 <hr>
 
-Contact page view<b>
+Contact page view<br>
 <img src="carshop-web/src/main/resources/git/contact-image.png">
 <hr>
 
-About page view<b>
+About page view<br>
 <img src="carshop-web/src/main/resources/git/about-image.png">
 <hr>
 
