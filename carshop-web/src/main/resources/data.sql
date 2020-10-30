@@ -64,7 +64,7 @@ VALUES ('Crown', 3);
 INSERT INTO car_model (model_name, brand_id)
 VALUES ('518i', 2);
 INSERT INTO car_model (model_name, brand_id)
-VALUES ('GT', 4);
+VALUES ('GT-R', 4);
 INSERT INTO car_model (model_name, brand_id)
 VALUES ('CLK200', 1);
 INSERT INTO car_model (model_name, brand_id)

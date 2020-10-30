@@ -1229,7 +1229,6 @@ About page
 .header-path {
     display: flex;
     justify-content: space-between;
-    width: 20%;
 }
 
 .header-path i {
@@ -1240,6 +1239,7 @@ About page
     color: white;
     text-decoration: none;
     transition: .75s;
+    margin-right: .5em;
 }
 
 .header-path a:hover {
@@ -2036,4 +2036,36 @@ About page
     margin-top: 5em;
     min-height: 475px;
     pointer-events: none;
+}
+
+/* car details section */
+
+.car-details-section {
+    padding: 4em 0;
+}
+
+.car-details-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.car-details-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.car-details-price {
+    color: #DB2D2E;
+}
+
+.car-details-info {
+    display: flex;
+}
+
+.car-details-img-block {
+    width: 50%;
+}
+
+.car-details-info-point {
+    display: flex;
 }

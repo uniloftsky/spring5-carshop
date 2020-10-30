@@ -47,8 +47,6 @@ public class Car extends BaseEntity {
     @Lob
     private String description;
 
-    @Override
-    public String toString() {
-        return "id: " + this.getId();
-    }
+    @Lob
+    private String subDescription;
 }
