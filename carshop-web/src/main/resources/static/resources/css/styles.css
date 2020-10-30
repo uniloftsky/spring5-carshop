@@ -2047,6 +2047,7 @@ About page
 .car-details-header {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 2em;
 }
 
 .car-details-header h2 {
@@ -2060,12 +2061,117 @@ About page
 
 .car-details-info {
     display: flex;
+    justify-content: space-between;
+    margin-bottom: 3em;
 }
 
 .car-details-img-block {
     width: 50%;
 }
 
+.car-details-info-in {
+    width: 48%;
+}
+
+.car-details-info-in-title {
+    font-size: 1.35rem;
+    position: relative;
+    padding-bottom: .25em;
+    margin-bottom: .75em;
+}
+
+.car-details-info-in-title:after {
+    content: '';
+    position: absolute;
+    background: #DB2D2E;
+    width: 4%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    font-size: 1.35rem;
+}
+
 .car-details-info-point {
     display: flex;
+    border-bottom: 1px solid #e3e3e3;
+    padding-bottom: .75em;
+    margin-bottom: .75em;
+}
+
+.car-details-info-point:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.details-point-name {
+    width: 25%;
+    color: #999999;
+    font-size: 1rem;
+}
+
+.details-point-info {
+    width: 50%;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.car-details-description {
+    display: flex;
+    justify-content: space-between;
+}
+
+.car-details-description-in {
+    width: 77%;
+}
+
+.car-details-description-title {
+    font-size: 1rem;
+    font-weight: 600;
+    position: relative;
+    padding: 0 .5em 1em;
+    margin-bottom: 1em;
+}
+
+.car-details-description-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #DB2D2E;
+    height: 3px;
+    width: 180px;
+}
+
+.car-details-text-in {
+    color: #999999;
+    font-size: 1rem;
+    margin-bottom: 1.5em;
+    text-align: justify;
+}
+
+.car-details-description-location {
+    width: 20%;
+}
+
+.car-details-description-location-title {
+    font-size: 1.35rem;
+    position: relative;
+    padding-bottom: .25em;
+    margin-bottom: .75em;
+}
+
+.car-details-description-location-title:after {
+    content: '';
+    position: absolute;
+    background: #DB2D2E;
+    width: 10%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    font-size: 1.35rem;
+}
+
+.details-location iframe {
+    min-height: 350px;
 }
