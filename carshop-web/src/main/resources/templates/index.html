@@ -246,8 +246,8 @@
                                 <p th:text="${car.carType.typeName}">Sedan</p>
                             </div>
                         </div>
-                        <p th:text="${car.brand.brandName} + ' ' + ${car.model.modelName}" class="car-title">
-                            Mercedes-Benz</p>
+                        <a th:href="@{'/catalog/car/' + ${car.id}}" th:text="${car.brand.brandName} + ' ' + ${car.model.modelName}" class="car-title">
+                            Mercedes-Benz</a>
                         <hr class="car-hr1">
                         <hr class="car-hr2">
                         <a href="#" th:text=" '₴' + ${car.price}" class="btn-car">$999</a>
@@ -518,8 +518,8 @@
                                          th:src="${car.image}">
                                 </div>
                                 <div class="recent-car-info">
-                                    <p class="recent-car-name"
-                                       th:text="${car.brand.brandName} + ' ' + ${car.model.modelName}">Mercedes Benz</p>
+                                    <a th:href="@{'/catalog/car/' + ${car.id}}" class="recent-car-name"
+                                       th:text="${car.brand.brandName} + ' ' + ${car.model.modelName}">Mercedes Benz</a>
                                     <div>
                                         <i class="fa fa-calendar"></i>
                                         <p class="recent-car-date" th:text="${currentDate}">12.20.2001</p>

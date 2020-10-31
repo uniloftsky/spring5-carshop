@@ -9,6 +9,8 @@ import uniloft.springframework.spring5carshop.comparators.CarDescendingComparato
 import uniloft.springframework.spring5carshop.model.Car;
 import uniloft.springframework.spring5carshop.services.CarService;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
@@ -36,5 +38,19 @@ public class CarController {
         TreeSet<Car> finalSet = new TreeSet<>(comparator);
         sortedSet.stream().iterator().forEachRemaining(finalSet::add);
         return finalSet;
+    }
+
+    @ModelAttribute("recentCars")
+    public Set<Car> getRecentCars() {
+        Comparator<Car> comparator = new CarDescendingComparatorById();
+        Set<Car> sortedSet = carService.getSortedCars(comparator).stream().limit(3).collect(Collectors.toSet());
+        TreeSet<Car> finalSet = new TreeSet<>(comparator);
+        sortedSet.stream().iterator().forEachRemaining(finalSet::add);
+        return finalSet;
+    }
+
+    @ModelAttribute("currentDate")
+    public String getCurrentDate() {
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 }

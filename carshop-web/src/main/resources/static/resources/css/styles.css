@@ -623,6 +623,12 @@ Forms
     color: #DB2D2E;
     font-weight: 600;
     margin-bottom: .5em;
+    text-decoration: none;
+    transition: .75s;
+}
+
+.car-title:hover {
+    color: #363636;
 }
 
 .btn-car {
@@ -982,7 +988,15 @@ Forms
 }
 
 .recent-car-name {
+    display: inline-block;
+    text-decoration: none;
     margin-bottom: .35em;
+    color: #999999;
+    transition: .75s;
+}
+
+.recent-car-name:hover {
+    color: #DB2D2E;
 }
 
 .recent-car-date {

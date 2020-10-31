@@ -261,8 +261,8 @@
                                          th:src="${car.image}">
                                 </div>
                                 <div class="recent-car-info">
-                                    <p class="recent-car-name"
-                                       th:text="${car.brand.brandName} + ' ' + ${car.model.modelName}">Mercedes Benz</p>
+                                    <a th:href="@{'/catalog/car/' + ${car.id}}" class="recent-car-name"
+                                       th:text="${car.brand.brandName} + ' ' + ${car.model.modelName}">Mercedes Benz</a>
                                     <div>
                                         <i class="fa fa-calendar"></i>
                                         <p class="recent-car-date" th:text="${currentDate}">12.20.2001</p>
