@@ -544,14 +544,14 @@
                             <p class="footer-q-title">В пошуках нової автівки?</p>
                             <p class="footer-q-text">Детальніше познайомтесь з набором автомобілів нашої компаніїї.</p>
                         </div>
-                        <a href="#" class="btn-q">Детальніше</a>
+                        <a href="#" th:href="@{'/catalog'}" class="btn-q">Детальніше</a>
                     </div>
                     <div class="footer-q">
                         <div class="footer-q-side">
                             <p class="footer-q-title">Бажаєте продати своє авто?</p>
                             <p class="footer-q-text">Ми співпрацюємо з компаніями, що забезпечують швидку продажу вашого авто.</p>
                         </div>
-                        <a href="#" class="btn-q">Детальніше</a>
+                        <a href="#" th:href="@{'/catalog'}" class="btn-q">Детальніше</a>
                     </div>
                 </div>
 
@@ -566,11 +566,10 @@
                     <ul>
                         <li><a href="#">Політика конфіденційності</a></li>
                         <li><a href="#">Правила та умови</a></li>
-                        <li><a href="#">Зв'язатись</a></li>
+                        <li><a href="#" th:href="@{'/contact'}">Зв'язатись</a></li>
                     </ul>
                 </div>
             </div>
-
         </div>
     </section>
 </footer>
