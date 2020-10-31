@@ -2105,7 +2105,7 @@ About page
 }
 
 .details-point-name {
-    width: 25%;
+    width: 28%;
     color: #999999;
     font-size: 1rem;
 }
@@ -2175,3 +2175,84 @@ About page
 .details-location iframe {
     min-height: 350px;
 }
+
+.car-details-extra-features {
+    margin-bottom: 5em;
+}
+
+.details-extra-features-title {
+    font-size: 1.1rem;
+    margin-bottom: .75em;
+}
+
+.car-details-extra-features ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.car-details-extra-features li {
+    display: flex;
+    font-size: 1rem;
+    align-items: center;
+    margin-bottom: .75em;
+}
+
+.car-details-extra-features li i {
+    color: #DB2D2E;
+    margin-right: 1em;
+    font-size: .75rem;
+}
+
+.car-details-extra-features li p {
+    color: #999999;
+}
+
+.car-details-recent-vehicles-title {
+    font-size: 1.1rem;
+    margin-bottom: .75em;
+}
+
+.recent-vehicles {
+    display: flex;
+    justify-content: space-between;
+}
+
+.recent-vehicle {
+    width: 24%;
+    text-align: center;
+}
+
+.recent-vehicle:hover .car-hr1 {
+    width: 20%;
+    background: #DB2D2E;
+}
+
+.recent-vehicle:hover .car-hr2 {
+    width: 12%;
+    background: #DB2D2E;
+}
+
+.recent-vehicle-info {
+    padding: 1em 0;
+    background: #F6F6F6;
+}
+
+.recent-vehicle-name {
+    color: #DB2D2E;
+    display: inline-block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: .5em;
+    text-decoration: none;
+    transition: .75s;
+}
+
+.recent-vehicle-name:hover {
+    color: #363636;
+}
+
+.recent-car-price {
+    margin-top: .75em;
+    font-weight: 600;
+}
+
