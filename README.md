@@ -8,6 +8,10 @@ Catalog page view<br>
 <img src="carshop-web/src/main/resources/git/catalog-image.png">
 <hr>
 
+Car details page view<br>
+<img src="carshop-web/src/main/resources/git/car-details-image.png">
+<hr>
+
 Contact page view<br>
 <img src="carshop-web/src/main/resources/git/contact-image.png">
 <hr>

@@ -100,6 +100,10 @@
                     <div class="car-details-img-block">
                         <img class="car-details-img" src="../../static/resources/images/e34.jpg"
                              th:src="${'/' + car.image}">
+                        <div class="car-details-btns">
+                            <a href="#" class="details-btn buy-btn"><i class="fas fa-shopping-cart"></i><p>Купити</p></a>
+                            <a href="#" class="details-btn test-btn"><i class="fas fa-tachometer-alt"></i><p>Тест-драйв</p></a>
+                        </div>
                     </div>
                     <div class="car-details-info-in">
                         <h2 class="car-details-info-in-title">ОПИС</h2>
@@ -130,10 +134,6 @@
                         <div class="car-details-info-point">
                             <p class="details-point-name">Об'єм двигуна (мл.)</p>
                             <p class="details-point-info" th:text="${car.engine.capacity}">4</p>
-                        </div>
-                        <div class="car-details-info-point">
-                            <p class="details-point-name">Тип палива</p>
-                            <p class="details-point-info" th:text="${car.engine.type.description}">Petrol</p>
                         </div>
                     </div>
                 </div>
@@ -190,7 +190,6 @@
                                 </iframe>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
