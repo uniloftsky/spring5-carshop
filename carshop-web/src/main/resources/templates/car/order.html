@@ -130,10 +130,15 @@
                 <h2 class="car-details-description-title">Введіть дані про себе</h2>
                 <form th:object="${customer}" class="order-form" th:action="@{${operation == 'Покупка автомобіля' ? 'buyCar' : 'testCar'}}" method="post">
                     <div class="contact-form-inputs form-inputs-unique">
-                        <input type="text" name="contactName" placeholder="Ім'я*" th:field="*{firstName}">
-                        <input type="text" name="contactEmail" placeholder="Адреса*" th:field="*{address}">
-                        <input type="text" name="contactName" placeholder="Прізвище*" th:field="*{lastName}">
-                        <input type="text" name="contactPhone" placeholder="Телефон*" th:field="*{telephone}">
+                        <input type="text" name="firstName" placeholder="Ім'я*" th:field="*{firstName}">
+                        <span th:if="${#fields.hasErrors('firstName')}">
+                            <ul>
+                                <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}"></li>
+                            </ul>
+                        </span>
+                        <input type="text" name="address" placeholder="Адреса*" th:field="*{address}">
+                        <input type="text" name="lastName" placeholder="Прізвище*" th:field="*{lastName}">
+                        <input type="text" name="telephone" placeholder="Телефон*" th:field="*{telephone}">
                     </div>
                     <h3 class="car-details-price-unique">Ціна: <span style="color: #DB2D2E" th:text="${operation == 'Покупка автомобіля' ? car.price + ' ₴' : car.testPrice + ' ₴/день'}"></span></h3>
                     <input type="submit" th:value="${operation == 'Покупка автомобіля' ? 'Купити' : 'Взяти на тест-драйв'}">

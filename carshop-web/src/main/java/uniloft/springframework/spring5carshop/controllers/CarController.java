@@ -1,7 +1,9 @@
 package uniloft.springframework.spring5carshop.controllers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,7 @@ import uniloft.springframework.spring5carshop.services.CarService;
 import uniloft.springframework.spring5carshop.services.CustomerService;
 import uniloft.springframework.spring5carshop.services.TestCarService;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
@@ -23,6 +26,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Controller
 public class CarController {
 
@@ -61,8 +65,14 @@ public class CarController {
     }
 
     @PostMapping("catalog/car/{carId}/testCar")
-    public String processTestCarForm(@PathVariable Long carId, @ModelAttribute Customer customer, Model model) {
+    public String processTestCarForm(@PathVariable Long carId, @Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult, Model model) {
         Car foundCar = carService.findById(carId);
+
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("car", foundCar);
+            return "car/order";
+        }
+
         System.out.println(customer.getFirstName());
         customerService.saveOrUpdate(customer);
         TestCar testCar = new TestCar();

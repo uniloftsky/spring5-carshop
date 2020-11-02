@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,9 +19,20 @@ import java.util.Set;
 @Entity
 public class Customer extends BaseEntity {
 
+    @NotBlank
+    @Size(min = 5, max = 255)
     private String firstName;
+
+    @NotBlank
+    @Size(min = 5, max = 255)
     private String lastName;
+
+    @NotBlank
+    @Size(min = 5, max = 255)
     private String address;
+
+    @NotBlank
+    @Size(min = 5, max = 20)
     private String telephone;
 
     @OneToMany(mappedBy = "customer")
