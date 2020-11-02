@@ -60,7 +60,7 @@
                         </nav>
                     </div>
                     <div class="sub-header">
-                        <h2 th:text="${car.brand.brandName} + ' ' + ${car.model.modelName} + ' ' + ${car.body.bodyName}">
+                        <h2 th:text="${operation}">
                             Каталог</h2>
                         <div class="header-path">
                             <div>
@@ -73,8 +73,7 @@
                             </div>
                             <div>
                                 <i class="fa fa-angle-double-right"></i>
-                                <a href="#" th:href="@{'/catalog/car/' + ${car.id}}"
-                                   th:text="${car.brand.brandName} + ' ' + ${car.model.modelName}"></a>
+                                <a href="#" th:text="${operation}"></a>
                             </div>
                         </div>
                     </div>
@@ -86,148 +85,59 @@
 </header>
 <main>
 
-    <section class="car-details-section">
+    <section class="car-order-section">
         <div class="wrap">
             <div class="car-details-header">
-                <h2 class="car-details-title"
-                    th:text="${car.brand.brandName} + ' ' + ${car.model.modelName} + ' ' + ${car.body.bodyName}"></h2>
-                <h2 class="car-details-price" th:text="'₴ ' + ${car.price}"></h2>
+                <h2 class="car-details-title">Обраний автомобіль:</h2>
             </div>
-
-            <div class="car-details-main">
-
-                <div class="car-details-info">
-                    <div class="car-details-img-block">
-                        <img class="car-details-img" src="../../static/resources/images/e34.jpg"
-                             th:src="${'/' + car.image}">
-                        <div class="car-details-btns">
-                            <a href="#" th:href="@{'/catalog/car/' + ${car.id} + '/buy'}" class="details-btn buy-btn"><i class="fas fa-shopping-cart"></i><p>Купити</p></a>
-                            <a href="#" th:href="@{'/catalog/car/' + ${car.id} + '/test'}" class="details-btn test-btn"><i class="fas fa-tachometer-alt"></i><p>Тест-драйв</p></a>
-                        </div>
+            <div class="car-details-info">
+                <div class="car-details-img-block">
+                    <img class="car-details-img" src="../../static/resources/images/e34.jpg"
+                         th:src="${'/' + car.image}">
+                </div>
+                <div class="car-details-info-in">
+                    <div class="car-details-info-point" style="margin-top: .5em;">
+                        <p class="details-point-name">Бренд</p>
+                        <p class="details-point-info" th:text="${car.brand.brandName}">BMW</p>
                     </div>
-                    <div class="car-details-info-in">
-                        <h2 class="car-details-info-in-title">ОПИС</h2>
-                        <div class="car-details-info-point">
-                            <p class="details-point-name">Бренд</p>
-                            <p class="details-point-info" th:text="${car.brand.brandName}">BMW</p>
-                        </div>
-                        <div class="car-details-info-point">
-                            <p class="details-point-name">Модель</p>
-                            <p class="details-point-info" th:text="${car.model.modelName}">518i</p>
-                        </div>
-                        <div class="car-details-info-point">
-                            <p class="details-point-name">Модель кузова</p>
-                            <p class="details-point-info" th:text="${car.body.bodyName}">E34</p>
-                        </div>
-                        <div class="car-details-info-point">
-                            <p class="details-point-name">Колір</p>
-                            <p class="details-point-info" th:text="${car.color.color}">blue</p>
-                        </div>
-                        <div class="car-details-info-point">
-                            <p class="details-point-name">Тип кузова</p>
-                            <p class="details-point-info" th:text="${car.carType.typeName}">Sedan</p>
-                        </div>
-                        <div class="car-details-info-point">
-                            <p class="details-point-name">Потужність (к.с.)</p>
-                            <p class="details-point-info" th:text="${car.engine.power}">120</p>
-                        </div>
-                        <div class="car-details-info-point">
-                            <p class="details-point-name">Об'єм двигуна (мл.)</p>
-                            <p class="details-point-info" th:text="${car.engine.capacity}">4</p>
-                        </div>
+                    <div class="car-details-info-point">
+                        <p class="details-point-name">Модель</p>
+                        <p class="details-point-info" th:text="${car.model.modelName}">518i</p>
+                    </div>
+                    <div class="car-details-info-point">
+                        <p class="details-point-name">Модель кузова</p>
+                        <p class="details-point-info" th:text="${car.body.bodyName}">E34</p>
+                    </div>
+                    <div class="car-details-info-point">
+                        <p class="details-point-name">Колір</p>
+                        <p class="details-point-info" th:text="${car.color.color}">blue</p>
+                    </div>
+                    <div class="car-details-info-point">
+                        <p class="details-point-name">Тип кузова</p>
+                        <p class="details-point-info" th:text="${car.carType.typeName}">Sedan</p>
+                    </div>
+                    <div class="car-details-info-point">
+                        <p class="details-point-name">Потужність (к.с.)</p>
+                        <p class="details-point-info" th:text="${car.engine.power}">120</p>
+                    </div>
+                    <div class="car-details-info-point">
+                        <p class="details-point-name">Об'єм двигуна (мл.)</p>
+                        <p class="details-point-info" th:text="${car.engine.capacity}">4</p>
                     </div>
                 </div>
-
-                <div class="car-details-description">
-                    <div class="car-details-description-in">
-                        <h2 class="car-details-description-title">ЗАГАЛЬНА ІНФОРМАЦІЯ</h2>
-                        <div class="car-details-text">
-                            <p class="car-details-text-in">Temporibus possimus quasi beatae, consectetur adipisicing
-                                elit.
-                                Obcaecati unde molestias sunt officiis aliquid sapiente, numquam, porro perspiciatis
-                                neque
-                                voluptatem sint hic quam eveniet ad adipisci laudantium corporis ipsam ea!
-                            </p>
-                            <p class="car-details-text-in">Consectetur adipisicing elit. Dicta, amet quia ad debitis
-                                fugiat
-                                voluptatem neque dolores tempora iste saepe cupiditate, molestiae iure voluptatibus est
-                                beatae? Culpa, illo a Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi,
-                                doloribus, earum modi consectetur molestias asperiores sequi ipsam neque error itaque
-                                veniam
-                                culpa eligendi similique ducimus nulla, blanditiis, perspiciatis atque saepe!
-                                veritatis.</p>
-                            <p class="car-details-text-in">Adipisicing consectetur elit. Dicta, amet quia ad debitis
-                                fugiat
-                                voluptatem neque dolores tempora iste saepe cupiditate, molestiae iure voluptatibus est
-                                beatae? Culpa, illo a Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi,
-                                doloribus, earum modi consectetur molestias asperiores. Adipisicing consectetur elit.
-                                Dicta,
-                                amet quia ad debitis fugiat voluptatem neque dolores tempora iste saepe cupiditate,
-                                molestiae iure voluptatibus est beatae? Culpa, illo a Lorem ipsum dolor sit amet,
-                                consectetur adipisicing elit. Commodi, doloribus, earum modi consectetur molestias
-                                asperiores.</p>
-                            <p class="car-details-text-in">Voluptatem adipisicing elit. Dicta, amet quia ad debitis
-                                fugiat
-                                neque dolores tempora iste saepe cupiditate, molestiae iure voluptatibus est beatae?
-                                Culpa,
-                                illo a Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, Lorem ipsum
-                                dolor
-                                sit amet, consectetur adipisicing elit. Laudantium nisi eaque maxime totam, iusto
-                                accusantium esse placeat rem at temporibus minus architecto ipsum eveniet. Delectus cum
-                                sunt, ea cumque quas! doloribus, earum modi consectetur molestias asperiores sequi ipsam
-                                neque error itaque veniam culpa eligendi similique ducimus nulla, blanditiis,
-                                perspiciatis
-                                atque saepe! veritatis.</p>
-                        </div>
+            </div>
+            <div class="order-form-block">
+                <h2 class="car-details-description-title">Введіть дані про себе</h2>
+                <form th:object="${customer}" class="order-form" th:action="@{${operation == 'Покупка автомобіля' ? 'buyCar' : 'testCar'}}" method="post">
+                    <div class="contact-form-inputs form-inputs-unique">
+                        <input type="text" name="contactName" placeholder="Ім'я*" th:field="*{firstName}">
+                        <input type="text" name="contactEmail" placeholder="Адреса*" th:field="*{address}">
+                        <input type="text" name="contactName" placeholder="Прізвище*" th:field="*{lastName}">
+                        <input type="text" name="contactPhone" placeholder="Телефон*" th:field="*{telephone}">
                     </div>
-                    <div class="car-details-description-location">
-                        <h2 class="car-details-description-location-title">РОЗТАШУВАННЯ</h2>
-                        <div class="details-location">
-                            <div style="overflow:hidden;position: relative;">
-                                <iframe class="map-frame"
-                                        src="https://maps.google.com/maps?hl=en&amp;q=London+(%D0%9A%D0%B0%D1%80%D1%82%D0%B0)&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=B&amp;output=embed"
-                                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-                                </iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="car-details-extra-features">
-                    <h2 class="details-extra-features-title">ДОДАТКОВІ ФУНКЦІЇ</h2>
-                    <ul>
-                        <li><i class="fa fa-check"></i>
-                            <p>Охоронна система</p></li>
-                        <li><i class="fa fa-check"></i>
-                            <p>Кондиціонер</p></li>
-                        <li><i class="fa fa-check"></i>
-                            <p>Литі диски</p></li>
-                        <li><i class="fa fa-check"></i>
-                            <p>Анти-блокувальна система (АБС)</p></li>
-                        <li><i class="fa fa-check"></i>
-                            <p>Анти-угон</p></li>
-                        <li><i class="fa fa-check"></i>
-                            <p>Анти-стартер</p></li>
-                    </ul>
-                </div>
-
-                <div class="car-details-recent-vehicles">
-                    <h2 class="car-details-recent-vehicles-title">Останні автомобілі</h2>
-                    <div class="recent-vehicles">
-                        <div class="recent-vehicle" th:each="recentVehicle : ${recentVehicles}">
-                            <div class="recent-vehicle-img-block">
-                                <img class="recent-vehicle-img" th:src="${'/' + recentVehicle.image}">
-                            </div>
-                            <div class="recent-vehicle-info">
-                                <a class="recent-vehicle-name" th:href="${recentVehicle.id}"
-                                   th:text="${recentVehicle.brand.brandName} + ' ' + ${recentVehicle.model.modelName} + ' ' + ${recentVehicle.body.bodyName}"></a>
-                                <hr class="car-hr1">
-                                <hr class="car-hr2">
-                                <p class="recent-car-price" th:text="'₴' + ${recentVehicle.price}"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <h3 class="car-details-price-unique">Ціна: <span style="color: #DB2D2E" th:text="${operation == 'Покупка автомобіля' ? car.price + ' ₴' : car.testPrice + ' ₴/день'}"></span></h3>
+                    <input type="submit" th:value="${operation == 'Покупка автомобіля' ? 'Купити' : 'Взяти на тест-драйв'}">
+                </form>
             </div>
         </div>
     </section>

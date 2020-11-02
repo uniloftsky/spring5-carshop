@@ -37,6 +37,7 @@ public class Car extends BaseEntity {
     @JoinColumn(name = "body_id")
     private CarBody body;
     private BigDecimal price;
+    private BigDecimal testPrice;
 
     @ManyToOne
     private Color color;

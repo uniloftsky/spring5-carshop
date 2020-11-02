@@ -2085,6 +2085,10 @@ About page
     flex-direction: column;
 }
 
+.car-details-img {
+    margin-bottom: 1em;
+}
+
 .car-details-btns {
     margin-top: auto;
     display: flex;
@@ -2302,3 +2306,38 @@ About page
     font-weight: 600;
 }
 
+/* order car section */
+
+.car-order-section {
+    padding: 4em 0;
+}
+
+.form-inputs-unique {
+    flex-wrap: wrap;
+    margin-top: 1.5em;
+}
+
+.form-inputs-unique input {
+    width: 49%;
+    margin-bottom: 1em;
+}
+
+.car-details-price-unique {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1em;
+    margin-top: .5em;
+}
+
+.order-form input[type="submit"] {
+    border: 0;
+    background: #DB2D2E;
+    padding: .5em 2.5em;
+    min-width: 200px;
+    color: white;
+    transition: .75s;
+}
+
+.order-form input[type="submit"]:hover {
+    background: #261C1D;
+}

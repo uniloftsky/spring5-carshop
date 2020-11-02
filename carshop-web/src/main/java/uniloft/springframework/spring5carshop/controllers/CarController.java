@@ -5,9 +5,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import uniloft.springframework.spring5carshop.comparators.CarDescendingComparatorById;
+import uniloft.springframework.spring5carshop.model.BuyCar;
 import uniloft.springframework.spring5carshop.model.Car;
+import uniloft.springframework.spring5carshop.model.Customer;
+import uniloft.springframework.spring5carshop.model.TestCar;
+import uniloft.springframework.spring5carshop.services.BuyCarService;
 import uniloft.springframework.spring5carshop.services.CarService;
+import uniloft.springframework.spring5carshop.services.CustomerService;
+import uniloft.springframework.spring5carshop.services.TestCarService;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,15 +27,56 @@ import java.util.stream.Collectors;
 public class CarController {
 
     private final CarService carService;
+    private final CustomerService customerService;
+    private final BuyCarService buyCarService;
+    private final TestCarService testCarService;
 
-    public CarController(CarService carService) {
+    public CarController(CarService carService, CustomerService customerService, BuyCarService buyCarService, TestCarService testCarService) {
         this.carService = carService;
+        this.customerService = customerService;
+        this.buyCarService = buyCarService;
+        this.testCarService = testCarService;
     }
 
     @GetMapping("catalog/car/{carId}")
     public String getCar(@PathVariable Long carId, Model model) {
         model.addAttribute("car", carService.findById(carId));
         return "car/show";
+    }
+
+    @GetMapping("catalog/car/{carId}/buy")
+    public String buyCar(@PathVariable Long carId, Model model) {
+        model.addAttribute("operation", "Покупка автомобіля");
+        model.addAttribute("car", carService.findById(carId));
+        model.addAttribute("customer", new Customer());
+        return "car/order";
+    }
+
+    @GetMapping("catalog/car/{carId}/test")
+    public String testCar(@PathVariable Long carId, Model model) {
+        model.addAttribute("car", carService.findById(carId));
+        model.addAttribute("operation", "Тест-драйв автомобіля");
+        model.addAttribute("customer", new Customer());
+        return "car/order";
+    }
+
+    @PostMapping("catalog/car/{carId}/testCar")
+    public String processTestCarForm(@PathVariable Long carId, @ModelAttribute Customer customer, Model model) {
+        Car foundCar = carService.findById(carId);
+        System.out.println(customer.getFirstName());
+        customerService.saveOrUpdate(customer);
+        TestCar testCar = new TestCar();
+        testCarService.save(testCar, customer, foundCar);
+        return "redirect:/index";
+    }
+
+    @PostMapping("catalog/car/{carId}/buyCar")
+    public String processBuyCarForm(@PathVariable Long carId, @ModelAttribute Customer customer, Model model) {
+        Car foundCar = carService.findById(carId);
+        customerService.saveOrUpdate(customer);
+        BuyCar buyCar = new BuyCar();
+        buyCarService.save(buyCar, customer, foundCar);
+        return "redirect:/index";
     }
 
     @ModelAttribute("recentVehicles")
