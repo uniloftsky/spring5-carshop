@@ -73,7 +73,8 @@
                             </div>
                             <div>
                                 <i class="fa fa-angle-double-right"></i>
-                                <a href="#" th:text="${operation}"></a>
+                                <a href="#" th:href="@{'/catalog/car/' + ${car.id}}"
+                                   th:text="${car.brand.brandName} + ' ' + ${car.model.modelName}"></a>
                             </div>
                         </div>
                     </div>
@@ -128,20 +129,55 @@
             </div>
             <div class="order-form-block">
                 <h2 class="car-details-description-title">Введіть дані про себе</h2>
-                <form th:object="${customer}" class="order-form" th:action="@{${operation == 'Покупка автомобіля' ? 'buyCar' : 'testCar'}}" method="post">
+                <form th:object="${customer}" class="order-form"
+                      th:action="@{${operation == 'Покупка автомобіля' ? 'buyCar' : 'testCar'}}" method="post">
                     <div class="contact-form-inputs form-inputs-unique">
-                        <input type="text" name="firstName" placeholder="Ім'я*" th:field="*{firstName}">
-                        <span th:if="${#fields.hasErrors('firstName')}">
-                            <ul>
-                                <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}"></li>
-                            </ul>
-                        </span>
-                        <input type="text" name="address" placeholder="Адреса*" th:field="*{address}">
-                        <input type="text" name="lastName" placeholder="Прізвище*" th:field="*{lastName}">
-                        <input type="text" name="telephone" placeholder="Телефон*" th:field="*{telephone}">
+                        <div class="input-field-block">
+                            <input class="contact-form-input" type="text" name="firstName" placeholder="Ім'я*"
+                                   th:field="*{firstName}" th:errorclass="input-error">
+                            <div class="error-block" th:if="${#fields.hasErrors('firstName')}">
+                                <ul>
+                                    <li th:each="err : ${#fields.errors('firstName')}"><i class="fas fa-times"></i>
+                                        <p th:text="${err}"></p></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="input-field-block">
+                            <input class="contact-form-input" type="text" name="address" placeholder="Адреса*"
+                                   th:field="*{address}" th:errorclass="input-error">
+                            <div class="error-block" th:if="${#fields.hasErrors('address')}">
+                                <ul>
+                                    <li th:each="err : ${#fields.errors('address')}"><i class="fas fa-times"></i>
+                                        <p th:text="${err}"></p></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="input-field-block">
+                            <input class="contact-form-input" type="text" name="lastName" placeholder="Прізвище*"
+                                   th:field="*{lastName}" th:errorclass="input-error">
+                            <div class="error-block" th:if="${#fields.hasErrors('lastName')}">
+                                <ul>
+                                    <li th:each="err : ${#fields.errors('lastName')}"><i class="fas fa-times"></i>
+                                        <p th:text="${err}"></p></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="input-field-block">
+                            <input id="phone" class="contact-form-input" type="text" name="telephone" placeholder="Телефон*"
+                                   th:field="*{telephone}" th:errorclass="input-error">
+                            <div class="error-block" th:if="${#fields.hasErrors('telephone')}">
+                                <ul>
+                                    <li th:each="err : ${#fields.errors('telephone')}"><i class="fas fa-times"></i>
+                                        <p th:text="${err}"></p></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="car-details-price-unique">Ціна: <span style="color: #DB2D2E" th:text="${operation == 'Покупка автомобіля' ? car.price + ' ₴' : car.testPrice + ' ₴/день'}"></span></h3>
-                    <input type="submit" th:value="${operation == 'Покупка автомобіля' ? 'Купити' : 'Взяти на тест-драйв'}">
+                    <h3 class="car-details-price-unique">Ціна: <span style="color: #DB2D2E"
+                                                                     th:text="${operation == 'Покупка автомобіля' ? car.price + ' ₴' : car.testPrice + ' ₴/день'}"></span>
+                    </h3>
+                    <input type="submit"
+                           th:value="${operation == 'Покупка автомобіля' ? 'Купити' : 'Взяти на тест-драйв'}">
                 </form>
             </div>
         </div>
@@ -283,5 +319,12 @@
 <!--<script src="../static/resources/js/pricerange.js" type="text/javascript" th:src="@{resources/js/pricerange.js}"></script>-->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://kit.fontawesome.com/de94abba4d.js" crossorigin="anonymous"></script>
+<script th:src="@{/resources/js/jquery.maskedinput.min.js}"
+        src="../../static/resources/js/jquery.maskedinput.min.js"></script>
+<script>
+    $(function () {
+        $("#phone").mask("+38(999) 999-9999");
+    });
+</script>
 </body>
 </html>

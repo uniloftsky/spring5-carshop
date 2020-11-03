@@ -1888,7 +1888,7 @@ About page
     justify-content: space-between;
 }
 
-.contact-form-inputs input {
+.contact-form-input {
     width: 31%;
     background: #F6F6F6;
     border: none;
@@ -2317,9 +2317,13 @@ About page
     margin-top: 1.5em;
 }
 
-.form-inputs-unique input {
+.input-field-block {
     width: 49%;
     margin-bottom: 1em;
+}
+
+.input-field-block input {
+    width: 100%;
 }
 
 .car-details-price-unique {
@@ -2341,3 +2345,30 @@ About page
 .order-form input[type="submit"]:hover {
     background: #261C1D;
 }
+
+.input-error {
+    border: 1px solid #DB2D2E;
+}
+
+.input-error::placeholder {
+    color: #DB2D2E;
+}
+
+.error-block ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+.error-block li {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: #DB2D2E;
+}
+
+.error-block li i {
+    font-size: .75rem;
+    margin-right: .5em;
+}
+
+

@@ -68,12 +68,12 @@ public class CarController {
     public String processTestCarForm(@PathVariable Long carId, @Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult, Model model) {
         Car foundCar = carService.findById(carId);
 
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             model.addAttribute("car", foundCar);
+            model.addAttribute("operation", "Тест-драйв автомобіля");
             return "car/order";
         }
 
-        System.out.println(customer.getFirstName());
         customerService.saveOrUpdate(customer);
         TestCar testCar = new TestCar();
         testCarService.save(testCar, customer, foundCar);
@@ -81,8 +81,13 @@ public class CarController {
     }
 
     @PostMapping("catalog/car/{carId}/buyCar")
-    public String processBuyCarForm(@PathVariable Long carId, @ModelAttribute Customer customer, Model model) {
+    public String processBuyCarForm(@PathVariable Long carId, @Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult, Model model) {
         Car foundCar = carService.findById(carId);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("car", foundCar);
+            model.addAttribute("operation", "Покупка автомобіля");
+            return "car/order";
+        }
         customerService.saveOrUpdate(customer);
         BuyCar buyCar = new BuyCar();
         buyCarService.save(buyCar, customer, foundCar);

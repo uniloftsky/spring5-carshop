@@ -19,20 +19,20 @@ import java.util.Set;
 @Entity
 public class Customer extends BaseEntity {
 
-    @NotBlank
-    @Size(min = 5, max = 255)
+    @NotBlank(message = "{firstName.NotBlank}")
+    @Size(min = 2, max = 255, message = "{firstName.Size}")
     private String firstName;
 
-    @NotBlank
-    @Size(min = 5, max = 255)
+    @NotBlank(message = "{lastName.NotBlank}")
+    @Size(min = 2, max = 255, message = "{lastName.Size}")
     private String lastName;
 
-    @NotBlank
-    @Size(min = 5, max = 255)
+    @NotBlank(message = "{address.NotBlank}")
+    @Size(min = 5, max = 100, message = "{address.Size}")
     private String address;
 
-    @NotBlank
-    @Size(min = 5, max = 20)
+    @NotBlank(message = "{telephone.NotBlank}")
+    @Size(min = 5, max = 15, message = "{telephone.Size}")
     private String telephone;
 
     @OneToMany(mappedBy = "customer")
