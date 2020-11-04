@@ -32,7 +32,7 @@ public class Customer extends BaseEntity {
     private String address;
 
     @NotBlank(message = "{telephone.NotBlank}")
-    @Size(min = 5, max = 15, message = "{telephone.Size}")
+    @Size(min = 5, max = 20, message = "{telephone.Size}")
     private String telephone;
 
     @OneToMany(mappedBy = "customer")
