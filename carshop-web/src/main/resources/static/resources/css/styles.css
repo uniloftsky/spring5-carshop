@@ -2371,4 +2371,84 @@ About page
     margin-right: .5em;
 }
 
+/*
+==================
+Authority
+==================
+*/
 
+.login-block {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form div {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form input {
+    width: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1rem;
+}
+
+.login-form input[type="submit"] {
+    margin-top: 1em;
+    border: 0;
+    background: #DB2D2E;
+    color: white;
+    padding: .25em;
+    transition: .75s;
+    cursor: pointer;
+}
+
+.login-form input[type="submit"]:hover {
+    background: #261C1D;
+}
+
+.admin-header {
+    background: cornflowerblue;
+    padding-bottom: 1em;
+}
+
+.admin-header nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.admin-header nav ul {
+    display: flex;
+    margin: 0;
+}
+
+.logout-item {
+    justify-content: flex-end;
+}
+
+.admin-header nav ul a {
+    color: white;
+    font-size: 1rem;
+}
+
+.admin-header nav ul a:hover {
+    color: #261C1D;
+}
+
+.logout-btn {
+    background: none;
+    color: white;
+    border: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: .75s;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    color: #261C1D;
+}
