@@ -2442,7 +2442,7 @@ Authority
     color: white;
     border: 0;
     font-family: 'Source Sans Pro', sans-serif;
-    font-size: 1rem;
+    font-size: 1.15rem;
     text-transform: uppercase;
     font-weight: 600;
     transition: .75s;
@@ -2451,4 +2451,33 @@ Authority
 
 .logout-btn:hover {
     color: #261C1D;
+}
+
+.data {
+    margin-top: 1.5em;
+}
+
+.data-table {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+    border-collapse: collapse;
+    text-align: center;
+    margin-top: 1em;
+}
+
+.data-table th, .data-table td:first-child {
+    background: #AFCDE7;
+    color: white;
+    padding: 10px 20px;
+}
+.data-table th, .data-table td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+}
+.data-table td {
+    background: #D8E6F3;
+}
+.data-table th:first-child, .data-table td:first-child {
+    text-align: left;
 }

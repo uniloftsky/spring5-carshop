@@ -3,6 +3,7 @@ package uniloft.springframework.spring5carshop.services;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import uniloft.springframework.spring5carshop.comparators.CarBodyAscendingComparatorByName;
+import uniloft.springframework.spring5carshop.comparators.CarBrandAscendingComparatorByName;
 import uniloft.springframework.spring5carshop.comparators.CarModelAscendingComparatorByName;
 import uniloft.springframework.spring5carshop.model.CarBody;
 import uniloft.springframework.spring5carshop.model.CarBrand;
@@ -26,7 +27,10 @@ public class CarBrandServiceImpl implements CarBrandService {
 
     @Override
     public Set<CarBrand> getCarBrands() {
-        return carBrandRepository.getCarBrands();
+        Comparator<CarBrand> comparator = new CarBrandAscendingComparatorByName();
+        TreeSet<CarBrand> cars = new TreeSet<>(comparator);
+        carBrandRepository.findAll().iterator().forEachRemaining(cars::add);
+        return cars;
     }
 
     @Override
@@ -50,5 +54,10 @@ public class CarBrandServiceImpl implements CarBrandService {
                         .iterator()
                         .forEachRemaining(cars::add)));
         return cars;
+    }
+
+    @Override
+    public CarBrand saveBrand(CarBrand carBrand) {
+        return carBrandRepository.save(carBrand);
     }
 }

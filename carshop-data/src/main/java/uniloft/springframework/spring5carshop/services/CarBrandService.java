@@ -11,5 +11,6 @@ public interface CarBrandService {
     Set<CarBrand> getCarBrands();
     Set<CarModel> getBrandModels();
     Set<CarBody> getModelBodies();
+    CarBrand saveBrand(CarBrand carBrand);
 
 }

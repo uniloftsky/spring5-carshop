@@ -22,4 +22,9 @@ public class ColorServiceImpl implements ColorService {
         colorRepository.findAll().iterator().forEachRemaining(colors::add);
         return colors;
     }
+
+    @Override
+    public Color save(Color color) {
+        return colorRepository.save(color);
+    }
 }

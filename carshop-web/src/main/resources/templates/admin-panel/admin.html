@@ -21,6 +21,7 @@
                 <li><a href="#">Автомобілі</a></li>
                 <li><a href="#">Покупки авто</a></li>
                 <li><a href="#">Тест-драйви</a></li>
+                <li><a href="#">Клієнти</a></li>
             </ul>
             <ul class="logout-item">
                 <form th:action="@{/logout}" method="post">
@@ -31,7 +32,66 @@
     </div>
 </header>
 <main>
+    <div class="wrap">
+        <div class="data">
+            <form th:action="@{/colorAdd}" method="post">
+                <h3>Кольори:</h3>
+                <input type="text" name="colorName">
+                <input type="submit" value="Додати">
+            </form>
+            <table class="data-table">
+                <tr>
+                    <th>ID</th>
+                    <th>Назва кольору</th>
+                </tr>
+                <tr th:each="color : ${colors}">
+                    <td th:text="${color.id}"></td>
+                    <td th:text="${color.color}"></td>
+                </tr>
+            </table>
+        </div>
 
+        <div class="data">
+            <form th:action="@{/brandAdd}" method="post">
+                <h3>Бренди:</h3>
+                <input type="text" name="brandName">
+                <input type="submit" value="Додати">
+            </form>
+            <table class="data-table">
+                <tr>
+                    <th>ID</th>
+                    <th>Назва Бренду</th>
+                </tr>
+                <tr th:each="brand : ${brands}">
+                    <td th:text="${brand.id}"></td>
+                    <td th:text="${brand.brandName}"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="data">
+            <form th:action="@{/modelAdd}" method="post">
+                <h3>Моделі:</h3>
+                <select name="brandName">
+                    <option th:each="brand : ${brands}" th:text="${brand.brandName}" th:value="${brand.brandName}"></option>
+                </select><br>
+                <input type="text" name="modelName">
+                <input type="submit" value="Додати">
+            </form>
+            <table class="data-table">
+                <tr>
+                    <th>ID</th>
+                    <th>Назва моделі</th>
+                    <th>Назва бренду</th>
+                </tr>
+                <tr th:each="model : ${models}">
+                    <td th:text="${model.id}"></td>
+                    <td th:text="${model.modelName}"></td>
+                    <td th:text="${model.brand.brandName}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </main>
 <footer>
 

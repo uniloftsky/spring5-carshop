@@ -7,5 +7,6 @@ import java.util.Set;
 public interface ColorService {
 
     Set<Color> getColors();
+    Color save(Color color);
 
 }
