@@ -13,6 +13,8 @@ public interface CarService {
     Set<Car> getCars();
     TreeSet<Car> getSortedCars(Comparator<Car> comparator);
     Car findById(Long id);
+    void deleteCar(Car car);
+    Car save(Car car);
     Long getCarsCount();
     Set<Car> findAll();
     Set<Car> findCars(BigDecimal minPrice, BigDecimal maxPrice);

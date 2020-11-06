@@ -43,6 +43,16 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public void deleteCar(Car car) {
+        carRepository.delete(car);
+    }
+
+    @Override
+    public Car save(Car car) {
+        return carRepository.save(car);
+    }
+
+    @Override
     public Long getCarsCount() {
         return carRepository.count();
     }

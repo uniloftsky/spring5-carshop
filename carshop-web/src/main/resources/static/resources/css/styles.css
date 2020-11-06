@@ -2086,6 +2086,8 @@ About page
 }
 
 .car-details-img {
+    object-fit: cover;
+    max-height: 320px;
     margin-bottom: 1em;
 }
 
@@ -2457,27 +2459,30 @@ Authority
     margin-top: 1.5em;
 }
 
-.data-table {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 14px;
-    border-collapse: collapse;
-    text-align: center;
-    margin-top: 1em;
+.details-info-admin {
+    border: 1px solid #888888;
 }
 
-.data-table th, .data-table td:first-child {
-    background: #AFCDE7;
+.details-info-admin .car-details-img {
+    margin-bottom: 0;
+}
+
+.details-info-admin .car-details-info-in {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.car-details-admin-btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.car-details-admin-btns a {
+    text-align: center;
     color: white;
-    padding: 10px 20px;
-}
-.data-table th, .data-table td {
-    border-style: solid;
-    border-width: 0 1px 1px 0;
-    border-color: white;
-}
-.data-table td {
-    background: #D8E6F3;
-}
-.data-table th:first-child, .data-table td:first-child {
-    text-align: left;
+    text-decoration: none;
+    width: 45%;
+    background: cornflowerblue;
+    padding: .25em 1em;
 }

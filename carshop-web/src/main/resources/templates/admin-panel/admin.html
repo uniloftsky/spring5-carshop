@@ -18,10 +18,10 @@
     <div class="wrap">
         <nav>
             <ul>
-                <li><a href="#">Автомобілі</a></li>
-                <li><a href="#">Покупки авто</a></li>
-                <li><a href="#">Тест-драйви</a></li>
-                <li><a href="#">Клієнти</a></li>
+                <li><a href="#" th:href="@{admin(page=cars)}">Автомобілі</a></li>
+                <li><a href="#" th:href="@{admin(page=buys)}">Покупки авто</a></li>
+                <li><a href="#" th:href="@{admin(page=tests)}">Тест-драйви</a></li>
+                <li><a href="#" th:href="@{admin(page=customers)}">Клієнти</a></li>
             </ul>
             <ul class="logout-item">
                 <form th:action="@{/logout}" method="post">
@@ -33,7 +33,89 @@
 </header>
 <main>
     <div class="wrap">
-        <div class="data">
+
+        <div class="data" th:if="${page=='cars'}">
+            <th:block th:each="car : ${cars}">
+                <div class="car-details-info details-info-admin">
+                    <div class="car-details-img-block">
+                        <img class="car-details-img" src="../../static/resources/images/e34.jpg"
+                             th:src="${'/' + car.image}">
+                    </div>
+                    <div class="car-details-info-in">
+                        <div style="margin-bottom: 1em;">
+                            <div class="car-details-info-point">
+                                <p class="details-point-name">Код</p>
+                                <p class="details-point-info" th:text="${car.id}">BMW</p>
+                            </div>
+                            <div class="car-details-info-point">
+                                <p class="details-point-name">Бренд</p>
+                                <p class="details-point-info" th:text="${car.brand.brandName}">BMW</p>
+                            </div>
+                            <div class="car-details-info-point">
+                                <p class="details-point-name">Модель</p>
+                                <p class="details-point-info" th:text="${car.model.modelName}">518i</p>
+                            </div>
+                            <div class="car-details-info-point">
+                                <p class="details-point-name">Модель кузова</p>
+                                <p class="details-point-info" th:text="${car.body.bodyName}">E34</p>
+                            </div>
+                            <div class="car-details-info-point">
+                                <p class="details-point-name">Тип кузова</p>
+                                <p class="details-point-info" th:text="${car.carType.typeName}">Sedan</p>
+                            </div>
+                        </div>
+                        <div class="car-details-admin-btns">
+                            <a href="#" th:href="@{/admin(page='carEdit', id=${car.id})}">Редагувати</a>
+                            <a href="#" th:href="@{'admin/car/delete/' + ${car.id}}" style="margin-right: 1em">Видалити</a>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+
+        <div th:if="${page=='carEdit'}">
+            <h3>Редагування авто:</h3>
+            <form th:object="${car}" class="edit-form" th:action="@{/editCar}" method="post">
+                <input type="hidden" th:field="*{id}">
+                <label>Бренд</label>
+                <select name="brand.id">
+                    <option th:each="brand : ${brands}" th:text="${brand.brandName}" th:selected="${brand.id.equals(car.brand.id)}" th:value="${brand.id}"></option>
+                </select>
+                <label>Модель</label>
+                <select name="model.id">
+                    <option th:each="model : ${models}" th:text="${model.modelName}" th:selected="${model.id.equals(car.model.id)}" th:value="${model.id}"></option>
+                </select>
+                <label>Модель кузова</label>
+                <select name="body.id">
+                    <option th:each="body : ${bodies}" th:text="${body.bodyName}" th:selected="${body.id.equals(car.body.id)}" th:value="${body.id}"></option>
+                </select>
+                <label>Тип кузова</label>
+                <select name="carType.id">
+                    <option th:each="carType : ${carTypes}" th:text="${carType.typeName}" th:selected="${carType.id.equals(car.carType.id)}" th:value="${carType.id}"></option>
+                </select>
+                <label>Колір</label>
+                <select name="color.id">
+                    <option th:each="color : ${colors}" th:text="${color.color}" th:selected="${color.id.equals(car.color.id)}" th:value="${color.id}"></option>
+                </select>
+                <input type="hidden" th:field="*{engine.id}">
+                <input type="hidden" th:field="*{image}">
+                <input type="submit">
+            </form>
+        </div>
+
+        <div th:if="${page=='buys'}">
+
+        </div>
+
+        <div th:if="${page=='tests'}">
+
+        </div>
+
+        <div th:if="${page=='customers'}">
+
+        </div>
+
+        <!--<div class="data">
             <form th:action="@{/colorAdd}" method="post">
                 <h3>Кольори:</h3>
                 <input type="text" name="colorName">
@@ -90,7 +172,7 @@
                     <td th:text="${model.brand.brandName}"></td>
                 </tr>
             </table>
-        </div>
+        </div>-->
     </div>
 </main>
 <footer>
