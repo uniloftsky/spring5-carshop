@@ -74,39 +74,68 @@
         </div>
 
         <div th:if="${page=='carEdit'}">
-            <h3>Редагування авто:</h3>
+            <h3 style="width: 75%; margin: 0 auto; margin-top: 1em;">Редагування авто:</h3>
             <form th:object="${car}" class="edit-form" th:action="@{/editCar}" method="post" enctype="multipart/form-data">
                 <input type="hidden" th:field="*{id}">
-                <label>Бренд</label>
-                <select name="brand.id">
-                    <option th:each="brand : ${brands}" th:text="${brand.brandName}" th:selected="${brand.id.equals(car.brand.id)}" th:value="${brand.id}"></option>
-                </select>
-                <label>Модель</label>
-                <select name="model.id">
-                    <option th:each="model : ${models}" th:text="${model.modelName}" th:selected="${model.id.equals(car.model.id)}" th:value="${model.id}"></option>
-                </select>
-                <label>Модель кузова</label>
-                <select name="body.id">
-                    <option th:each="body : ${bodies}" th:text="${body.bodyName}" th:selected="${body.id.equals(car.body.id)}" th:value="${body.id}"></option>
-                </select>
-                <label>Тип кузова</label>
-                <select name="carType.id">
-                    <option th:each="carType : ${carTypes}" th:text="${carType.typeName}" th:selected="${carType.id.equals(car.carType.id)}" th:value="${carType.id}"></option>
-                </select>
-                <label>Колір</label>
-                <select name="color.id">
-                    <option th:each="color : ${colors}" th:text="${color.color}" th:selected="${color.id.equals(car.color.id)}" th:value="${color.id}"></option>
-                </select>
+                <div class="input-point">
+                    <label>Бренд:</label>
+                    <select id="brand_select" name="brand.id">
+                        <option th:each="brand : ${brands}" th:text="${brand.brandName}" th:selected="${brand.id.equals(car.brand.id)}" th:value="${brand.id}"></option>
+                    </select>
+                    <a href="#" class="add-btn">Додати бренд</a>
+                </div>
+                <div class="input-point">
+                    <label>Модель:</label>
+                    <select id="model_select" name="model.id">
+                        <option th:each="model : ${models}" th:class="${model.brand.id}" th:text="${model.modelName}" th:selected="${model.id.equals(car.model.id)}" th:value="${model.id}"></option>
+                    </select>
+                    <a href="#" class="add-btn">Додати модель</a>
+                </div>
+                <div class="input-point">
+                    <label>Модель кузова:</label>
+                    <select id="body_select" name="body.id">
+                        <option th:each="body : ${bodies}" th:class="${body.model.id}" th:text="${body.bodyName}" th:selected="${body.id.equals(car.body.id)}" th:value="${body.id}"></option>
+                    </select>
+                    <a href="#" class="add-btn">Додати модель кузова</a>
+                </div>
+                <div class="input-point">
+                    <label>Тип кузова:</label>
+                    <select name="carType.id">
+                        <option th:each="carType : ${carTypes}" th:text="${carType.typeName}" th:selected="${carType.id.equals(car.carType.id)}" th:value="${carType.id}"></option>
+                    </select>
+                    <a href="#" class="add-btn">Додати тип кузова</a>
+                </div>
+                <div class="input-point">
+                    <label>Колір:</label>
+                    <select name="color.id">
+                        <option th:each="color : ${colors}" th:text="${color.color}" th:selected="${color.id.equals(car.color.id)}" th:value="${color.id}"></option>
+                    </select>
+                    <a href="#" class="add-btn">Додати колір</a>
+                </div>
+
                 <input type="hidden" th:field="*{engine.id}">
                 <input type="hidden" th:field="*{price}">
                 <input type="hidden" th:field="*{testPrice}">
                 <input type="hidden" th:field="*{image}">
-                <input type="radio" name="changeImage" checked value="unchecked">
-                <label>Не змінювати зображення:</label>
-                <input id="imageselect" type="radio" name="changeImage" value="checked">
-                <label>Змінити зображення:</label>
-                <input id="imagefile" name="imagefile" type="file" class="file">
-                <input type="submit">
+                <div class="image-change">
+                    <img style="width: 48%; border: 1px solid black;" th:src="${car.image}">
+                    <fieldset>
+                        <legend>Зображення</legend>
+                        <div>
+                            <input type="radio" name="changeImage" checked value="unchecked">
+                            <label>Не змінювати зображення</label>
+                        </div>
+                        <div>
+                            <input id="imageselect" type="radio" name="changeImage" value="checked">
+                            <label style="margin-right: .5em;">Змінити зображення:</label>
+                            <input id="imagefile" name="imagefile" type="file" class="file">
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="input-point">
+                    <input type="submit" value="Зберегти">
+                </div>
+
             </form>
         </div>
 

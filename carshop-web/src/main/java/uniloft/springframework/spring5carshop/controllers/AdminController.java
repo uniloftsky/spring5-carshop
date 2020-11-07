@@ -61,7 +61,7 @@ public class AdminController {
         else {
             imageService.saveImageFile(car, file);
         }
-        return "redirect:/admin?page=cars";
+        return "redirect:/admin?page=carEdit&id=" + car.getId();
     }
 
     /*@GetMapping("car/{id}/carimage")
