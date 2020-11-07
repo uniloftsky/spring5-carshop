@@ -105,38 +105,18 @@ INSERT INTO car_body (body_name, model_id)
 VALUES ('R34', 5);
 
 -- Cars
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
-VALUES (1, 1, 1, 1, 1, 1, 5376, 250, 'resources/images/s500.jpg');
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
-VALUES (1, 1, 1, 6, 1, 1, 5376, 250, 'resources/images/s500.jpg');
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
-VALUES (1, 1, 1, 7, 1, 1, 5376, 250, 'resources/images/s500.jpg');
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
-VALUES (1, 1, 1, 8, 1, 1, 5376, 250, 'resources/images/s500.jpg');
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
-VALUES (1, 1, 1, 9, 1, 1, 5376, 250, 'resources/images/s500.jpg');
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
-VALUES (1, 1, 1, 10, 1, 1, 5376, 250, 'resources/images/s500.jpg');
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
-VALUES (1, 1, 1, 11, 1, 1, 5376, 250, 'resources/images/s500.jpg');
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
-VALUES (1, 1, 1, 12, 1, 1, 5376, 250, 'resources/images/s500.jpg');
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
-VALUES (1, 1, 1, 13, 1, 1, 5376, 250, 'resources/images/s500.jpg');
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
-VALUES (1, 1, 1, 14, 1, 1, 5376, 250, 'resources/images/s500.jpg');
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
-VALUES (1, 1, 1, 15, 1, 1, 5376, 250, 'resources/images/s500.jpg');
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
-VALUES (2, 1, 3, 3, 5, 2, 3964, 250, 'resources/images/s170.jpg');
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
-VALUES (3, 1, 2, 4, 6, 4, 2523, 75, 'resources/images/e34.jpg');
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
-VALUES (3, 1, 1, 2, 2, 4, 2523, 150, 'resources/images/e200.jpg');
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
-VALUES (3, 1, 4, 5, 7, 4, 2523, 150, 'resources/images/gtr35.jpg');
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
-VALUES (3, 2, 4, 5, 8, 4, 2523, 150, 'resources/images/gtr35.jpg');
+INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price)
+VALUES (1, 1, 1, 15, 1, 1, 5376, 250);
+INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price)
+VALUES (2, 1, 3, 3, 5, 2, 3964, 250);
+INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price)
+VALUES (3, 1, 2, 4, 6, 4, 2523, 75);
+INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price)
+VALUES (3, 1, 1, 2, 2, 4, 2523, 150);
+INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price)
+VALUES (3, 1, 4, 5, 7, 4, 2523, 150);
+INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price)
+VALUES (3, 2, 4, 5, 8, 4, 2523, 150);
 
 -- Car buys
 INSERT INTO buy_car (car_id, customer_id, date, count, price)

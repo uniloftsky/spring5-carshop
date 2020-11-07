@@ -3,16 +3,15 @@ package uniloft.springframework.spring5carshop.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import uniloft.springframework.spring5carshop.comparators.CarAscendingComparatorById;
 import uniloft.springframework.spring5carshop.comparators.CarBrandAscendingComparatorById;
 import uniloft.springframework.spring5carshop.comparators.CarModelAscendingComparatorById;
 import uniloft.springframework.spring5carshop.comparators.ColorAscendingComparatorById;
 import uniloft.springframework.spring5carshop.model.*;
-import uniloft.springframework.spring5carshop.services.CarBrandService;
-import uniloft.springframework.spring5carshop.services.CarService;
-import uniloft.springframework.spring5carshop.services.CarTypeService;
-import uniloft.springframework.spring5carshop.services.ColorService;
+import uniloft.springframework.spring5carshop.services.*;
 
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
@@ -24,18 +23,25 @@ public class AdminController {
     private final CarBrandService carBrandService;
     private final CarTypeService carTypeService;
     private final CarService carService;
+    private final ImageService imageService;
 
     private final String URL_ADMIN_REDIRECT = "redirect:/admin";
 
-    public AdminController(ColorService colorService, CarBrandService carBrandService, CarTypeService carTypeService, CarService carService) {
+    public AdminController(ColorService colorService, CarBrandService carBrandService, CarTypeService carTypeService, CarService carService, ImageService imageService) {
         this.colorService = colorService;
         this.carBrandService = carBrandService;
         this.carTypeService = carTypeService;
         this.carService = carService;
+        this.imageService = imageService;
+    }
+
+    @GetMapping("admin")
+    public String getAdminPage() {
+        return "redirect:/admin?page=cars";
     }
 
     @GetMapping(value = "/admin", params = "page")
-    public String getAdminPage(@RequestParam String page, Model model) {
+    public String getAdminPageParam(@RequestParam String page, Model model) {
         model.addAttribute("page", page);
         return "admin-panel/admin";
     }
@@ -48,10 +54,22 @@ public class AdminController {
     }
 
     @PostMapping("/editCar")
-    public String updateCarProcessForm(@ModelAttribute Car car) {
-        carService.save(car);
+    public String updateCarProcessForm(@ModelAttribute Car car, @RequestParam(value = "imagefile", required = false) MultipartFile file, @RequestParam("changeImage") String changeImage) throws IOException {
+        if(changeImage.equals("unchecked")) {
+            carService.save(car);
+        }
+        else {
+            imageService.saveImageFile(car, file);
+        }
         return "redirect:/admin?page=cars";
     }
+
+    /*@GetMapping("car/{id}/carimage")
+    public void renderImageFormDB(@PathVariable String id, HttpServletResponse response) throws IOException {
+        Car car = carService.findById(Long.valueOf(id));
+
+
+    }*/
 
     @ModelAttribute("cars")
     public TreeSet<Car> getSortedCars() {
