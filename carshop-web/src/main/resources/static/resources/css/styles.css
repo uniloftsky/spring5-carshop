@@ -2504,11 +2504,15 @@ Authority
 
 .input-point select {
     font-family: 'Source Sans Pro', sans-serif;
-    font-size: 1rem;
+    font-size: 1.25rem;
 }
 
 .input-point label {
     margin-bottom: .5em;
+}
+
+.edit-form input {
+    font-size: 1.25rem;
 }
 
 .add-btn {
@@ -2547,7 +2551,7 @@ Authority
     background: green;
     color: white;
     width: 75%;
-    padding: 1em;
+    padding: .5em;
     margin: 1em auto;
     display: inline-block;
     font-family: 'Source Sans Pro', sans-serif;
@@ -2559,4 +2563,42 @@ Authority
 
 .edit-form input[type="submit"]:hover {
     background: darkolivegreen;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.data-table tr td, tr th {
+    min-width: 25%;
+    height: 50px;
+    text-align: center;
+}
+
+.table-btn {
+    display: inline-block;
+    text-decoration: underline;
+    color: #DB2D2E;
+}
+
+.table-btn:hover {
+    color: #261C1D;
+}
+
+.add-data-btn {
+    display: inline-block;
+    margin-top: 1em;
+    text-decoration: none;
+    background: cornflowerblue;
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: .5em;
+    transition: .75s background-color;
+}
+
+.add-data-btn:hover {
+    background: #261C1D;
 }

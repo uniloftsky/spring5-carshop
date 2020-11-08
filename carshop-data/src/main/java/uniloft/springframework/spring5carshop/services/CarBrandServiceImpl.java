@@ -9,20 +9,39 @@ import uniloft.springframework.spring5carshop.model.CarBody;
 import uniloft.springframework.spring5carshop.model.CarBrand;
 import uniloft.springframework.spring5carshop.model.CarModel;
 import uniloft.springframework.spring5carshop.services.repositories.CarBrandRepository;
+import uniloft.springframework.spring5carshop.services.repositories.CarModelRepository;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 @Slf4j
 @Service
 public class CarBrandServiceImpl implements CarBrandService {
 
     private final CarBrandRepository carBrandRepository;
+    private final CarModelRepository carModelRepository;
 
-    public CarBrandServiceImpl(CarBrandRepository carBrandRepository) {
+    public CarBrandServiceImpl(CarBrandRepository carBrandRepository, CarModelRepository carModelRepository) {
         this.carBrandRepository = carBrandRepository;
+        this.carModelRepository = carModelRepository;
+    }
+
+    @Override
+    public CarBrand findCarBrandById(Long id) {
+        Optional<CarBrand> brandOptional = carBrandRepository.findById(id);
+        if (brandOptional.isEmpty()) {
+            throw new RuntimeException("Expected car brand not found!");
+        }
+        return brandOptional.get();
+    }
+
+    @Override
+    public CarModel findCarModelById(Long id) {
+        return getBrandModels().stream().filter(carModel -> carModel.getId().equals(id)).findFirst().get();
+    }
+
+    @Override
+    public void deleteBrand(CarBrand carBrand) {
+        carBrandRepository.delete(carBrand);
     }
 
     @Override
@@ -59,5 +78,10 @@ public class CarBrandServiceImpl implements CarBrandService {
     @Override
     public CarBrand saveBrand(CarBrand carBrand) {
         return carBrandRepository.save(carBrand);
+    }
+
+    @Override
+    public CarModel saveModel(CarModel carModel) {
+        return carModelRepository.save(carModel);
     }
 }

@@ -53,6 +53,52 @@ public class AdminController {
         return "admin-panel/admin";
     }
 
+    @GetMapping(value = "/admin", params = {"page=brandEdit", "id"})
+    public String getEditBrandPage(@RequestParam String page, @RequestParam Long id, Model model) {
+        model.addAttribute("brand", carBrandService.findCarBrandById(id));
+        model.addAttribute("page", page);
+        return "admin-panel/admin";
+    }
+
+    @GetMapping(value = "/admin", params = {"page=newBrand"})
+    public String getNewBrandPage(@RequestParam String page, Model model) {
+        model.addAttribute("brand", new CarBrand());
+        model.addAttribute("page", page);
+        return "admin-panel/admin";
+    }
+
+    @GetMapping("/admin/brandDelete/{id}")
+    public String processDeleteBrand(@PathVariable Long id, Model model) {
+        carBrandService.deleteBrand(carBrandService.findCarBrandById(id));
+        return "redirect:/admin?page=brands";
+    }
+
+    @PostMapping(value = "/updateBrand")
+    public String updateBrandProcessForm(@ModelAttribute CarBrand brand, Model model) {
+        carBrandService.saveBrand(brand);
+        return "redirect:/admin?page=brands";
+    }
+
+    @GetMapping(value = "/admin", params = {"page=modelEdit", "id"})
+    public String getEditModelPage(@RequestParam String page, @RequestParam Long id, Model model) {
+        model.addAttribute("model", carBrandService.findCarModelById(id));
+        model.addAttribute("page", page);
+        return "admin-panel/admin";
+    }
+
+    @GetMapping(value = "/admin", params = {"page=newModel"})
+    public String getNewModelPage(@RequestParam String page, Model model) {
+        model.addAttribute("model", new CarModel());
+        model.addAttribute("page", page);
+        return "admin-panel/admin";
+    }
+
+    @PostMapping(value = "/updateModel")
+    public String updateModelProcessForm(@ModelAttribute CarModel carModel, Model model) {
+        carBrandService.saveModel(carModel);
+        return "redirect:/admin?page=models";
+    }
+
     @PostMapping("/editCar")
     public String updateCarProcessForm(@ModelAttribute Car car, @RequestParam(value = "imagefile", required = false) MultipartFile file, @RequestParam("changeImage") String changeImage) throws IOException {
         if(changeImage.equals("unchecked")) {
@@ -63,13 +109,6 @@ public class AdminController {
         }
         return "redirect:/admin?page=carEdit&id=" + car.getId();
     }
-
-    /*@GetMapping("car/{id}/carimage")
-    public void renderImageFormDB(@PathVariable String id, HttpServletResponse response) throws IOException {
-        Car car = carService.findById(Long.valueOf(id));
-
-
-    }*/
 
     @ModelAttribute("cars")
     public TreeSet<Car> getSortedCars() {

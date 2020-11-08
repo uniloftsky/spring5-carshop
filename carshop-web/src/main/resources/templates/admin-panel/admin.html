@@ -82,40 +82,46 @@
                     <select id="brand_select" name="brand.id">
                         <option th:each="brand : ${brands}" th:text="${brand.brandName}" th:selected="${brand.id.equals(car.brand.id)}" th:value="${brand.id}"></option>
                     </select>
-                    <a href="#" class="add-btn">Додати бренд</a>
+                    <a href="#" th:href="@{/admin(page=brands)}" class="add-btn">Редагувати бренди</a>
                 </div>
                 <div class="input-point">
                     <label>Модель:</label>
                     <select id="model_select" name="model.id">
                         <option th:each="model : ${models}" th:class="${model.brand.id}" th:text="${model.modelName}" th:selected="${model.id.equals(car.model.id)}" th:value="${model.id}"></option>
                     </select>
-                    <a href="#" class="add-btn">Додати модель</a>
+                    <a href="#" th:href="@{/admin(page=models)}" class="add-btn">Редагувати моделі</a>
                 </div>
                 <div class="input-point">
                     <label>Модель кузова:</label>
                     <select id="body_select" name="body.id">
                         <option th:each="body : ${bodies}" th:class="${body.model.id}" th:text="${body.bodyName}" th:selected="${body.id.equals(car.body.id)}" th:value="${body.id}"></option>
                     </select>
-                    <a href="#" class="add-btn">Додати модель кузова</a>
+                    <a href="#" class="add-btn">Редагувати моделі кузовів</a>
                 </div>
                 <div class="input-point">
                     <label>Тип кузова:</label>
                     <select name="carType.id">
                         <option th:each="carType : ${carTypes}" th:text="${carType.typeName}" th:selected="${carType.id.equals(car.carType.id)}" th:value="${carType.id}"></option>
                     </select>
-                    <a href="#" class="add-btn">Додати тип кузова</a>
+                    <a href="#" class="add-btn">Редагувати типи кузовів</a>
                 </div>
                 <div class="input-point">
                     <label>Колір:</label>
                     <select name="color.id">
                         <option th:each="color : ${colors}" th:text="${color.color}" th:selected="${color.id.equals(car.color.id)}" th:value="${color.id}"></option>
                     </select>
-                    <a href="#" class="add-btn">Додати колір</a>
+                    <a href="#" class="add-btn">Редагувати кольори</a>
+                </div>
+                <div class="input-point">
+                    <label>Ціна покупки:</label>
+                    <input type="number" name="price" th:field="*{price}">
+                </div>
+                <div class="input-point">
+                    <label>Ціна тест-драйву</label>
+                    <input type="number" name="testPrice" th:field="*{testPrice}">
                 </div>
 
                 <input type="hidden" th:field="*{engine.id}">
-                <input type="hidden" th:field="*{price}">
-                <input type="hidden" th:field="*{testPrice}">
                 <input type="hidden" th:field="*{image}">
                 <div class="image-change">
                     <img style="width: 48%; border: 1px solid black;" th:src="${car.image}">
@@ -132,6 +138,109 @@
                         </div>
                     </fieldset>
                 </div>
+                <div class="input-point">
+                    <input type="submit" value="Зберегти">
+                </div>
+
+            </form>
+        </div>
+
+        <div th:if="${page=='brands'}">
+            <h3 style="margin: 1em 0;">Редагувати бренди:</h3>
+            <table class="data-table" border="1px">
+                <tr>
+                    <th>Код</th>
+                    <th>Назва бренду</th>
+                    <th>Редагувати</th>
+                    <th>Видалити</th>
+                </tr>
+                <tr th:each="brand : ${brands}">
+                    <td th:text="${brand.id}"></td>
+                    <td th:text="${brand.brandName}"></td>
+                    <td><a class="table-btn" href="#" th:href="@{/admin(page='brandEdit', id=${brand.id})}">Редагувати</a></td>
+                    <td><a class="table-btn" href="#" th:href="@{'/admin/brandDelete/' + ${brand.id}}">Видалити</a></td>
+                </tr>
+            </table>
+            <a href="#" class="add-data-btn" th:href="@{/admin(page='newBrand')}">Додати новий</a>
+        </div>
+
+        <div th:if="${page=='brandEdit'}">
+            <form class="edit-form" th:object="${brand}" th:action="@{/updateBrand}" method="post">
+                <input type="hidden" th:field="*{id}">
+                <div class="input-point">
+                    <label>Назва бренду:</label>
+                    <input type="text" name="brandName" th:field="*{brandName}">
+                </div>
+                <div class="input-point">
+                    <input type="submit" value="Зберегти">
+                </div>
+            </form>
+        </div>
+
+        <div th:if="${page=='newBrand'}">
+            <form class="edit-form" th:object="${brand}" th:action="@{/updateBrand}" method="post">
+                <div class="input-point">
+                    <label>Назва бренду:</label>
+                    <input type="text" name="brandName" th:field="*{brandName}">
+                </div>
+                <div class="input-point">
+                    <input type="submit" value="Зберегти">
+                </div>
+
+            </form>
+        </div>
+
+        <div th:if="${page=='models'}">
+            <h3 style="margin: 1em 0;">Редагувати моделі:</h3>
+            <table class="data-table" border="1px">
+                <tr>
+                    <th>Код</th>
+                    <th>Назва моделі</th>
+                    <th>Назва Бренду</th>
+                    <th>Редагувати</th>
+                </tr>
+                <tr th:each="model : ${models}">
+                    <td th:text="${model.id}"></td>
+                    <td th:text="${model.modelName}"></td>
+                    <td th:text="${model.brand.brandName}"></td>
+                    <td><a class="table-btn" href="#" th:href="@{/admin(page='modelEdit', id=${model.id})}">Редагувати</a></td>
+                </tr>
+            </table>
+            <a href="#" class="add-data-btn" th:href="@{/admin(page='newModel')}">Додати новий</a>
+        </div>
+
+        <div th:if="${page=='modelEdit'}">
+            <form class="edit-form" th:object="${model}" th:action="@{/updateModel}" method="post">
+                <input type="hidden" th:field="*{id}">
+                <div class="input-point">
+                    <label>Назва моделі:</label>
+                    <input type="text" name="brandName" th:field="*{modelName}">
+                </div>
+                <div class="input-point">
+                    <label>Бренд:</label>
+                    <select name="brand.id">
+                        <option th:each="brand: ${brands}" th:text="${brand.brandName}" th:value="${brand.id}"></option>
+                    </select>
+                </div>
+                <div class="input-point">
+                    <input type="submit" value="Зберегти">
+                </div>
+            </form>
+        </div>
+
+        <div th:if="${page=='newModel'}">
+            <form class="edit-form" th:object="${model}" th:action="@{/updateModel}" method="post">
+                <div class="input-point">
+                    <label>Назва моделі:</label>
+                    <input type="text" name="brandName" th:field="*{modelName}">
+                </div>
+                <div class="input-point">
+                    <label>Бренд:</label>
+                    <select name="brand.id">
+                        <option th:each="brand: ${brands}" th:text="${brand.brandName}" th:value="${brand.id}"></option>
+                    </select>
+                </div>
+
                 <div class="input-point">
                     <input type="submit" value="Зберегти">
                 </div>
