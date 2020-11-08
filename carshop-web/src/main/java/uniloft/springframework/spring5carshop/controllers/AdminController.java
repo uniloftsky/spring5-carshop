@@ -80,6 +80,13 @@ public class AdminController {
         return "redirect:/admin?page=carEdit&id=" + car.getId();
     }
 
+    @GetMapping("admin/car/delete/{id}")
+    public String carDeleteProcessForm(@PathVariable Long id) {
+        Car foundCar = carService.findById(id);
+        carService.deleteCar(foundCar);
+        return URL_ADMIN_REDIRECT;
+    }
+
     //brands
 
     @GetMapping(value = "/admin", params = {"page=brandEdit", "id"})
@@ -339,13 +346,6 @@ public class AdminController {
         TreeSet<CarType> types = new TreeSet<>(comparator);
         carTypeService.getCarTypes().iterator().forEachRemaining(types::add);
         return types;
-    }
-
-    @PostMapping("admin/car/delete/{id}")
-    public String carDeleteProcessForm(@PathVariable Long id) {
-        Car foundCar = carService.findById(id);
-        carService.deleteCar(foundCar);
-        return URL_ADMIN_REDIRECT;
     }
 
     @PostMapping("colorAdd")

@@ -115,7 +115,7 @@
                 </div>
                 <div class="input-point">
                     <label>Двигун:</label>
-                    <select name="color.id">
+                    <select name="engine.id">
                         <option th:each="engine : ${engines}" th:text="${engine.name}" th:selected="${engine.id.equals(car.engine.id)}" th:value="${engine.id}"></option>
                     </select>
                     <a href="#" th:href="@{/admin(page=engines)}" class="add-btn">Редагувати двигуни</a>
@@ -208,7 +208,7 @@
                 </div>
                 <div class="input-point">
                     <label>Двигун:</label>
-                    <select name="color.id">
+                    <select name="engine.id">
                         <option th:each="engine : ${engines}" th:text="${engine.name}" th:value="${engine.id}"></option>
                     </select>
                     <a href="#" th:href="@{/admin(page=engines)}" class="add-btn">Редагувати двигуни</a>
@@ -621,7 +621,7 @@
                 <div class="input-point">
                     <label>Тип двигуна:</label>
                     <select name="type">
-                        <option th:each="engineType : ${T(uniloft.springframework.spring5carshop.model.enums.EngineType).values()}" th:selected="${engineType.description.equals(engine.type.description)}" th:text="${engineType.description}" th:value="${engineType.description}"></option>
+                        <option th:each="engineType : ${T(uniloft.springframework.spring5carshop.model.enums.EngineType).values()}" th:selected="${engineType.description.equals(engine.type.description)}" th:text="${engineType.description}" th:value="${engineType}"></option>
                     </select>
                 </div>
                 <div class="input-point">
@@ -634,8 +634,8 @@
                 </div>
                 <div class="input-point">
                     <label>Конфігурація двигуна:</label>
-                    <select name="type">
-                        <option th:each="engineConfig : ${T(uniloft.springframework.spring5carshop.model.enums.EngineConfig).values()}" th:selected="${engineConfig.description.equals(engine.config.description)}" th:text="${engineConfig.description}" th:value="${engineConfig.description}"></option>
+                    <select name="config">
+                        <option th:each="engineConfig : ${T(uniloft.springframework.spring5carshop.model.enums.EngineConfig).values()}" th:selected="${engineConfig.description.equals(engine.config.description)}" th:text="${engineConfig.description}" th:value="${engineConfig}"></option>
                     </select>
                 </div>
                 <div class="input-point">
@@ -664,7 +664,7 @@
                 <div class="input-point">
                     <label>Тип двигуна:</label>
                     <select name="type">
-                        <option th:each="engineType : ${T(uniloft.springframework.spring5carshop.model.enums.EngineType).values()}" th:text="${engineType.description}" th:value="${engineType.description}"></option>
+                        <option th:each="engineType : ${T(uniloft.springframework.spring5carshop.model.enums.EngineType).values()}" th:text="${engineType.description}" th:value="${engineType}"></option>
                     </select>
                 </div>
                 <div class="input-point">
@@ -677,8 +677,8 @@
                 </div>
                 <div class="input-point">
                     <label>Конфігурація двигуна:</label>
-                    <select name="type">
-                        <option th:each="engineConfig : ${T(uniloft.springframework.spring5carshop.model.enums.EngineConfig).values()}" th:text="${engineConfig.description}" th:value="${engineConfig.description}"></option>
+                    <select name="config">
+                        <option th:each="engineConfig : ${T(uniloft.springframework.spring5carshop.model.enums.EngineConfig).values()}" th:text="${engineConfig.description}" th:value="${engineConfig}"></option>
                     </select>
                 </div>
                 <div class="input-point">
