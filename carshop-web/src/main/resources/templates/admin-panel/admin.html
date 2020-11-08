@@ -716,6 +716,7 @@
                     <td th:text="${buy.price}"></td>
                 </tr>
             </table>
+            <a href="#" class="report-btn" th:href="@{/createBuysReport}"><i class="fas fa-print"></i><p>Звіт</p></a>
         </div>
 
         <div th:if="${page=='tests'}">
@@ -736,6 +737,7 @@
                     <td th:text="${test.price}"></td>
                 </tr>
             </table>
+            <a href="#" class="report-btn" th:href="@{/createTestsReport}"><i class="fas fa-print"></i><p>Звіт</p></a>
         </div>
 
         <div th:if="${page=='customers'}">
@@ -756,6 +758,7 @@
                     <td th:text="${customer.address}"></td>
                 </tr>
             </table>
+            <a href="#" class="report-btn" th:href="@{/createCustomersReport}"><i class="fas fa-print"></i><p>Звіт</p></a>
         </div>
     </div>
 </main>

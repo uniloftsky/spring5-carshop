@@ -2608,3 +2608,24 @@ Authority
     resize: none;
     height: 100px;
 }
+
+.report-btn {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    background: darkgreen;
+    color: white;
+    width: 150px;
+    padding: .5em;
+    justify-content: center;
+    margin-top: 1em;
+    transition: .75s background-color;
+}
+
+.report-btn i {
+    margin-right: .25em;
+}
+
+.report-btn:hover {
+    background: #261C1D;
+}

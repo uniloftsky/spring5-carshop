@@ -12,6 +12,8 @@ import uniloft.springframework.spring5carshop.services.*;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
@@ -376,5 +378,29 @@ public class AdminController {
         TreeSet<TestCar> testCars = new TreeSet<>(comparator);
         testCarService.getTestCars().iterator().forEachRemaining(testCars::add);
         return testCars;
+    }
+
+    @GetMapping("/createCustomersReport")
+    public String createCustomerReport() throws IOException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy-hh-mm-ss");
+        String fileName = "reports/customersReport-" + LocalDateTime.now().format(formatter) + ".xlsx";
+        customerService.write(fileName);
+        return "redirect:/admin?page=cars";
+    }
+
+    @GetMapping("/createBuysReport")
+    public String createBuysReport() throws IOException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy-hh-mm-ss");
+        String fileName = "reports/buysReport-" + LocalDateTime.now().format(formatter) + ".xlsx";
+        buyCarService.write(fileName);
+        return "redirect:/admin?page=cars";
+    }
+
+    @GetMapping("/createTestsReport")
+    public String createTestsReport() throws IOException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy-hh-mm-ss");
+        String fileName = "reports/testsReport-" + LocalDateTime.now().format(formatter) + ".xlsx";
+        testCarService.write(fileName);
+        return "redirect:/admin?page=cars";
     }
 }
