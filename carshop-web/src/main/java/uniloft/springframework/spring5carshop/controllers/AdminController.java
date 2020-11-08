@@ -2,12 +2,15 @@ package uniloft.springframework.spring5carshop.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uniloft.springframework.spring5carshop.comparators.*;
 import uniloft.springframework.spring5carshop.model.*;
 import uniloft.springframework.spring5carshop.services.*;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.Set;
@@ -21,15 +24,17 @@ public class AdminController {
     private final CarTypeService carTypeService;
     private final CarService carService;
     private final ImageService imageService;
+    private final EngineService engineService;
 
     private final String URL_ADMIN_REDIRECT = "redirect:/admin";
 
-    public AdminController(ColorService colorService, CarBrandService carBrandService, CarTypeService carTypeService, CarService carService, ImageService imageService) {
+    public AdminController(ColorService colorService, CarBrandService carBrandService, CarTypeService carTypeService, CarService carService, ImageService imageService, EngineService engineService) {
         this.colorService = colorService;
         this.carBrandService = carBrandService;
         this.carTypeService = carTypeService;
         this.carService = carService;
         this.imageService = imageService;
+        this.engineService = engineService;
     }
 
     @GetMapping("admin")
@@ -43,11 +48,36 @@ public class AdminController {
         return "admin-panel/admin";
     }
 
+    @GetMapping(value = "/admin", params = {"page=newCar"})
+    public String getNewCarPage(@RequestParam String page, Model model) {
+        model.addAttribute("car", new Car());
+        model.addAttribute("page", page);
+        return "admin-panel/admin";
+    }
+
     @GetMapping(value = "/admin", params = {"page=carEdit", "id"})
     public String getEditCarPage(@RequestParam String page, @RequestParam Long id, Model model) {
         model.addAttribute("car", carService.findById(id));
         model.addAttribute("page", page);
         return "admin-panel/admin";
+    }
+
+    @PostMapping("/editCar")
+    public String updateCarProcessForm(RedirectAttributes rA, @Valid @ModelAttribute Car car,  BindingResult bindingResult, @RequestParam(value = "imagefile", required = false) MultipartFile file, @RequestParam("changeImage") String changeImage) throws IOException {
+        if(bindingResult.hasErrors()) {
+            if(car.getId() == null) {
+                rA.addFlashAttribute("errors", bindingResult.getAllErrors());
+                return "redirect:/admin?page=newCar";
+            }
+            rA.addFlashAttribute("errors", bindingResult.getAllErrors());
+            return "redirect:/admin?page=carEdit&id=" + car.getId();
+        }
+        if (changeImage.equals("unchecked")) {
+            carService.save(car);
+        } else {
+            imageService.saveImageFile(car, file);
+        }
+        return "redirect:/admin?page=carEdit&id=" + car.getId();
     }
 
     //brands
@@ -73,7 +103,15 @@ public class AdminController {
     }
 
     @PostMapping(value = "/updateBrand")
-    public String updateBrandProcessForm(@ModelAttribute CarBrand brand, Model model) {
+    public String updateBrandProcessForm(RedirectAttributes rA, @Valid @ModelAttribute CarBrand brand, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()) {
+            if(brand.getId() == null) {
+                rA.addFlashAttribute("errors", bindingResult.getAllErrors());
+                return "redirect:/admin?page=newBrand";
+            }
+            rA.addFlashAttribute("erros", bindingResult.getAllErrors());
+            return "redirect:/admin?page=brandEdit&id=" + brand.getId();
+        }
         carBrandService.saveBrand(brand);
         return "redirect:/admin?page=brands";
     }
@@ -95,7 +133,15 @@ public class AdminController {
     }
 
     @PostMapping(value = "/updateModel")
-    public String updateBodyProcessForm(@ModelAttribute CarModel carModel, Model model) {
+    public String updateBodyProcessForm(RedirectAttributes rA, @Valid @ModelAttribute CarModel carModel, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            if (carModel.getId() == null) {
+                rA.addFlashAttribute("erros", bindingResult.getAllErrors());
+                return "redirect:/admin?page=newModel";
+            }
+            rA.addFlashAttribute("errors", bindingResult.getAllErrors());
+            return "redirect:/admin?page=modelEdit&id=" + carModel.getId();
+        }
         carBrandService.saveModel(carModel);
         return "redirect:/admin?page=models";
     }
@@ -117,7 +163,15 @@ public class AdminController {
     }
 
     @PostMapping(value = "/updateBody")
-    public String updateBodyProcessForm(@ModelAttribute CarBody carBody, Model model) {
+    public String updateBodyProcessForm(RedirectAttributes rA, @Valid @ModelAttribute CarBody carBody, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            if (carBody.getId() == null) {
+                rA.addFlashAttribute("errors", bindingResult.getAllErrors());
+                return "redirect:/admin?page=newBody";
+            }
+            rA.addFlashAttribute("errors", bindingResult.getAllErrors());
+            return "redirect:/admin?page=bodyEdit&id=" + carBody.getId();
+        }
         carBrandService.saveBody(carBody);
         return "redirect:/admin?page=bodies";
     }
@@ -145,7 +199,16 @@ public class AdminController {
     }
 
     @PostMapping(value = "/updateType")
-    public String updateTypeProcessForm(@ModelAttribute CarType carType, Model model) {
+    public String updateTypeProcessForm(RedirectAttributes rA, @Valid @ModelAttribute CarType carType, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            if (carType.getId() == null) {
+                rA.addFlashAttribute("errors", bindingResult.getAllErrors());
+                return "redirect:/admin?page=newType";
+            }
+            rA.addFlashAttribute("errors", bindingResult.getAllErrors());
+            rA.addFlashAttribute("type", carType);
+            return "redirect:/admin?page=typeEdit&id=" + carType.getId();
+        }
         carTypeService.saveOrUpdate(carType);
         return "redirect:/admin?page=carTypes";
     }
@@ -173,20 +236,61 @@ public class AdminController {
     }
 
     @PostMapping(value = "/updateColor")
-    public String updateColorProcessForm(@ModelAttribute("color") Color color, Model model) {
+    public String updateColorProcessForm(RedirectAttributes rA, @Valid @ModelAttribute Color color, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            if (color.getId() == null) {
+                rA.addFlashAttribute("errors", bindingResult.getAllErrors());
+                return "redirect:/admin?page=newColor";
+            }
+            rA.addFlashAttribute("errors", bindingResult.getAllErrors());
+            return "redirect:/admin?page=colorEdit&id=" + color.getId();
+        }
         colorService.save(color);
         return "redirect:/admin?page=colors";
     }
 
-    @PostMapping("/editCar")
-    public String updateCarProcessForm(@ModelAttribute Car car, @RequestParam(value = "imagefile", required = false) MultipartFile file, @RequestParam("changeImage") String changeImage) throws IOException {
-        if(changeImage.equals("unchecked")) {
-            carService.save(car);
+    //engines
+
+    @GetMapping(value = "/admin", params = {"page=engineEdit", "id"})
+    public String getEditEnginePage(@RequestParam String page, @RequestParam Long id, Model model) {
+        model.addAttribute("engine", engineService.findById(id));
+        model.addAttribute("page", page);
+        return "admin-panel/admin";
+    }
+
+    @GetMapping(value = "/admin", params = {"page=newEngine"})
+    public String getNewEnginePage(@RequestParam String page, Model model) {
+        model.addAttribute("engine", new Engine());
+        model.addAttribute("page", page);
+        return "admin-panel/admin";
+    }
+
+    @GetMapping("/admin/engineDelete/{id}")
+    public String processDeleteEngine(@PathVariable Long id, Model model) {
+        engineService.delete(engineService.findById(id));
+        return "redirect:/admin?page=engines";
+    }
+
+    @PostMapping(value = "/updateEngine")
+    public String updateEngineProcessForm(RedirectAttributes rA, @Valid @ModelAttribute Engine engine, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            if (engine.getId() == null) {
+                rA.addFlashAttribute("errors", bindingResult.getAllErrors());
+                return "redirect:/admin?page=newEngine";
+            }
+            rA.addFlashAttribute("errors", bindingResult.getAllErrors());
+            return "redirect:/admin?page=engineEdit&id=" + engine.getId();
         }
-        else {
-            imageService.saveImageFile(car, file);
-        }
-        return "redirect:/admin?page=carEdit&id=" + car.getId();
+        engineService.save(engine);
+        return "redirect:/admin?page=engines";
+    }
+
+    @ModelAttribute("engines")
+    public TreeSet<Engine> getSortedEngines() {
+        Comparator<Engine> comparator = new EngineAscendingComparatorById();
+        TreeSet<Engine> engines = new TreeSet<>(comparator);
+        engineService.getEngines().iterator().forEachRemaining(engines::add);
+        return engines;
     }
 
     @ModelAttribute("cars")

@@ -35,6 +35,7 @@
     <div class="wrap">
 
         <div class="data" th:if="${page=='cars'}">
+            <a href="#" th:href="@{/admin(page='newCar')}" class="add-data-btn" style="margin-bottom: 1em;">Додати автомобіль</a>
             <th:block th:each="car : ${cars}">
                 <div class="car-details-info details-info-admin">
                     <div class="car-details-img-block">
@@ -113,6 +114,116 @@
                     <a href="#" th:href="@{/admin(page=colors)}" class="add-btn">Редагувати кольори</a>
                 </div>
                 <div class="input-point">
+                    <label>Двигун:</label>
+                    <select name="color.id">
+                        <option th:each="engine : ${engines}" th:text="${engine.name}" th:selected="${engine.id.equals(car.engine.id)}" th:value="${engine.id}"></option>
+                    </select>
+                    <a href="#" th:href="@{/admin(page=engines)}" class="add-btn">Редагувати двигуни</a>
+                </div>
+                <div class="input-point">
+                    <label>Опис:</label>
+                    <textarea name="description" th:field="*{description}">
+                    </textarea>
+                </div>
+                <div class="input-point">
+                    <label>Короткий опис:</label>
+                    <textarea name="subDescription" th:field="*{subDescription}">
+                    </textarea>
+                </div>
+                <div class="input-point">
+                    <label>Ціна покупки:</label>
+                    <input type="number" name="price" th:field="*{price}">
+                </div>
+                <div class="input-point">
+                    <label>Ціна тест-драйву</label>
+                    <input type="number" name="testPrice" th:field="*{testPrice}">
+                </div>
+
+                <input type="hidden" th:field="*{image}">
+                <div class="image-change">
+                    <img style="width: 48%; border: 1px solid black;" th:src="${car.image}">
+                    <fieldset>
+                        <legend>Зображення</legend>
+                        <div>
+                            <input type="radio" name="changeImage" checked value="unchecked">
+                            <label>Не змінювати зображення</label>
+                        </div>
+                        <div>
+                            <input id="imageselect" type="radio" name="changeImage" value="checked">
+                            <label style="margin-right: .5em;">Змінити зображення:</label>
+                            <input id="imagefile" name="imagefile" type="file" class="file">
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="input-point">
+                    <input type="submit" value="Зберегти">
+                    <div class="error-block" th:if="${errors}">
+                        <ul>
+                            <li th:each="err : ${errors}">
+                                <i class="fas fa-times"></i><p th:text="${err.getDefaultMessage()}"></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div th:if="${page=='newCar'}">
+            <h3 style="width: 75%; margin: 0 auto; margin-top: 1em;">Додати авто:</h3>
+            <form th:object="${car}" class="edit-form" th:action="@{/editCar}" method="post" enctype="multipart/form-data">
+                <div class="input-point">
+                    <label>Бренд:</label>
+                    <select id="brand_select" name="brand.id">
+                        <option th:each="brand : ${brands}" th:text="${brand.brandName}" th:value="${brand.id}"></option>
+                    </select>
+                    <a href="#" th:href="@{/admin(page=brands)}" class="add-btn">Редагувати бренди</a>
+                </div>
+                <div class="input-point">
+                    <label>Модель:</label>
+                    <select id="model_select" name="model.id">
+                        <option th:each="model : ${models}" th:class="${model.brand.id}" th:text="${model.modelName}" th:value="${model.id}"></option>
+                    </select>
+                    <a href="#" th:href="@{/admin(page=models)}" class="add-btn">Редагувати моделі</a>
+                </div>
+                <div class="input-point">
+                    <label>Модель кузова:</label>
+                    <select id="body_select" name="body.id">
+                        <option th:each="body : ${bodies}" th:class="${body.model.id}" th:text="${body.bodyName}" th:value="${body.id}"></option>
+                    </select>
+                    <a href="#" th:href="@{/admin(page=bodies)}" class="add-btn">Редагувати моделі кузовів</a>
+                </div>
+                <div class="input-point">
+                    <label>Тип кузова:</label>
+                    <select name="carType.id">
+                        <option th:each="carType : ${carTypes}" th:text="${carType.typeName}" th:value="${carType.id}"></option>
+                    </select>
+                    <a href="#" th:href="@{/admin(page=carTypes)}" class="add-btn">Редагувати типи кузовів</a>
+                </div>
+                <div class="input-point">
+                    <label>Колір:</label>
+                    <select name="color.id">
+                        <option th:each="color : ${colors}" th:text="${color.colorName}" th:value="${color.id}"></option>
+                    </select>
+                    <a href="#" th:href="@{/admin(page=colors)}" class="add-btn">Редагувати кольори</a>
+                </div>
+                <div class="input-point">
+                    <label>Двигун:</label>
+                    <select name="color.id">
+                        <option th:each="engine : ${engines}" th:text="${engine.name}" th:value="${engine.id}"></option>
+                    </select>
+                    <a href="#" th:href="@{/admin(page=engines)}" class="add-btn">Редагувати двигуни</a>
+                </div>
+                <div class="input-point">
+                    <label>Опис:</label>
+                    <textarea name="description" th:field="*{description}">
+                    </textarea>
+                </div>
+                <div class="input-point">
+                    <label>Короткий опис:</label>
+                    <textarea name="subDescription" th:field="*{subDescription}">
+                    </textarea>
+                </div>
+                <div class="input-point">
                     <label>Ціна покупки:</label>
                     <input type="number" name="price" th:field="*{price}">
                 </div>
@@ -140,8 +251,14 @@
                 </div>
                 <div class="input-point">
                     <input type="submit" value="Зберегти">
+                    <div class="error-block" th:if="${errors}">
+                        <ul>
+                            <li th:each="err : ${errors}">
+                                <i class="fas fa-times"></i><p th:text="${err.getDefaultMessage()}"></p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-
             </form>
         </div>
 
@@ -169,7 +286,14 @@
                 <input type="hidden" th:field="*{id}">
                 <div class="input-point">
                     <label>Назва бренду:</label>
-                    <input type="text" name="brandName" th:field="*{brandName}">
+                    <input type="text" name="brandName" th:field="*{brandName}" th:class="${errors} ? 'input-error'">
+                    <div class="error-block" th:if="${errors}">
+                        <ul>
+                            <li th:each="err : ${errors}">
+                                <i class="fas fa-times"></i><p th:text="${err.getDefaultMessage()}"></p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="input-point">
                     <input type="submit" value="Зберегти">
@@ -181,7 +305,14 @@
             <form class="edit-form" th:object="${brand}" th:action="@{/updateBrand}" method="post">
                 <div class="input-point">
                     <label>Назва бренду:</label>
-                    <input type="text" name="brandName" th:field="*{brandName}">
+                    <input type="text" name="brandName" th:field="*{brandName}" th:class="${errors} ? 'input-error'">
+                    <div class="error-block" th:if="${errors}">
+                        <ul>
+                            <li th:each="err : ${errors}">
+                                <i class="fas fa-times"></i><p th:text="${err.getDefaultMessage()}"></p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="input-point">
                     <input type="submit" value="Зберегти">
@@ -214,13 +345,20 @@
                 <input type="hidden" th:field="*{id}">
                 <div class="input-point">
                     <label>Назва моделі:</label>
-                    <input type="text" name="brandName" th:field="*{modelName}">
+                    <input type="text" name="brandName" th:field="*{modelName}" th:class="${errors} ? 'input-error'">
                 </div>
                 <div class="input-point">
                     <label>Бренд:</label>
-                    <select name="brand.id">
+                    <select name="brand.id" th:class="${errors} ? 'input-error'">
                         <option th:each="brand: ${brands}" th:text="${brand.brandName}" th:value="${brand.id}"></option>
                     </select>
+                    <div class="error-block" th:if="${errors}">
+                        <ul>
+                            <li th:each="err : ${errors}">
+                                <i class="fas fa-times"></i><p th:text="${err.getDefaultMessage()}"></p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="input-point">
                     <input type="submit" value="Зберегти">
@@ -232,13 +370,20 @@
             <form class="edit-form" th:object="${model}" th:action="@{/updateModel}" method="post">
                 <div class="input-point">
                     <label>Назва моделі:</label>
-                    <input type="text" name="brandName" th:field="*{modelName}">
+                    <input type="text" name="brandName" th:field="*{modelName}" th:class="${erros} ? 'input-error'">
                 </div>
                 <div class="input-point">
                     <label>Бренд:</label>
-                    <select name="brand.id">
+                    <select name="brand.id" th:class="${errors} ? 'input-error'">
                         <option th:each="brand: ${brands}" th:text="${brand.brandName}" th:value="${brand.id}"></option>
                     </select>
+                    <div class="error-block" th:if="${errors}">
+                        <ul>
+                            <li th:each="err : ${errors}">
+                                <i class="fas fa-times"></i><p th:text="${err.getDefaultMessage()}"></p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="input-point">
@@ -272,13 +417,20 @@
                 <input type="hidden" th:field="*{id}">
                 <div class="input-point">
                     <label>Назва моделі кузова:</label>
-                    <input type="text" name="bodyName" th:field="*{bodyName}">
+                    <input type="text" name="bodyName" th:field="*{bodyName}" th:class="${errors} ? 'input-error'">
                 </div>
                 <div class="input-point">
                     <label>Модель:</label>
-                    <select name="model.id">
+                    <select name="model.id" th:class="${errors} ? 'input-error'">
                         <option th:each="model: ${models}" th:text="${model.modelName}" th:value="${model.id}"></option>
                     </select>
+                    <div class="error-block" th:if="${errors}">
+                        <ul>
+                            <li th:each="err : ${errors}">
+                                <i class="fas fa-times"></i><p th:text="${err.getDefaultMessage()}"></p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="input-point">
                     <input type="submit" value="Зберегти">
@@ -290,13 +442,20 @@
             <form class="edit-form" th:object="${body}" th:action="@{/updateBody}" method="post">
                 <div class="input-point">
                     <label>Назва моделі кузова:</label>
-                    <input type="text" name="bodyName" th:field="*{bodyName}">
+                    <input type="text" name="bodyName" th:field="*{bodyName}" th:class="${errors} ? 'input-error'">
                 </div>
                 <div class="input-point">
                     <label>Модель:</label>
-                    <select name="model.id">
+                    <select name="model.id" th:class="${errors} ? 'input-error'">
                         <option th:each="model: ${models}" th:text="${model.modelName}" th:value="${model.id}"></option>
                     </select>
+                    <div class="error-block" th:if="${errors}">
+                        <ul>
+                            <li th:each="err : ${errors}">
+                                <i class="fas fa-times"></i><p th:text="${err.getDefaultMessage()}"></p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="input-point">
@@ -330,7 +489,14 @@
                 <input type="hidden" th:field="*{id}">
                 <div class="input-point">
                     <label>Назва типу кузова:</label>
-                    <input type="text" name="typeName" th:field="*{typeName}">
+                    <input type="text" name="typeName" th:field="*{typeName}" th:class="${errors} ? 'input-error'">
+                    <div class="error-block" th:if="${errors}">
+                        <ul>
+                            <li th:each="err : ${errors}">
+                                <i class="fas fa-times"></i><p th:text="${err.getDefaultMessage()}"></p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="input-point">
                     <input type="submit" value="Зберегти">
@@ -342,7 +508,14 @@
             <form class="edit-form" th:object="${type}" th:action="@{/updateType}" method="post">
                 <div class="input-point">
                     <label>Назва типу кузова:</label>
-                    <input type="text" name="typeName" th:field="*{typeName}">
+                    <input type="text" name="typeName" th:field="*{typeName}" th:class="${errors} ? 'input-error'">
+                    <div class="error-block" th:if="${errors}">
+                        <ul>
+                            <li th:each="err : ${errors}">
+                                <i class="fas fa-times"></i><p th:text="${err.getDefaultMessage()}"></p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="input-point">
                     <input type="submit" value="Зберегти">
@@ -375,7 +548,14 @@
                 <input type="hidden" th:field="*{id}">
                 <div class="input-point">
                     <label>Назва кольору:</label>
-                    <input type="text" name="colorName" th:field="*{colorName}">
+                    <input type="text" name="colorName" th:field="*{colorName}" th:class="${errors} ? 'input-error'">
+                    <div class="error-block" th:if="${errors}">
+                        <ul>
+                            <li th:each="err : ${errors}">
+                                <i class="fas fa-times"></i><p th:text="${err.getDefaultMessage()}"></p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="input-point">
                     <input type="submit" value="Зберегти">
@@ -387,10 +567,133 @@
             <form class="edit-form" th:object="${color}" th:action="@{/updateColor}" method="post">
                 <div class="input-point">
                     <label>Назва кольору:</label>
-                    <input type="text" name="colorName" th:field="*{colorName}">
+                    <input type="text" name="colorName" th:field="*{colorName}" th:class="${errors} ? 'input-error'">
+                    <div class="error-block" th:if="${errors}">
+                        <ul>
+                            <li th:each="err : ${errors}">
+                                <i class="fas fa-times"></i><p th:text="${err.getDefaultMessage()}"></p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="input-point">
                     <input type="submit" value="Зберегти">
+                </div>
+            </form>
+        </div>
+
+        <div th:if="${page=='engines'}">
+            <h3 style="margin: 1em 0;">Редагувати двигуни:</h3>
+            <table class="data-table" border="1px">
+                <tr>
+                    <th>Код</th>
+                    <th>Назва двигуна</th>
+                    <th>Тип двигуна</th>
+                    <th>Об'єм</th>
+                    <th>Потужність</th>
+                    <th>Конфігурація</th>
+                    <th>К-сть циліндрів</th>
+                    <th>Редагувати</th>
+                    <th>Видалити</th>
+                </tr>
+                <tr th:each="engine : ${engines}">
+                    <td th:text="${engine.id}"></td>
+                    <td th:text="${engine.name}"></td>
+                    <td th:text="${engine.type.description}"></td>
+                    <td th:text="${engine.capacity}"></td>
+                    <td th:text="${engine.power}"></td>
+                    <td th:text="${engine.config.description}"></td>
+                    <td th:text="${engine.cylinders}"></td>
+                    <td><a class="table-btn" href="#" th:href="@{/admin(page='engineEdit', id=${engine.id})}">Редагувати</a></td>
+                    <td><a class="table-btn" href="#" th:href="@{'/admin/engineDelete/' + ${engine.id}}">Видалити</a></td>
+                </tr>
+            </table>
+            <a href="#" class="add-data-btn" th:href="@{/admin(page='newEngine')}">Додати новий</a>
+        </div>
+
+        <div th:if="${page=='engineEdit'}">
+            <form class="edit-form" th:object="${engine}" th:action="@{/updateEngine}" method="post">
+                <input type="hidden" th:field="*{id}">
+                <div class="input-point">
+                    <label>Назва двигуна:</label>
+                    <input type="text" name="name" th:field="*{name}">
+                </div>
+                <div class="input-point">
+                    <label>Тип двигуна:</label>
+                    <select name="type">
+                        <option th:each="engineType : ${T(uniloft.springframework.spring5carshop.model.enums.EngineType).values()}" th:selected="${engineType.description.equals(engine.type.description)}" th:text="${engineType.description}" th:value="${engineType.description}"></option>
+                    </select>
+                </div>
+                <div class="input-point">
+                    <label>Об'єм двигуна:</label>
+                    <input type="number" name="capacity" th:field="*{capacity}">
+                </div>
+                <div class="input-point">
+                    <label>Потужність двигуна:</label>
+                    <input type="number" name="power" th:field="*{power}">
+                </div>
+                <div class="input-point">
+                    <label>Конфігурація двигуна:</label>
+                    <select name="type">
+                        <option th:each="engineConfig : ${T(uniloft.springframework.spring5carshop.model.enums.EngineConfig).values()}" th:selected="${engineConfig.description.equals(engine.config.description)}" th:text="${engineConfig.description}" th:value="${engineConfig.description}"></option>
+                    </select>
+                </div>
+                <div class="input-point">
+                    <label>К-сть циліндрів:</label>
+                    <input type="number" name="cylinders" th:field="*{cylinders}">
+                </div>
+                <div class="input-point">
+                    <input type="submit" value="Зберегти">
+                    <div class="error-block" th:if="${errors}">
+                        <ul>
+                            <li th:each="err : ${errors}">
+                                <i class="fas fa-times"></i><p th:text="${err.getDefaultMessage()}"></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div th:if="${page=='newEngine'}">
+            <form class="edit-form" th:object="${engine}" th:action="@{/updateEngine}" method="post">
+                <div class="input-point">
+                    <label>Назва двигуна:</label>
+                    <input type="text" name="name" th:field="*{name}">
+                </div>
+                <div class="input-point">
+                    <label>Тип двигуна:</label>
+                    <select name="type">
+                        <option th:each="engineType : ${T(uniloft.springframework.spring5carshop.model.enums.EngineType).values()}" th:text="${engineType.description}" th:value="${engineType.description}"></option>
+                    </select>
+                </div>
+                <div class="input-point">
+                    <label>Об'єм двигуна:</label>
+                    <input type="number" name="capacity" th:field="*{capacity}">
+                </div>
+                <div class="input-point">
+                    <label>Потужність двигуна:</label>
+                    <input type="number" name="power" th:field="*{power}">
+                </div>
+                <div class="input-point">
+                    <label>Конфігурація двигуна:</label>
+                    <select name="type">
+                        <option th:each="engineConfig : ${T(uniloft.springframework.spring5carshop.model.enums.EngineConfig).values()}" th:text="${engineConfig.description}" th:value="${engineConfig.description}"></option>
+                    </select>
+                </div>
+                <div class="input-point">
+                    <label>К-сть циліндрів:</label>
+                    <input type="number" name="cylinders" th:field="*{cylinders}">
+                </div>
+                <div class="input-point">
+                    <input type="submit" value="Зберегти">
+                    <div class="error-block" th:if="${errors}">
+                        <ul>
+                            <li th:each="err : ${errors}">
+                                <i class="fas fa-times"></i><p th:text="${err.getDefaultMessage()}"></p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </form>
         </div>
@@ -406,65 +709,6 @@
         <div th:if="${page=='customers'}">
 
         </div>
-
-        <!--<div class="data">
-            <form th:action="@{/colorAdd}" method="post">
-                <h3>Кольори:</h3>
-                <input type="text" name="colorName">
-                <input type="submit" value="Додати">
-            </form>
-            <table class="data-table">
-                <tr>
-                    <th>ID</th>
-                    <th>Назва кольору</th>
-                </tr>
-                <tr th:each="color : ${colors}">
-                    <td th:text="${color.id}"></td>
-                    <td th:text="${color.color}"></td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="data">
-            <form th:action="@{/brandAdd}" method="post">
-                <h3>Бренди:</h3>
-                <input type="text" name="brandName">
-                <input type="submit" value="Додати">
-            </form>
-            <table class="data-table">
-                <tr>
-                    <th>ID</th>
-                    <th>Назва Бренду</th>
-                </tr>
-                <tr th:each="brand : ${brands}">
-                    <td th:text="${brand.id}"></td>
-                    <td th:text="${brand.brandName}"></td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="data">
-            <form th:action="@{/modelAdd}" method="post">
-                <h3>Моделі:</h3>
-                <select name="brandName">
-                    <option th:each="brand : ${brands}" th:text="${brand.brandName}" th:value="${brand.brandName}"></option>
-                </select><br>
-                <input type="text" name="modelName">
-                <input type="submit" value="Додати">
-            </form>
-            <table class="data-table">
-                <tr>
-                    <th>ID</th>
-                    <th>Назва моделі</th>
-                    <th>Назва бренду</th>
-                </tr>
-                <tr th:each="model : ${models}">
-                    <td th:text="${model.id}"></td>
-                    <td th:text="${model.modelName}"></td>
-                    <td th:text="${model.brand.brandName}"></td>
-                </tr>
-            </table>
-        </div>-->
     </div>
 </main>
 <footer>

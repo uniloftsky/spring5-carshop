@@ -2603,3 +2603,8 @@ Authority
 .add-data-btn:hover {
     background: #261C1D;
 }
+
+.input-point textarea {
+    resize: none;
+    height: 100px;
+}

@@ -10,6 +10,9 @@ import uniloft.springframework.spring5carshop.model.enums.EngineType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -18,14 +21,21 @@ import javax.persistence.Enumerated;
 @Entity
 public class Engine extends BaseEntity {
 
+    @NotBlank
+    @Size(min = 1, max = 100)
     private String name;
 
+    @NotNull
     @Enumerated(value = EnumType.STRING)
     private EngineType type;
 
+    @NotNull
     private int capacity;
+
+    @NotNull
     private int power;
 
+    @NotNull
     @Enumerated(value = EnumType.STRING)
     private EngineConfig config;
 
