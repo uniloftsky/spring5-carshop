@@ -105,18 +105,18 @@ INSERT INTO car_body (body_name, model_id)
 VALUES ('R34', 5);
 
 -- Cars
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price)
-VALUES (1, 1, 1, 15, 1, 1, 5376, 250);
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price)
-VALUES (2, 1, 3, 3, 5, 2, 3964, 250);
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price)
-VALUES (3, 1, 2, 4, 6, 4, 2523, 75);
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price)
-VALUES (3, 1, 1, 2, 2, 4, 2523, 150);
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price)
-VALUES (3, 1, 4, 5, 7, 4, 2523, 150);
-INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price)
-VALUES (3, 2, 4, 5, 8, 4, 2523, 150);
+INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
+VALUES (1, 1, 1, 15, 1, 1, 5376, 250, 'resources/images/cars/7e932653-0e38-4b0e-90e6-b6df078f7089-901601.jpg');
+INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
+VALUES (2, 1, 3, 3, 5, 2, 3964, 250, 'resources/images/cars/fe325a16-9781-4871-85c0-e642c350fab5-s170.jpg');
+INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
+VALUES (3, 1, 2, 4, 6, 4, 2523, 75, 'resources/images/cars/965b049f-95ab-4593-bb0a-8db1102aea81-e34.jpg');
+INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
+VALUES (3, 1, 1, 2, 2, 4, 2523, 150, 'resources/images/cars/8d772a64-9e3a-4644-adc1-372ac7846ab3-e200.jpg');
+INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
+VALUES (3, 1, 4, 5, 7, 4, 2523, 150, 'resources/images/cars/24036cdb-d126-4ddd-b82c-861445b00db1-gtr35.jpg');
+INSERT INTO car (engine_id, car_type_id, brand_id, model_id, body_id, color_id, price, test_price, image)
+VALUES (3, 2, 4, 5, 8, 4, 2523, 150, 'resources/images/cars/70e99422-4a2b-433f-9681-181e547ea4d2-nissan-skyline-gt-r34-nismo.jpg');
 
 -- Car buys
 INSERT INTO buy_car (car_id, customer_id, date, count, price)
