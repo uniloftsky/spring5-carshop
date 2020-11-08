@@ -4,10 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import uniloft.springframework.spring5carshop.comparators.CarAscendingComparatorById;
-import uniloft.springframework.spring5carshop.comparators.CarBrandAscendingComparatorById;
-import uniloft.springframework.spring5carshop.comparators.CarModelAscendingComparatorById;
-import uniloft.springframework.spring5carshop.comparators.ColorAscendingComparatorById;
+import uniloft.springframework.spring5carshop.comparators.*;
 import uniloft.springframework.spring5carshop.model.*;
 import uniloft.springframework.spring5carshop.services.*;
 
@@ -53,6 +50,8 @@ public class AdminController {
         return "admin-panel/admin";
     }
 
+    //brands
+
     @GetMapping(value = "/admin", params = {"page=brandEdit", "id"})
     public String getEditBrandPage(@RequestParam String page, @RequestParam Long id, Model model) {
         model.addAttribute("brand", carBrandService.findCarBrandById(id));
@@ -79,6 +78,8 @@ public class AdminController {
         return "redirect:/admin?page=brands";
     }
 
+    //models
+
     @GetMapping(value = "/admin", params = {"page=modelEdit", "id"})
     public String getEditModelPage(@RequestParam String page, @RequestParam Long id, Model model) {
         model.addAttribute("model", carBrandService.findCarModelById(id));
@@ -94,9 +95,87 @@ public class AdminController {
     }
 
     @PostMapping(value = "/updateModel")
-    public String updateModelProcessForm(@ModelAttribute CarModel carModel, Model model) {
+    public String updateBodyProcessForm(@ModelAttribute CarModel carModel, Model model) {
         carBrandService.saveModel(carModel);
         return "redirect:/admin?page=models";
+    }
+
+    //bodies
+
+    @GetMapping(value = "/admin", params = {"page=bodyEdit", "id"})
+    public String getEditBodyPage(@RequestParam String page, @RequestParam Long id, Model model) {
+        model.addAttribute("body", carBrandService.findCarBodyById(id));
+        model.addAttribute("page", page);
+        return "admin-panel/admin";
+    }
+
+    @GetMapping(value = "/admin", params = {"page=newBody"})
+    public String getNewBodyPage(@RequestParam String page, Model model) {
+        model.addAttribute("body", new CarBody());
+        model.addAttribute("page", page);
+        return "admin-panel/admin";
+    }
+
+    @PostMapping(value = "/updateBody")
+    public String updateBodyProcessForm(@ModelAttribute CarBody carBody, Model model) {
+        carBrandService.saveBody(carBody);
+        return "redirect:/admin?page=bodies";
+    }
+
+    //types
+
+    @GetMapping(value = "/admin", params = {"page=typeEdit", "id"})
+    public String getEditTypePage(@RequestParam String page, @RequestParam Long id, Model model) {
+        model.addAttribute("type", carTypeService.findById(id));
+        model.addAttribute("page", page);
+        return "admin-panel/admin";
+    }
+
+    @GetMapping(value = "/admin", params = {"page=newType"})
+    public String getNewTypePage(@RequestParam String page, Model model) {
+        model.addAttribute("type", new CarType());
+        model.addAttribute("page", page);
+        return "admin-panel/admin";
+    }
+
+    @GetMapping("/admin/typeDelete/{id}")
+    public String processDeleteType(@PathVariable Long id, Model model) {
+        carTypeService.delete(carTypeService.findById(id));
+        return "redirect:/admin?page=carTypes";
+    }
+
+    @PostMapping(value = "/updateType")
+    public String updateTypeProcessForm(@ModelAttribute CarType carType, Model model) {
+        carTypeService.saveOrUpdate(carType);
+        return "redirect:/admin?page=carTypes";
+    }
+
+    //colors
+
+    @GetMapping(value = "/admin", params = {"page=colorEdit", "id"})
+    public String getEditColorPage(@RequestParam String page, @RequestParam Long id, Model model) {
+        model.addAttribute("color", colorService.findById(id));
+        model.addAttribute("page", page);
+        return "admin-panel/admin";
+    }
+
+    @GetMapping(value = "/admin", params = {"page=newColor"})
+    public String getNewColorPage(@RequestParam String page, Model model) {
+        model.addAttribute("color", new Color());
+        model.addAttribute("page", page);
+        return "admin-panel/admin";
+    }
+
+    @GetMapping("/admin/colorDelete/{id}")
+    public String processDeleteColor(@PathVariable Long id, Model model) {
+        colorService.delete(colorService.findById(id));
+        return "redirect:/admin?page=colors";
+    }
+
+    @PostMapping(value = "/updateColor")
+    public String updateColorProcessForm(@ModelAttribute("color") Color color, Model model) {
+        colorService.save(color);
+        return "redirect:/admin?page=colors";
     }
 
     @PostMapping("/editCar")
@@ -144,12 +223,18 @@ public class AdminController {
 
     @ModelAttribute("bodies")
     public Set<CarBody> getSortedBodies() {
-        return carBrandService.getModelBodies();
+        Comparator<CarBody> comparator = new CarBodyAscendingComparatorById();
+        TreeSet<CarBody> cars = new TreeSet<>(comparator);
+        carBrandService.getModelBodies().iterator().forEachRemaining(cars::add);
+        return cars;
     }
 
     @ModelAttribute("carTypes")
     public Set<CarType> getSortedTypes() {
-        return carTypeService.getCarTypes();
+        Comparator<CarType> comparator = new CarTypeAscendingComparatorById();
+        TreeSet<CarType> types = new TreeSet<>(comparator);
+        carTypeService.getCarTypes().iterator().forEachRemaining(types::add);
+        return types;
     }
 
     @PostMapping("admin/car/delete/{id}")
@@ -162,7 +247,7 @@ public class AdminController {
     @PostMapping("colorAdd")
     public String colorAddProcessForm(@RequestParam String colorName) {
         Color color = new Color();
-        color.setColor(colorName);
+        color.setColorName(colorName);
         colorService.save(color);
         return URL_ADMIN_REDIRECT;
     }

@@ -10,11 +10,13 @@ public interface CarBrandService {
 
     CarBrand findCarBrandById(Long id);
     CarModel findCarModelById(Long id);
+    CarBody findCarBodyById(Long id);
     void deleteBrand(CarBrand carBrand);
     Set<CarBrand> getCarBrands();
     Set<CarModel> getBrandModels();
     Set<CarBody> getModelBodies();
     CarBrand saveBrand(CarBrand carBrand);
     CarModel saveModel(CarModel carModel);
+    CarBody saveBody(CarBody carBody);
 
 }

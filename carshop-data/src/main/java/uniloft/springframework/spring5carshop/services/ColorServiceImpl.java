@@ -5,6 +5,7 @@ import uniloft.springframework.spring5carshop.model.Color;
 import uniloft.springframework.spring5carshop.services.repositories.ColorRepository;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -17,6 +18,15 @@ public class ColorServiceImpl implements ColorService {
     }
 
     @Override
+    public Color findById(Long id) {
+        Optional<Color> colorOptional = colorRepository.findById(id);
+        if(colorOptional.isEmpty()) {
+            throw new RuntimeException("Expected color not found!");
+        }
+        return colorOptional.get();
+    }
+
+    @Override
     public Set<Color> getColors() {
         Set<Color> colors = new HashSet<>();
         colorRepository.findAll().iterator().forEachRemaining(colors::add);
@@ -26,5 +36,10 @@ public class ColorServiceImpl implements ColorService {
     @Override
     public Color save(Color color) {
         return colorRepository.save(color);
+    }
+
+    @Override
+    public void delete(Color color) {
+        colorRepository.delete(color);
     }
 }

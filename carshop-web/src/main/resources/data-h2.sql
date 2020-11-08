@@ -35,13 +35,13 @@ INSERT INTO engine (name, type, capacity, power, config, cylinders)
 VALUES ('BMW M43', 'PETROL', 1596, 87, 'INLINE', 4);
 
 -- Colors
-INSERT INTO color (color)
+INSERT INTO color (color_name)
 VALUES ('Чорний');
-INSERT INTO color (color)
+INSERT INTO color (color_name)
 VALUES ('Білий');
-INSERT INTO color (color)
+INSERT INTO color (color_name)
 VALUES ('Червоний');
-INSERT INTO color (color)
+INSERT INTO color (color_name)
 VALUES ('Синій');
 
 -- Car brands

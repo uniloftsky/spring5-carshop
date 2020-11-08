@@ -6,7 +6,9 @@ import java.util.Set;
 
 public interface ColorService {
 
+    Color findById(Long id);
     Set<Color> getColors();
     Color save(Color color);
+    void delete(Color color);
 
 }

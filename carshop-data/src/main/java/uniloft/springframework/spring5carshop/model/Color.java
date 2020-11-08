@@ -10,6 +10,6 @@ import javax.persistence.Entity;
 @Entity
 public class Color extends BaseEntity {
 
-    String color;
+    private String colorName;
 
 }

@@ -8,6 +8,7 @@ import uniloft.springframework.spring5carshop.comparators.CarModelAscendingCompa
 import uniloft.springframework.spring5carshop.model.CarBody;
 import uniloft.springframework.spring5carshop.model.CarBrand;
 import uniloft.springframework.spring5carshop.model.CarModel;
+import uniloft.springframework.spring5carshop.services.repositories.CarBodyRepository;
 import uniloft.springframework.spring5carshop.services.repositories.CarBrandRepository;
 import uniloft.springframework.spring5carshop.services.repositories.CarModelRepository;
 
@@ -19,10 +20,12 @@ public class CarBrandServiceImpl implements CarBrandService {
 
     private final CarBrandRepository carBrandRepository;
     private final CarModelRepository carModelRepository;
+    private final CarBodyRepository carBodyRepository;
 
-    public CarBrandServiceImpl(CarBrandRepository carBrandRepository, CarModelRepository carModelRepository) {
+    public CarBrandServiceImpl(CarBrandRepository carBrandRepository, CarModelRepository carModelRepository, CarBodyRepository carBodyRepository) {
         this.carBrandRepository = carBrandRepository;
         this.carModelRepository = carModelRepository;
+        this.carBodyRepository = carBodyRepository;
     }
 
     @Override
@@ -37,6 +40,15 @@ public class CarBrandServiceImpl implements CarBrandService {
     @Override
     public CarModel findCarModelById(Long id) {
         return getBrandModels().stream().filter(carModel -> carModel.getId().equals(id)).findFirst().get();
+    }
+
+    @Override
+    public CarBody findCarBodyById(Long id) {
+        Optional<CarBody> bodyOptional = carBodyRepository.findById(id);
+        if (bodyOptional.isEmpty()) {
+            throw new RuntimeException("Expected car brand not found!");
+        }
+        return bodyOptional.get();
     }
 
     @Override
@@ -83,5 +95,10 @@ public class CarBrandServiceImpl implements CarBrandService {
     @Override
     public CarModel saveModel(CarModel carModel) {
         return carModelRepository.save(carModel);
+    }
+
+    @Override
+    public CarBody saveBody(CarBody carBody) {
+        return carBodyRepository.save(carBody);
     }
 }
