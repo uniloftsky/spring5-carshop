@@ -8,7 +8,7 @@ import java.util.Set;
 
 public interface TestCarService {
 
-    Set<TestCar> getBuyCars();
+    Set<TestCar> getTestCars();
     TestCar save(TestCar buyCar, Customer customer, Car car);
     TestCar findById(Long id);
     void delete(TestCar buyCar);

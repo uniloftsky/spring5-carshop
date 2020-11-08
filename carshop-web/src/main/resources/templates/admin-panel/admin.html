@@ -699,15 +699,63 @@
         </div>
 
         <div th:if="${page=='buys'}">
-
+            <h3 style="margin: 1em 0;">Покупки авто: </h3>
+            <table class="data-table" border="1px">
+                <tr>
+                    <th>Код</th>
+                    <th>Авто</th>
+                    <th>Клієнт</th>
+                    <th>Дата</th>
+                    <th>Ціна (₴)</th>
+                </tr>
+                <tr th:each="buy : ${buys}">
+                    <td th:text="${buy.id}"></td>
+                    <td th:text="'(' + ${buy.car.id} + ') ' + ${buy.car.brand.brandName} + ' ' + ${buy.car.model.modelName} + ' ' + ${buy.car.body.bodyName}"></td>
+                    <td th:text="'(' + ${buy.customer.id} + ') ' + ${buy.customer.firstName} + ' ' + ${buy.customer.lastName}"></td>
+                    <td th:text="${buy.date}"></td>
+                    <td th:text="${buy.price}"></td>
+                </tr>
+            </table>
         </div>
 
         <div th:if="${page=='tests'}">
-
+            <h3 style="margin: 1em 0;">Тест-драйви авто: </h3>
+            <table class="data-table" border="1px">
+                <tr>
+                    <th>Код</th>
+                    <th>Авто</th>
+                    <th>Клієнт</th>
+                    <th>Дата</th>
+                    <th>Ціна (₴)</th>
+                </tr>
+                <tr th:each="test : ${tests}">
+                    <td th:text="${test.id}"></td>
+                    <td th:text="'(' + ${test.car.id} + ') ' + ${test.car.brand.brandName} + ' ' + ${test.car.model.modelName} + ' ' + ${test.car.body.bodyName}"></td>
+                    <td th:text="'(' + ${test.customer.id} + ') ' + ${test.customer.firstName} + ' ' + ${test.customer.lastName}"></td>
+                    <td th:text="${test.date}"></td>
+                    <td th:text="${test.price}"></td>
+                </tr>
+            </table>
         </div>
 
         <div th:if="${page=='customers'}">
-
+            <h3 style="margin: 1em 0;">Клієнти: </h3>
+            <table class="data-table" border="1px">
+                <tr>
+                    <th>Код</th>
+                    <th>Ім'я</th>
+                    <th>Прізвище</th>
+                    <th>Номер телефону</th>
+                    <th>Адреса</th>
+                </tr>
+                <tr th:each="customer : ${customers}">
+                    <td th:text="${customer.id}"></td>
+                    <td th:text="${customer.firstName}"></td>
+                    <td th:text="${customer.lastName}"></td>
+                    <td th:text="${customer.telephone}"></td>
+                    <td th:text="${customer.address}"></td>
+                </tr>
+            </table>
         </div>
     </div>
 </main>

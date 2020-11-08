@@ -21,7 +21,7 @@ public class TestCarServiceImpl implements TestCarService {
     }
 
     @Override
-    public Set<TestCar> getBuyCars() {
+    public Set<TestCar> getTestCars() {
         Set<TestCar> testCars = new HashSet<>();
         testCarRepository.findAll().iterator().forEachRemaining(testCars::add);
         return testCars;

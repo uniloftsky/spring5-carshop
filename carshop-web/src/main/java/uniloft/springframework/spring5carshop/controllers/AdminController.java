@@ -25,16 +25,22 @@ public class AdminController {
     private final CarService carService;
     private final ImageService imageService;
     private final EngineService engineService;
+    private final CustomerService customerService;
+    private final BuyCarService buyCarService;
+    private final TestCarService testCarService;
 
     private final String URL_ADMIN_REDIRECT = "redirect:/admin";
 
-    public AdminController(ColorService colorService, CarBrandService carBrandService, CarTypeService carTypeService, CarService carService, ImageService imageService, EngineService engineService) {
+    public AdminController(ColorService colorService, CarBrandService carBrandService, CarTypeService carTypeService, CarService carService, ImageService imageService, EngineService engineService, CustomerService customerService, BuyCarService buyCarService, TestCarService testCarService) {
         this.colorService = colorService;
         this.carBrandService = carBrandService;
         this.carTypeService = carTypeService;
         this.carService = carService;
         this.imageService = imageService;
         this.engineService = engineService;
+        this.customerService = customerService;
+        this.buyCarService = buyCarService;
+        this.testCarService = testCarService;
     }
 
     @GetMapping("admin")
@@ -348,19 +354,27 @@ public class AdminController {
         return types;
     }
 
-    @PostMapping("colorAdd")
-    public String colorAddProcessForm(@RequestParam String colorName) {
-        Color color = new Color();
-        color.setColorName(colorName);
-        colorService.save(color);
-        return URL_ADMIN_REDIRECT;
+    @ModelAttribute("customers")
+    public Set<Customer> getSortedCustomer() {
+        Comparator<Customer> comparator = new CustomerAscendingComparatorById();
+        TreeSet<Customer> customers = new TreeSet<>(comparator);
+        customerService.getCustomers().iterator().forEachRemaining(customers::add);
+        return customers;
     }
 
-    @PostMapping("brandAdd")
-    public String brandAddProcessForm(@RequestParam String brandName) {
-        CarBrand carBrand = new CarBrand();
-        carBrand.setBrandName(brandName);
-        carBrandService.saveBrand(carBrand);
-        return URL_ADMIN_REDIRECT;
+    @ModelAttribute("buys")
+    public Set<BuyCar> getSortedBuys() {
+        Comparator<BuyCar> comparator = new BuyCarAscendingComparatorById();
+        TreeSet<BuyCar> buyCars = new TreeSet<>(comparator);
+        buyCarService.getBuyCars().iterator().forEachRemaining(buyCars::add);
+        return buyCars;
+    }
+
+    @ModelAttribute("tests")
+    public Set<TestCar> getSortedTest() {
+        Comparator<TestCar> comparator = new TestCarAscendingComparatorById();
+        TreeSet<TestCar> testCars = new TreeSet<>(comparator);
+        testCarService.getTestCars().iterator().forEachRemaining(testCars::add);
+        return testCars;
     }
 }
