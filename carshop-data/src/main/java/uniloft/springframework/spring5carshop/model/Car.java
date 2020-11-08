@@ -62,7 +62,7 @@ public class Car extends BaseEntity {
     private String image;
 
     @NotBlank(message = "{car.description.NotBlank}")
-    @Size(min = 10, max = 500, message = "{car.description.Size}")
+    @Size(min = 10, max = 1000, message = "{car.description.Size}")
     @Lob
     private String description;
 

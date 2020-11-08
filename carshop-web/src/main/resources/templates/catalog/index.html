@@ -213,7 +213,7 @@
                         <div class="catalog-car-info">
                             <p class="catalog-car-title"
                                th:text="${page.brand.brandName} + ' ' + ${page.model.modelName}">ACURA RSX</p>
-                            <p class="catalog-car-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero
+                            <p class="catalog-car-desc" th:text="${page.subDescription}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero
                                 numquam repellendus non voluptate.</p>
                             <div class="catalog-car-price-ext">
                                 <p class="catalog-car-price" th:text="'₴' + ${page.price}">$32,698</p>
