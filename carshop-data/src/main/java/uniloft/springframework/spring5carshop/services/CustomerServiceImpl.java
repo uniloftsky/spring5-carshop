@@ -5,6 +5,7 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
+import uniloft.springframework.spring5carshop.exceptions.NotFoundException;
 import uniloft.springframework.spring5carshop.model.Customer;
 import uniloft.springframework.spring5carshop.services.repositories.CustomerRepository;
 
@@ -34,7 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer findById(Long id) {
         Optional<Customer> customerOptional = customerRepository.findById(id);
         if(customerOptional.isEmpty()) {
-            throw new RuntimeException("Expected customer not found!");
+            throw new NotFoundException("Клієнта з ID: " + id + " не знайдено!");
         }
         return customerOptional.get();
     }

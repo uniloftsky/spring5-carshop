@@ -3,6 +3,7 @@ package uniloft.springframework.spring5carshop.services;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import uniloft.springframework.spring5carshop.comparators.CarTypeAscendingComparatorByName;
+import uniloft.springframework.spring5carshop.exceptions.NotFoundException;
 import uniloft.springframework.spring5carshop.model.CarType;
 import uniloft.springframework.spring5carshop.services.repositories.CarTypeRepository;
 
@@ -34,7 +35,7 @@ public class CarTypeServiceImpl implements CarTypeService {
     public CarType findById(Long id) {
         Optional<CarType> carTypeOptional = carTypeRepository.findById(id);
         if(carTypeOptional.isEmpty()) {
-            throw new RuntimeException("Expected cartype not found!");
+            throw new NotFoundException("Тип кузова з ID: " + id + " не знайдено!");
         }
         return carTypeOptional.get();
     }

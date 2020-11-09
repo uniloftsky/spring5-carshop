@@ -1,6 +1,7 @@
 package uniloft.springframework.spring5carshop.services;
 
 import org.springframework.stereotype.Service;
+import uniloft.springframework.spring5carshop.exceptions.NotFoundException;
 import uniloft.springframework.spring5carshop.model.Color;
 import uniloft.springframework.spring5carshop.services.repositories.ColorRepository;
 
@@ -21,7 +22,7 @@ public class ColorServiceImpl implements ColorService {
     public Color findById(Long id) {
         Optional<Color> colorOptional = colorRepository.findById(id);
         if(colorOptional.isEmpty()) {
-            throw new RuntimeException("Expected color not found!");
+            throw new NotFoundException("Колір з ID: " + id + " не знайдено!");
         }
         return colorOptional.get();
     }

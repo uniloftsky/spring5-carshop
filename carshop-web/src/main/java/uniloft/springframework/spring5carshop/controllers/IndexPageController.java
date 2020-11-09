@@ -5,10 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import uniloft.springframework.spring5carshop.comparators.CarDescendingComparatorById;
 import uniloft.springframework.spring5carshop.model.Car;
-import uniloft.springframework.spring5carshop.services.CarBrandService;
-import uniloft.springframework.spring5carshop.services.CarService;
-import uniloft.springframework.spring5carshop.services.CarTypeService;
-import uniloft.springframework.spring5carshop.services.ColorService;
+import uniloft.springframework.spring5carshop.model.Message;
+import uniloft.springframework.spring5carshop.services.*;
 import uniloft.springframework.spring5carshop.services.repositories.CarRepository;
 
 import java.time.LocalDateTime;
@@ -26,13 +24,15 @@ public class IndexPageController {
     private final CarRepository carRepository;
     private final ColorService colorService;
     private final CarBrandService carBrandService;
+    private final MessageService messageService;
 
-    public IndexPageController(CarTypeService carTypeService, CarService carService, CarRepository carRepository, ColorService colorService, CarBrandService carBrandService) {
+    public IndexPageController(CarTypeService carTypeService, CarService carService, CarRepository carRepository, ColorService colorService, CarBrandService carBrandService, MessageService messageService) {
         this.carTypeService = carTypeService;
         this.carService = carService;
         this.carRepository = carRepository;
         this.colorService = colorService;
         this.carBrandService = carBrandService;
+        this.messageService = messageService;
     }
 
     @RequestMapping({"", "/", "index", "index.html", "home", "home.html"})
@@ -96,17 +96,11 @@ public class IndexPageController {
         return "contact";
     }
 
-    /*@PostMapping("findCar")
-    public String findCar(@RequestParam String brandName, @RequestParam String bodyName, @RequestParam String modelName, @RequestParam EngineType engineType, Model model) {
-        Optional<Car> carOptional = carRepository.findCarByBrandNameAndModelNameAndBodyNameAndEngine_Type(brandName, modelName, bodyName, engineType);
-        Car foundedCar = carOptional.get();
-        return "redirect:/car/" + foundedCar.getId() + "/show";
-    }*/
-
-    @PostMapping("findCar")
-    public String findCar(@RequestParam String carType) {
-        Set<Car> foundedCars = carRepository.findCarsByCarType_Id(Long.valueOf(carType));
-        return "redirect:/car/foundedlist/cartype/" + carType;
+    @PostMapping("/messageAdd")
+    public String messageAdd(@RequestParam("name") String name, @RequestParam("email") String email, @RequestParam("phone") String phone, @RequestParam("comment") String comment) {
+        Message message = new Message();
+        messageService.save(message, name, email, phone, comment);
+        return "redirect:/index";
     }
-
 }
+

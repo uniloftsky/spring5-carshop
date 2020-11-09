@@ -1,6 +1,7 @@
 package uniloft.springframework.spring5carshop.services;
 
 import org.springframework.stereotype.Service;
+import uniloft.springframework.spring5carshop.exceptions.NotFoundException;
 import uniloft.springframework.spring5carshop.model.Engine;
 import uniloft.springframework.spring5carshop.services.repositories.EngineRepository;
 
@@ -28,7 +29,7 @@ public class EngineServiceImpl implements EngineService {
     public Engine findById(Long id) {
         Optional<Engine> engineOptional = engineRepository.findById(id);
         if(engineOptional.isEmpty()) {
-            throw new RuntimeException("Expected engine not found!");
+            throw new NotFoundException("Двигун з ID: " + id + " не знайдено!");
         }
         return engineOptional.get();
     }

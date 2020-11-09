@@ -3,6 +3,7 @@ package uniloft.springframework.spring5carshop.services;
 import org.springframework.stereotype.Service;
 import uniloft.springframework.spring5carshop.comparators.CarAscendingComparatorByPrice;
 import uniloft.springframework.spring5carshop.comparators.CarDescendingComparatorById;
+import uniloft.springframework.spring5carshop.exceptions.NotFoundException;
 import uniloft.springframework.spring5carshop.model.Car;
 import uniloft.springframework.spring5carshop.services.repositories.CarRepository;
 
@@ -37,7 +38,7 @@ public class CarServiceImpl implements CarService {
     public Car findById(Long id) {
         Optional<Car> carOptional = carRepository.findById(id);
         if (carOptional.isEmpty()) {
-            throw new RuntimeException("Expected car not found!");
+            throw new NotFoundException("Автомобіль з ID: " + id + " не знайдено!");
         }
         return carOptional.get();
     }

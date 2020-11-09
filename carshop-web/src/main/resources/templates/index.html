@@ -1,1 +1,509 @@
-<!DOCTYPE html><html lang="ru" xmlns:th="http://www.thymeleaf.org"><head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap" rel="stylesheet"> <link th:href="@{resources/css/styles.css}" href="../static/resources/css/styles.css" rel="stylesheet" type="text/css"> <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> <link rel="shortcut icon" href="img/favicon.png" th:href="@{/resources/images/favicon.jpg}" type="img/jpg"> <title>UniCar - Автосалон</title></head><body><header> <div class="wrap"> <section class="top-bar"> <section class="top-bar-section"> <div class="top-bar-inner"> <img class="top-bar-icon" src="../static/resources/images/icons/email.png" th:src="@{resources/images/icons/email.png}"> <p class="top-bar-section-text">uniloftsky@gmail.com</p></div><div class="top-bar-inner"> <img class="top-bar-icon" src="../static/resources/images/icons/four-oclock.png" th:src="@{resources/images/icons/four-oclock.png}"> <p class="top-bar-section-text" th:text="${currentDate}">20.12.2002 02:00 AM</p></div></section> <section class="top-bar-section"> <div class="top-bar-inner"> <img class="top-bar-icon" src="../static/resources/images/icons/phone-call.png" th:src="@{resources/images/icons/phone-call.png}"> <p class="top-bar-section-text">(097)127-93-32</p></div></section> </section> </div></header><main> <div class="wrap"> <section class="logo-block"> <img class="logo-img" src="../static/resources/images/logo.png" th:src="@{resources/images/logo.png}"> </section> <nav> <ul> <li><a href="#" th:href="@{/}">Головна</a></li><li><a th:href="@{/catalog(page=0, size=5)}">Каталог авто</a></li><li><a href="#" th:href="@{/contact}">Зв'язатися</a></li><li><a href="#" th:href="@{/about}">Про нас</a></li></ul> </nav> </div><div class="slider"> <div class="slider__wrapper"> <div class="slider__item"> <div class="slider__item-inner" style="background: url('resources/images/slider/slider1.jpg') no-repeat; background-position: 50% 90%; background-size: cover"> <div class="wrap"> <div class="slider__item-content-one"> <div> <p>Сучасні автомобілі</p><a class="slider-btn btn-one" href="#">Перейти</a> </div></div></div></div></div><div class="slider__item"> <div class="slider__item-inner" style="background: url('resources/images/slider/slider2.jpg') no-repeat; background-position: center; background-size: cover"> <div class="wrap"> <div class="slider__item-content-two"> <div> <p>Старий чи новий?</p><a class="slider-btn" href="#">Перейти</a> </div></div></div></div></div><div class="slider__item"> <div class="slider__item-inner" style="background: url('resources/images/slider/slider3.jpg') no-repeat; background-position: 50% 90%; background-size: cover"> <div class="wrap"> <div class="slider__item-content-one"> <p>Спробуй тест-драйв</p><a class="slider-btn btn-one" href="#">Перейти</a> </div></div></div></div></div><a class="slider__control slider__control_left" href="#" role="button"></a> <a class="slider__control slider__control_right slider__control_show" href="#" role="button"></a> </div><div class="wrap"> <section class="features-section"> <div class="feature"> <div class="feature-icon"> <i class="fa fa-car"></i> </div><p>Нові машини</p></div><div class="feature"> <div class="feature-icon"> <i class="fa fa-tag"></i> </div><p>Спеціальні пропозиції</p></div><div class="feature"> <div class="feature-icon"> <i class="fa fa-wrench"></i> </div><p>Автосервіс</p></div><div class="feature"> <div class="feature-icon"> <i class="fa fa-phone"></i> </div><p>Швидкий зв'язок</p></div></section> <section class="intro-section"> <div class="intro-img-block"> <img class="intro-img" src="../static/resources/images/car.jpg" th:src="@{resources/images/car.jpg}"> </div><div class="intro-content"> <h4 class="intro-content-title">Знайди автомобіль мрії</h4> <p class="intro-content-subtitle">Необхідно лише вибрати ваші переваги і знайти</p><p class="intro-content-main">Наш автосалон пропонує автомобілі різного сорту: сучасні і старі, швидкі і великі. У нас є можливість спробувати машину у тест-драйв і зрозуміти чи вона вам подобається. Наш автосалон щільно працює із партнерскими автосервісами. При виникненні певних проблем ви завжди можете звернутись за гарячою лінією або за допомогою форми на нашому сайті.</p></div></section> </div><section class="parallax-window find_car-section" data-parallax="scroll" data-image-src="../static/resources/images/background-car.jpg" th:data-image-src="@{resources/images/background-car.jpg}"> <div class="wrap"> <div class="find-block"> <h2>Знайди свій автомобіль</h2> <hr id="form-hr1"> <hr id="form-hr2"> <form class="find-form" th:action="@{/findCar}" method="get"> <div class="form-in"> <div class="form-section"> <label>Бренд</label> <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> <select id="brand_select" name="brandName"> <option th:each="brand : ${brands}" th:class="${brand.brandName}" th:value="${brand.brandName}" th:text="${brand.brandName}">BMW </option> <option th:remove="all">Mercedes-Benz</option> <option th:remove="all">Toyota</option> </select> <label>Модель кузова</label> <select id="body_select" name="bodyName"> <th:block th:each="model : ${models}"> <option th:class="${model.modelName}" th:value="all-bodies">Всі моделі кузовів </option> </th:block> <option class="all-models" value="all-bodies">Всі моделі кузовів</option> <option th:each="body : ${bodies}" th:class="${body.model.modelName}" th:value="${body.bodyName}" th:text="${body.bodyName}">s500 </option> <option th:remove="all">s120</option> <option th:remove="all">e34</option> </select> <label>Тип кузова</label> <select id="cartype_select" name="carType"> <option>Всі типи кузова</option> <option th:each="carType : ${carTypes}" th:value="${carType.id}" th:text="${carType.typeName}"></option> </select> </div><div class="form-section"> <label>Модель</label> <select id="model_select" name="modelName"> <th:block th:each="brand : ${brands}"> <option th:class="${brand.brandName}" value="all-models">Всі моделі</option> </th:block> <option th:each="model : ${models}" th:class="${model.brand.brandName}" th:value="${model.modelName}" th:text="${model.modelName}">Mers </option> <option th:remove="all">Toyota</option> <option th:remove="all">BMW</option> </select> <label>Тип двигуна</label> <select name="engineType"> <option>Всі типи двигуна</option> <option th:each="type : ${T(uniloft.springframework.spring5carshop.model.enums.EngineType).values()}" th:text="${type.description}" th:value="${type}"> </option> <option th:remove="all">PETROL</option> </select> <label>Колір</label> <select id="color" name="colorName"> <option>Всі кольори</option> <option th:each="color : ${colors}" th:value="${color.id}" th:text="${color.colorName}"></option> </select> </div></div><input type="submit" value="Шукати"> </form> </div></div></section> <section class="feature_cars-section"> <div class="wrap"> <div class="feature_cars-section-in"> <h4>Перегляньте свіжі автомобілі</h4> <h2>Обрані авто</h2> <hr class="featurecar-hr1"> <hr class="featurecar-hr2"> <div class="cars-block"> <div th:each="car : ${featuredCars}" class="car"> <div class="car-img-block"> <img class="car-img" src="../static/resources/images/mercedes.jpg" th:src="${car.image}"> </div><div class="extra-car-info"> <div> <i class="fa fa-paint-brush"></i> <p th:text="${car.color.colorName}">Color</p></div><div> <i class="fa fa-cogs"></i> <p th:text="${car.engine.type.description}">Diesel</p></div><div> <i class="fa fa-car"></i> <p th:text="${car.carType.typeName}">Sedan</p></div></div><a th:href="@{'/catalog/car/' + ${car.id}}" th:text="${car.brand.brandName}+ ' ' + ${car.model.modelName}" class="car-title"> Mercedes-Benz</a> <hr class="car-hr1"> <hr class="car-hr2"> <a href="#" th:text=" '₴' + ${car.price}" class="btn-car">$999</a> </div><div class="car"> <div class="car-img-block"> <img class="car-img" src="../static/resources/images/car.jpg" th:src="@{resources/images/car.jpg}"> </div><div class="extra-car-info"> <div> <i class="fa fa-paint-brush"></i> <p>Color</p></div><div> <i class="fa fa-cogs"></i> <p>Diesel</p></div><div> <i class="fa fa-car"></i> <p>Sedan</p></div></div><p class="car-title">Mercedes-Benz</p><hr class="car-hr1"> <hr class="car-hr2"> <a href="#" class="btn-car">$999</a> </div></div></div></div></section> <section class="parallax-window find_car-section" data-parallax="scroll" data-image-src="../static/resources/images/background-car2.jpg" th:data-image-src="@{resources/images/background-car2.jpg}"> <div class="wrap"> <div class="why-section"> <h4>Тому що ми найкреативніше агенство</h4> <h2>Чому ми</h2> <hr id="why-hr1"> <hr id="why-hr2"> <div class="arg-block"> <div class="arg"> <i class="fa fa-car"></i> <h3 class="arg-title">ВСІ БРЕНДИ</h3> <p class="arg-content">У нашому автосалоні ви можете придбати автомобіль будь-якого бренду. Залежно від ваших бажать ми підберемо автомобіль саме під вас.</p></div><div class="arg"> <i class="fa fa-comments"></i> <h3 class="arg-title">БЕЗКОШТОВНА ПІДТРИМКА</h3> <p class="arg-content">У нас діє безкоштовна підтримка клієнтів. Якщо виникли певні проблеми або у вас є запитання - ми раді допомогти.</p></div><div class="arg"> <i class="fa fa-key"></i> <h3 class="arg-title">ДИЛЕРСТВО</h3> <p class="arg-content">Наш автосалон є офіційним дилером всіх автомобільних компаній. Тому ви можете довіритись нам.</p></div><div class="arg"> <i class="fa fa-wallet"></i> <h3 class="arg-title">ДОСТУПНІСТЬ</h3> <p class="arg-content">Ми пропонуємо авто із нижчими цінами, ніж у конкурентів. Наші авто доступні кожному!</p></div><div class="arg"> <i class="fas fa-tools"></i> <h3 class="arg-title">ТЕХНІЧНИЙ СТАН</h3> <p class="arg-content">Автомобілі завжди регулярно перевіряються, і ви можете бути впевнені у тому, що ваш автомобіль справний на 100%.</p></div><div class="arg"> <i class="fas fa-oil-can"></i> <h3 class="arg-title">ЗАМІНА МАСЛА</h3> <p class="arg-content">Заміна масла проводиться в наших автомобілях як під час очікування на свого власника, так і безпосередньо перед першим виїздом.</p></div></div><div id="counter" class="counters-block"> <div class="counter"> <div class="left-side"> </div><div class="counter-info"> <p class="counter-title">АВТОМО У НАЯВНОСТІ</p><div class="counter-in"> <i class="fa fa-car"></i> <p class="counter-numb" th:data-num="${carCount}">0</p></div></div></div><div class="counter"> <div class="left-side"> </div><div class="counter-info"> <p class="counter-title">ВІДГУКИ</p><div class="counter-in"> <i class="fa fa-comments"></i> <p class="counter-numb" data-num="856">0</p></div></div></div><div class="counter"> <div class="left-side"> </div><div class="counter-info"> <p class="counter-title">ЩАСЛИВІ ПОКУПЦІ</p><div class="counter-in"> <i class="fas fa-user-circle"></i> <p class="counter-numb" data-num="789">0</p></div></div></div><div class="counter"> <div class="left-side"> </div><div class="counter-info"> <p class="counter-title">НАГОРОДИ</p><div class="counter-in"> <i class="fas fa-trophy"></i> <p class="counter-numb" data-num="356">0</p></div></div></div></div></div></div></section> <section class="feedback-section"> <div class="wrap"> <div class="feedback-section-in"> <h4>Що про нас говорять наші щасливі клєінти</h4> <h2>Наша характеристика</h2> <hr class="featurecar-hr1"> <hr class="featurecar-hr2"> <div class="feedbacks"> <div class="feedback"> <div class="feedback-img-block"> <img class="feedback-img" th:src="@{resources/images/mazda6.jpg}" src="../static/resources/images/mazda6.jpg"> </div><div class="feedback-info"> <div class="customer-img-block"> <img class="customer-img" th:src="@{resources/images/portrait1.jpg}" src="../static/resources/images/portrait1.jpg"> </div><div class="customer-block"> <p class="customer-name">Антон</p><p class="customer-pos">Клієнт</p><p class="customer-text">Пропонує якість та вишуканість, піднесені на ще вищий рівень. Вирізняється на дорозі завдяки ретельно продуманому, елегантному та витонченому дизайну екстер’єру.</p><i class="fa fa-quote-right"></i> </div></div></div><div class="feedback"> <div class="feedback-img-block"> <img class="feedback-img" th:src="@{resources/images/teramont.jpg}" src="../static/resources/images/teramont.jpg"> </div><div class="feedback-info"> <div class="customer-img-block"> <img class="customer-img" th:src="@{resources/images/portrait2.jpg}" src="../static/resources/images/portrait2.jpg"> </div><div class="customer-block"> <p class="customer-name">Гліб</p><p class="customer-pos">Клієнт</p><p class="customer-text">Справляє незабутнє враження з першого погляду. І у міських джунглях, і вирвавшись з них на бездоріжжя, він всюди виглядає однаково органічно.</p><i class="fa fa-quote-right"></i> </div></div></div><div class="feedback"> <div class="feedback-img-block"> <img class="feedback-img" th:src="@{resources/images/e34.jpg}" src="../static/resources/images/e34.jpg"> </div><div class="feedback-info"> <div class="customer-img-block"> <img class="customer-img" th:src="@{resources/images/favicon.jpg}" src="../static/resources/images/favicon.jpg"> </div><div class="customer-block"> <p class="customer-name">Anton</p><p class="customer-pos">Customer</p><p class="customer-text">Text of the printin a galley of type and bled it to a type specimen book. It has survived not only five centuries make Lorem Ipsum is simply dummy.</p><i class="fa fa-quote-right"></i> </div></div></div></div></div></div></section></main><footer> <section class="parallax-window footer-section" data-parallax="scroll" data-image-src="../static/resources/images/background-car3.jpg" th:data-image-src="@{resources/images/background-car3.jpg}" style="padding-bottom: 1.5em; padding-left: 0; padding-right: 0;"> <div class="wrap"> <div class="footer-section-in"> <div class="footer-top"> <div class="footer-info"> <div class="logo-footer-img-block"> <img class="logo-footer-img" src="../static/resources/images/logo-light.png" th:src="@{resources/images/logo-light.png}"> </div><div class="footer-content"> <p class="footer-text">Пропонуємо найкращі послуги з найкращою якістю і найкращим сервісом!</p></div><div class="contacts"> <div class="footer-contact-in"> <i class="fa fa-map-marker"></i> <p class="footer-contact">вул. Соборна, 18</p></div><div class="footer-contact-in"> <i class="fa fa-phone"></i> <p class="footer-contact">(007) 123 456 7890</p></div><div class="footer-contact-in"> <i class="fa fa-envelope-o"></i> <p class="footer-contact">support@website.com</p></div></div></div><div class="footer-info"> <p class="footer-info-title">Корисні посилання</p><div class="link-block"> <i class="fa fa-angle-double-right"></i> <a href="#" class="footer-link">Заміна масла і фільтрів</a> </div><div class="link-block"> <i class="fa fa-angle-double-right"></i> <a href="#" class="footer-link">Заміна тормозних колодок</a> </div><div class="link-block"> <i class="fa fa-angle-double-right"></i> <a href="#" class="footer-link">Заміна ременя</a> </div><div class="link-block"> <i class="fa fa-angle-double-right"></i> <a href="#" class="footer-link">Перевірка перед придбанням</a> </div><div class="link-block"> <i class="fa fa-angle-double-right"></i> <a href="#" class="footer-link">Заміна стартера</a> </div></div><div class="footer-info"> <p class="footer-info-title">Останні авто</p><div class="recent-cars"> <div class="recent-car" th:each="car : ${recentCars}"> <div class="recent-car-img-block"> <img class="recent-car-img" src="../static/resources/images/mercedes.jpg" th:src="${car.image}"> </div><div class="recent-car-info"> <a th:href="@{'/catalog/car/' + ${car.id}}" class="recent-car-name" th:text="${car.brand.brandName}+ ' ' + ${car.model.modelName}">Mercedes Benz</a> <div> <i class="fa fa-calendar"></i> <p class="recent-car-date" th:text="${currentDate}">12.20.2001</p></div></div></div></div></div><div class="footer-info"> <p class="footer-info-title">Підпишіться на наші новини</p><p class="footer-text">Будьте в курсі останніх новинок і останніх автомобілів. Залиште свою пошту.</p><form class="footer-form"> <input type="email" placeholder="Введіть свою пошту" name="email-sub"> <br><input type="submit" value="Підписатися"> </form> </div></div><div class="footer-bottom"> <div class="footer-q"> <div class="footer-q-side"> <p class="footer-q-title">В пошуках нової автівки?</p><p class="footer-q-text">Детальніше познайомтесь з набором автомобілів нашої компаніїї.</p></div><a href="#" th:href="@{'/catalog'}" class="btn-q">Детальніше</a> </div><div class="footer-q"> <div class="footer-q-side"> <p class="footer-q-title">Бажаєте продати своє авто?</p><p class="footer-q-text">Ми співпрацюємо з компаніями, що забезпечують швидку продажу вашого авто.</p></div><a href="#" th:href="@{'/catalog'}" class="btn-q">Детальніше</a> </div></div></div></div><div class="footer-bottom"> <div class="footer-bottom-in"> <div class="footer-bottom-side"> <p>©Car Dealer Developed by <span style="color: #DB2D2E;">Anton Kulyk</span></p></div><div class="footer-bottom-side"> <ul> <li><a href="#">Політика конфіденційності</a></li><li><a href="#">Правила та умови</a></li><li><a href="#" th:href="@{'/contact'}">Зв'язатись</a></li></ul> </div></div></div></section></footer><script src="../static/resources/js/numbercount.js" th:src="@{resources/js/numbercount.js}"></script><script type="text/javascript" src="../static/resources/js/parallax.js" th:src="@{resources/js/parallax.js}"></script><script src="../static/resources/js/chainedselects.js" type="text/javascript" th:src="@{resources/js/chainedselects.js}"></script><script src="../static/resources/js/slider.js" type="text/javascript" th:src="@{resources/js/slider.js}"></script><script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script><script src="https://kit.fontawesome.com/de94abba4d.js" crossorigin="anonymous"></script></body></html>
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap"
+          rel="stylesheet">
+    <link th:href="@{resources/css/styles.css}"
+          href="../static/resources/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="img/favicon.png" th:href="@{/resources/images/favicon.jpg}" type="img/jpg">
+    <title>UniCar - Автосалон</title>
+</head>
+<body>
+<header>
+    <div class="wrap">
+        <section class="top-bar">
+            <section class="top-bar-section">
+                <div class="top-bar-inner">
+                    <img class="top-bar-icon" src="../static/resources/images/icons/email.png"
+                         th:src="@{resources/images/icons/email.png}">
+                    <p class="top-bar-section-text">uniloftsky@gmail.com</p>
+                </div>
+                <div class="top-bar-inner">
+                    <img class="top-bar-icon" src="../static/resources/images/icons/four-oclock.png"
+                         th:src="@{resources/images/icons/four-oclock.png}">
+                    <p class="top-bar-section-text" th:text="${currentDate}">20.12.2002 02:00 AM</p>
+                </div>
+            </section>
+            <section class="top-bar-section">
+                <div class="top-bar-inner">
+                    <img class="top-bar-icon" src="../static/resources/images/icons/phone-call.png"
+                         th:src="@{resources/images/icons/phone-call.png}">
+                    <p class="top-bar-section-text">(097)127-93-32</p>
+                </div>
+            </section>
+        </section>
+    </div>
+</header>
+<main>
+    <div class="wrap">
+
+        <section class="logo-block">
+            <img class="logo-img" src="../static/resources/images/logo.png" th:src="@{resources/images/logo.png}">
+        </section>
+
+        <nav>
+            <ul>
+                <li><a href="#" th:href="@{/}">Головна</a></li>
+                <li><a th:href="@{/catalog(page=0, size=5)}">Каталог авто</a></li>
+                <li><a href="#" th:href="@{/contact}">Зв'язатися</a></li>
+                <li><a href="#" th:href="@{/about}">Про нас</a></li>
+            </ul>
+        </nav>
+
+    </div>
+    <div class="slider">
+        <div class="slider__wrapper">
+            <div class="slider__item">
+                <div class="slider__item-inner"
+                     style="background: url('resources/images/slider/slider1.jpg') no-repeat; background-position: 50% 90%; background-size: cover">
+                    <div class="wrap">
+                        <div class="slider__item-content-one">
+                            <div>
+                                <p>Сучасні автомобілі</p>
+                                <a class="slider-btn btn-one" href="#">Перейти</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider__item">
+                <div class="slider__item-inner"
+                     style="background: url('resources/images/slider/slider2.jpg') no-repeat; background-position: center; background-size: cover">
+                    <div class="wrap">
+                        <div class="slider__item-content-two">
+                            <div>
+                                <p>Старий чи новий?</p>
+                                <a class="slider-btn" href="#">Перейти</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider__item">
+                <div class="slider__item-inner"
+                     style="background: url('resources/images/slider/slider3.jpg') no-repeat; background-position: 50% 90%; background-size: cover">
+                    <div class="wrap">
+                        <div class="slider__item-content-one">
+                            <p>Спробуй тест-драйв</p>
+                            <a class="slider-btn btn-one" href="#">Перейти</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="slider__control slider__control_left" href="#" role="button"></a>
+        <a class="slider__control slider__control_right slider__control_show" href="#" role="button"></a>
+    </div>
+
+    <div class="wrap">
+        <section class="features-section">
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fa fa-car"></i>
+                </div>
+                <p>Нові машини</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fa fa-tag"></i>
+                </div>
+                <p>Спеціальні пропозиції</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fa fa-wrench"></i>
+                </div>
+                <p>Автосервіс</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fa fa-phone"></i>
+                </div>
+                <p>Швидкий зв'язок</p>
+            </div>
+        </section>
+
+        <section class="intro-section">
+            <div class="intro-img-block">
+                <img class="intro-img" src="../static/resources/images/car.jpg" th:src="@{resources/images/car.jpg}">
+            </div>
+            <div class="intro-content">
+                <h4 class="intro-content-title">Знайди автомобіль мрії</h4>
+                <p class="intro-content-subtitle">Необхідно лише вибрати ваші переваги і знайти</p>
+                <p class="intro-content-main">Наш автосалон пропонує автомобілі різного сорту: сучасні і старі, швидкі і
+                    великі. У нас є можливість спробувати машину у тест-драйв і зрозуміти чи вона вам подобається. Наш
+                    автосалон щільно працює із партнерскими автосервісами. При виникненні певних проблем ви завжди
+                    можете звернутись за гарячою лінією або за допомогою форми на нашому сайті.</p>
+            </div>
+        </section>
+    </div>
+
+    <section class="feature_cars-section">
+        <div class="wrap">
+            <div class="feature_cars-section-in">
+                <h4>Перегляньте свіжі автомобілі</h4>
+                <h2>Обрані авто</h2>
+                <hr class="featurecar-hr1">
+                <hr class="featurecar-hr2">
+
+                <div class="cars-block">
+                    <div th:each="car : ${featuredCars}" class="car">
+                        <div class="car-img-block">
+                            <img class="car-img" src="../static/resources/images/mercedes.jpg"
+                                 th:src="${car.image}">
+                        </div>
+                        <div class="extra-car-info">
+                            <div>
+                                <i class="fa fa-paint-brush"></i>
+                                <p th:text="${car.color.colorName}">Color</p>
+                            </div>
+                            <div>
+                                <i class="fa fa-cogs"></i>
+                                <p th:text="${car.engine.type.description}">Diesel</p>
+                            </div>
+                            <div>
+                                <i class="fa fa-car"></i>
+                                <p th:text="${car.carType.typeName}">Sedan</p>
+                            </div>
+                        </div>
+                        <a th:href="@{'/catalog/car/' + ${car.id}}" th:text="${car.brand.brandName} + ' ' + ${car.model.modelName}" class="car-title">
+                            Mercedes-Benz</a>
+                        <hr class="car-hr1">
+                        <hr class="car-hr2">
+                        <a href="#" th:text=" '₴' + ${car.price}" class="btn-car">$999</a>
+                    </div>
+                    <div class="car">
+                        <div class="car-img-block">
+                            <img class="car-img" src="../static/resources/images/car.jpg"
+                                 th:src="@{resources/images/car.jpg}">
+                        </div>
+                        <div class="extra-car-info">
+                            <div>
+                                <i class="fa fa-paint-brush"></i>
+                                <p>Color</p>
+                            </div>
+                            <div>
+                                <i class="fa fa-cogs"></i>
+                                <p>Diesel</p>
+                            </div>
+                            <div>
+                                <i class="fa fa-car"></i>
+                                <p>Sedan</p>
+                            </div>
+                        </div>
+                        <p class="car-title">Mercedes-Benz</p>
+                        <hr class="car-hr1">
+                        <hr class="car-hr2">
+                        <a href="#" class="btn-car">$999</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="parallax-window find_car-section" data-parallax="scroll"
+             data-image-src="../static/resources/images/background-car2.jpg"
+             th:data-image-src="@{resources/images/background-car2.jpg}">
+        <div class="wrap">
+            <div class="why-section">
+                <h4>Тому що ми найкреативніше агенство</h4>
+                <h2>Чому ми</h2>
+                <hr id="why-hr1">
+                <hr id="why-hr2">
+                <div class="arg-block">
+                    <div class="arg">
+                        <i class="fa fa-car"></i>
+                        <h3 class="arg-title">ВСІ БРЕНДИ</h3>
+                        <p class="arg-content">У нашому автосалоні ви можете придбати автомобіль будь-якого бренду.
+                            Залежно від ваших бажать ми підберемо автомобіль саме під вас.</p>
+                    </div>
+                    <div class="arg">
+                        <i class="fa fa-comments"></i>
+                        <h3 class="arg-title">БЕЗКОШТОВНА ПІДТРИМКА</h3>
+                        <p class="arg-content">У нас діє безкоштовна підтримка клієнтів. Якщо виникли певні проблеми або
+                            у вас є запитання - ми раді допомогти.</p>
+                    </div>
+                    <div class="arg">
+                        <i class="fa fa-key"></i>
+                        <h3 class="arg-title">ДИЛЕРСТВО</h3>
+                        <p class="arg-content">Наш автосалон є офіційним дилером всіх автомобільних компаній. Тому ви
+                            можете довіритись нам.</p>
+                    </div>
+                    <div class="arg">
+                        <i class="fa fa-wallet"></i>
+                        <h3 class="arg-title">ДОСТУПНІСТЬ</h3>
+                        <p class="arg-content">Ми пропонуємо авто із нижчими цінами, ніж у конкурентів. Наші авто
+                            доступні кожному!</p>
+                    </div>
+                    <div class="arg">
+                        <i class="fas fa-tools"></i>
+                        <h3 class="arg-title">ТЕХНІЧНИЙ СТАН</h3>
+                        <p class="arg-content">Автомобілі завжди регулярно перевіряються, і ви можете бути впевнені у
+                            тому, що ваш автомобіль справний на 100%.</p>
+                    </div>
+                    <div class="arg">
+                        <i class="fas fa-oil-can"></i>
+                        <h3 class="arg-title">ЗАМІНА МАСЛА</h3>
+                        <p class="arg-content">Заміна масла проводиться в наших автомобілях як під час очікування на
+                            свого власника, так і безпосередньо перед першим виїздом.</p>
+                    </div>
+                </div>
+                <div id="counter" class="counters-block">
+                    <div class="counter">
+                        <div class="left-side">
+                        </div>
+                        <div class="counter-info">
+                            <p class="counter-title">АВТОМО У НАЯВНОСТІ</p>
+                            <div class="counter-in">
+                                <i class="fa fa-car"></i>
+                                <p class="counter-numb" th:data-num="${carCount}">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="counter">
+                        <div class="left-side">
+                        </div>
+                        <div class="counter-info">
+                            <p class="counter-title">ВІДГУКИ</p>
+                            <div class="counter-in">
+                                <i class="fa fa-comments"></i>
+                                <p class="counter-numb" data-num="856">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="counter">
+                        <div class="left-side">
+                        </div>
+                        <div class="counter-info">
+                            <p class="counter-title">ЩАСЛИВІ ПОКУПЦІ</p>
+                            <div class="counter-in">
+                                <i class="fas fa-user-circle"></i>
+                                <p class="counter-numb" data-num="789">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="counter">
+                        <div class="left-side">
+                        </div>
+                        <div class="counter-info">
+                            <p class="counter-title">НАГОРОДИ</p>
+                            <div class="counter-in">
+                                <i class="fas fa-trophy"></i>
+                                <p class="counter-numb" data-num="356">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feedback-section">
+
+        <div class="wrap">
+            <div class="feedback-section-in">
+                <h4>Що про нас говорять наші щасливі клєінти</h4>
+                <h2>Наша характеристика</h2>
+                <hr class="featurecar-hr1">
+                <hr class="featurecar-hr2">
+                <div class="feedbacks">
+                    <div class="feedback">
+                        <div class="feedback-img-block">
+                            <img class="feedback-img" th:src="@{resources/images/mazda6.jpg}"
+                                 src="../static/resources/images/mazda6.jpg">
+                        </div>
+                        <div class="feedback-info">
+                            <div class="customer-img-block">
+                                <img class="customer-img" th:src="@{resources/images/portrait1.jpg}"
+                                     src="../static/resources/images/portrait1.jpg">
+                            </div>
+                            <div class="customer-block">
+                                <p class="customer-name">Антон</p>
+                                <p class="customer-pos">Клієнт</p>
+                                <p class="customer-text">Пропонує якість та вишуканість, піднесені на ще вищий
+                                    рівень. Вирізняється на дорозі завдяки ретельно продуманому, елегантному та
+                                    витонченому дизайну екстер’єру.</p>
+                                <i class="fa fa-quote-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feedback">
+                        <div class="feedback-img-block">
+                            <img class="feedback-img" th:src="@{resources/images/teramont.jpg}"
+                                 src="../static/resources/images/teramont.jpg">
+                        </div>
+                        <div class="feedback-info">
+                            <div class="customer-img-block">
+                                <img class="customer-img" th:src="@{resources/images/portrait2.jpg}"
+                                     src="../static/resources/images/portrait2.jpg">
+                            </div>
+                            <div class="customer-block">
+                                <p class="customer-name">Гліб</p>
+                                <p class="customer-pos">Клієнт</p>
+                                <p class="customer-text">Справляє незабутнє враження з
+                                    першого погляду. І у міських джунглях, і вирвавшись з них на бездоріжжя, він всюди
+                                    виглядає однаково органічно.</p>
+                                <i class="fa fa-quote-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feedback">
+                        <div class="feedback-img-block">
+                            <img class="feedback-img" th:src="@{resources/images/e34.jpg}"
+                                 src="../static/resources/images/e34.jpg">
+                        </div>
+                        <div class="feedback-info">
+                            <div class="customer-img-block">
+                                <img class="customer-img" th:src="@{resources/images/favicon.jpg}"
+                                     src="../static/resources/images/favicon.jpg">
+                            </div>
+                            <div class="customer-block">
+                                <p class="customer-name">Anton</p>
+                                <p class="customer-pos">Customer</p>
+                                <p class="customer-text">Text of the printin a galley of type and bled it to a type
+                                    specimen book. It has survived not only five centuries make Lorem Ipsum is simply
+                                    dummy.</p>
+                                <i class="fa fa-quote-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+<footer>
+
+    <section class="parallax-window footer-section" data-parallax="scroll"
+             data-image-src="../static/resources/images/background-car3.jpg"
+             th:data-image-src="@{resources/images/background-car3.jpg}"
+             style="padding-bottom: 1.5em; padding-left: 0; padding-right: 0;">
+        <div class="wrap">
+            <div class="footer-section-in">
+                <div class="footer-top">
+                    <div class="footer-info">
+                        <div class="logo-footer-img-block">
+                            <img class="logo-footer-img" src="../static/resources/images/logo-light.png"
+                                 th:src="@{resources/images/logo-light.png}">
+                        </div>
+                        <div class="footer-content">
+                            <p class="footer-text">Пропонуємо найкращі послуги з найкращою якістю і найкращим сервісом!</p>
+                        </div>
+                        <div class="contacts">
+                            <div class="footer-contact-in">
+                                <i class="fa fa-map-marker"></i>
+                                <p class="footer-contact">вул. Соборна, 18</p>
+                            </div>
+                            <div class="footer-contact-in">
+                                <i class="fa fa-phone"></i>
+                                <p class="footer-contact">(007) 123 456 7890</p>
+                            </div>
+                            <div class="footer-contact-in">
+                                <i class="fa fa-envelope-o"></i>
+                                <p class="footer-contact">support@website.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-info">
+                        <p class="footer-info-title">Корисні посилання</p>
+                        <div class="link-block">
+                            <i class="fa fa-angle-double-right"></i>
+                            <a href="#" class="footer-link">Заміна масла і фільтрів</a>
+                        </div>
+                        <div class="link-block">
+                            <i class="fa fa-angle-double-right"></i>
+                            <a href="#" class="footer-link">Заміна тормозних колодок</a>
+                        </div>
+                        <div class="link-block">
+                            <i class="fa fa-angle-double-right"></i>
+                            <a href="#" class="footer-link">Заміна ременя</a>
+                        </div>
+                        <div class="link-block">
+                            <i class="fa fa-angle-double-right"></i>
+                            <a href="#" class="footer-link">Перевірка перед придбанням</a>
+                        </div>
+                        <div class="link-block">
+                            <i class="fa fa-angle-double-right"></i>
+                            <a href="#" class="footer-link">Заміна стартера</a>
+                        </div>
+                    </div>
+                    <div class="footer-info">
+                        <p class="footer-info-title">Останні авто</p>
+                        <div class="recent-cars">
+                            <div class="recent-car" th:each="car : ${recentCars}">
+                                <div class="recent-car-img-block">
+                                    <img class="recent-car-img" src="../static/resources/images/mercedes.jpg"
+                                         th:src="${car.image}">
+                                </div>
+                                <div class="recent-car-info">
+                                    <a th:href="@{'/catalog/car/' + ${car.id}}" class="recent-car-name"
+                                       th:text="${car.brand.brandName} + ' ' + ${car.model.modelName}">Mercedes Benz</a>
+                                    <div>
+                                        <i class="fa fa-calendar"></i>
+                                        <p class="recent-car-date" th:text="${currentDate}">12.20.2001</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-info">
+                        <p class="footer-info-title">Підпишіться на наші новини</p>
+                        <p class="footer-text">Будьте в курсі останніх новинок і останніх автомобілів. Залиште свою пошту.</p>
+                        <form class="footer-form">
+                            <input type="email" placeholder="Введіть свою пошту" name="email-sub">
+                            <br>
+                            <input type="submit" value="Підписатися">
+                        </form>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-q">
+                        <div class="footer-q-side">
+                            <p class="footer-q-title">В пошуках нової автівки?</p>
+                            <p class="footer-q-text">Детальніше познайомтесь з набором автомобілів нашої компаніїї.</p>
+                        </div>
+                        <a href="#" th:href="@{'/catalog'}" class="btn-q">Детальніше</a>
+                    </div>
+                    <div class="footer-q">
+                        <div class="footer-q-side">
+                            <p class="footer-q-title">Бажаєте продати своє авто?</p>
+                            <p class="footer-q-text">Ми співпрацюємо з компаніями, що забезпечують швидку продажу вашого авто.</p>
+                        </div>
+                        <a href="#" th:href="@{'/catalog'}" class="btn-q">Детальніше</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-in">
+                <div class="footer-bottom-side">
+                    <p>©Car Dealer Developed by <span style="color: #DB2D2E;">Anton Kulyk</span></p>
+                </div>
+                <div class="footer-bottom-side">
+                    <ul>
+                        <li><a href="#">Політика конфіденційності</a></li>
+                        <li><a href="#">Правила та умови</a></li>
+                        <li><a href="#" th:href="@{'/contact'}">Зв'язатись</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="../static/resources/js/numbercount.js" th:src="@{resources/js/numbercount.js}"></script>
+<script type="text/javascript" src="../static/resources/js/parallax.js" th:src="@{resources/js/parallax.js}"></script>
+<script src="../static/resources/js/chainedselects.js" type="text/javascript"
+        th:src="@{resources/js/chainedselects.js}"></script>
+<script src="../static/resources/js/slider.js" type="text/javascript" th:src="@{resources/js/slider.js}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://kit.fontawesome.com/de94abba4d.js" crossorigin="anonymous"></script>
+</body>
+</html>

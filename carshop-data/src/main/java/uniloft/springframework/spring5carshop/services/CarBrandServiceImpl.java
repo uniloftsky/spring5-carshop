@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import uniloft.springframework.spring5carshop.comparators.CarBodyAscendingComparatorByName;
 import uniloft.springframework.spring5carshop.comparators.CarBrandAscendingComparatorByName;
 import uniloft.springframework.spring5carshop.comparators.CarModelAscendingComparatorByName;
+import uniloft.springframework.spring5carshop.exceptions.NotFoundException;
 import uniloft.springframework.spring5carshop.model.CarBody;
 import uniloft.springframework.spring5carshop.model.CarBrand;
 import uniloft.springframework.spring5carshop.model.CarModel;
@@ -32,7 +33,7 @@ public class CarBrandServiceImpl implements CarBrandService {
     public CarBrand findCarBrandById(Long id) {
         Optional<CarBrand> brandOptional = carBrandRepository.findById(id);
         if (brandOptional.isEmpty()) {
-            throw new RuntimeException("Expected car brand not found!");
+            throw new NotFoundException("Бренд з ID: " + id + " не знайдено!");
         }
         return brandOptional.get();
     }

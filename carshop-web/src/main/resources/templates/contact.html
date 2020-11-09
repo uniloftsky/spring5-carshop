@@ -109,15 +109,15 @@
             </div>
 
             <div class="contact-form-block">
-                <form class="contact-form">
+                <form class="contact-form" th:action="@{/messageAdd}" method="post">
                     <div class="contact-form-in">
                         <div class="contact-form-inputs">
-                            <input class="contact-form-input" type="text" name="contactName" placeholder="Ім'я*">
-                            <input class="contact-form-input" type="text" name="contactEmail" placeholder="Електронна пошта*">
-                            <input class="contact-form-input" type="text" name="contactPhone" placeholder="Телефон*">
+                            <input class="contact-form-input" type="text" name="name" placeholder="Ім'я*">
+                            <input class="contact-form-input" type="text" name="email" placeholder="Електронна пошта*">
+                            <input class="contact-form-input" type="text" name="phone" placeholder="Телефон*">
                         </div>
                         <div class="contact-form-message">
-                            <textarea placeholder="Коментар*" name="contactMessage"></textarea>
+                            <textarea placeholder="Коментар*" name="comment"></textarea>
                         </div>
                         <input type="submit">
                     </div>

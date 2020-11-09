@@ -5,6 +5,7 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
+import uniloft.springframework.spring5carshop.exceptions.NotFoundException;
 import uniloft.springframework.spring5carshop.model.Car;
 import uniloft.springframework.spring5carshop.model.Customer;
 import uniloft.springframework.spring5carshop.model.TestCar;
@@ -48,7 +49,7 @@ public class TestCarServiceImpl implements TestCarService {
     public TestCar findById(Long id) {
         Optional<TestCar> buyCarOptional = testCarRepository.findById(id);
         if(buyCarOptional.isEmpty()) {
-            throw new RuntimeException("Expected buycar not found!");
+            throw new NotFoundException("Тест-драйв з ID: " + id + " не знайдено!");
         }
         return buyCarOptional.get();
     }
