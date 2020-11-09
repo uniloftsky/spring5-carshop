@@ -33,6 +33,7 @@
 </header>
 <main>
     <div class="wrap">
+        <p th:text="${path}"></p>
 
         <div class="data" th:if="${page=='cars'}">
             <a href="#" th:href="@{/admin(page='newCar')}" class="add-data-btn" style="margin-bottom: 1em;">Додати автомобіль</a>
@@ -40,7 +41,7 @@
                 <div class="car-details-info details-info-admin">
                     <div class="car-details-img-block">
                         <img class="car-details-img" src="../../static/resources/images/e34.jpg"
-                             th:src="${car.image}">
+                             th:src="@{'img/' + ${car.image}}">
                     </div>
                     <div class="car-details-info-in">
                         <div style="margin-bottom: 1em;">

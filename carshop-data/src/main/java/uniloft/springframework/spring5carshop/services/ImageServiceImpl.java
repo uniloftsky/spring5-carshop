@@ -5,14 +5,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import uniloft.springframework.spring5carshop.model.Car;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.UUID;
 
 @Service
 public class ImageServiceImpl implements ImageService {
+
+    private String uploadPath = System.getProperty("user.dir") + "/resources/";
 
     private final CarService carService;
 
@@ -24,29 +24,19 @@ public class ImageServiceImpl implements ImageService {
     @Transactional
     public void saveImageFile(Car car, MultipartFile file) throws IOException {
 
-        String originalFileName = file.getOriginalFilename();
-        String fileName = originalFileName.substring(0, originalFileName.indexOf("."));
-        String typeName = originalFileName.substring(originalFileName.indexOf("."), originalFileName.length());
-        String resultName;
-        File uploadPath = new File("cars");
-        if(!uploadPath.exists())
-        {
-            uploadPath.mkdir();
-        }
-
-        if (!file.isEmpty()) {
-            try {
-                byte[] bytes = file.getBytes();
-                String uuid = UUID.randomUUID().toString();
-                BufferedOutputStream stream =
-                        new BufferedOutputStream(new FileOutputStream(new File(uploadPath + "/"+uuid+"-"+fileName+typeName)));
-                resultName = uploadPath + "/" + uuid+"-"+fileName+typeName;
-                car.setImage(resultName);
-                stream.write(bytes);
-                stream.close();
-            } catch (Exception e) {
-                System.out.println("Error upload");
+        if(file != null) {
+            File uploadDir = new File(uploadPath);
+            if(!uploadDir.exists()) {
+                uploadDir.mkdir();
             }
+
+            String uuidFile = UUID.randomUUID().toString();
+
+            String resultFilename = "cars/" + uuidFile + "-" + file.getOriginalFilename();
+
+            file.transferTo(new File(uploadPath + resultFilename));
+
+            car.setImage(resultFilename);
         }
         carService.save(car);
     }

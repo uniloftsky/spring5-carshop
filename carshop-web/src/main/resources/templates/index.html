@@ -154,7 +154,7 @@
                     <div th:each="car : ${featuredCars}" class="car">
                         <div class="car-img-block">
                             <img class="car-img" src="../static/resources/images/mercedes.jpg"
-                                 th:src="${car.image}">
+                                 th:src="@{'img/' + ${car.image}}">
                         </div>
                         <div class="extra-car-info">
                             <div>
