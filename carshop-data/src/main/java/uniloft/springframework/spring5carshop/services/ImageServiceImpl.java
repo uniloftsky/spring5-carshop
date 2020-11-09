@@ -28,14 +28,19 @@ public class ImageServiceImpl implements ImageService {
         String fileName = originalFileName.substring(0, originalFileName.indexOf("."));
         String typeName = originalFileName.substring(originalFileName.indexOf("."), originalFileName.length());
         String resultName;
+        File uploadPath = new File("cars");
+        if(!uploadPath.exists())
+        {
+            uploadPath.mkdir();
+        }
 
         if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
                 String uuid = UUID.randomUUID().toString();
                 BufferedOutputStream stream =
-                        new BufferedOutputStream(new FileOutputStream(new File("carshop-web/target/classes/static/resources/images/cars/"+uuid+"-"+fileName+typeName)));
-                resultName = "resources/images/cars/" + uuid+"-"+fileName+typeName;
+                        new BufferedOutputStream(new FileOutputStream(new File(uploadPath + "/"+uuid+"-"+fileName+typeName)));
+                resultName = uploadPath + "/" + uuid+"-"+fileName+typeName;
                 car.setImage(resultName);
                 stream.write(bytes);
                 stream.close();
