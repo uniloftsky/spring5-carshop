@@ -28,6 +28,10 @@ public class ImageServiceImpl implements ImageService {
             File uploadDir = new File(uploadPath);
             if(!uploadDir.exists()) {
                 uploadDir.mkdir();
+                File uploadCarsDir = new File("cars");
+                if(!uploadCarsDir.exists()) {
+                    uploadCarsDir.mkdir();
+                }
             }
 
             String uuidFile = UUID.randomUUID().toString();
