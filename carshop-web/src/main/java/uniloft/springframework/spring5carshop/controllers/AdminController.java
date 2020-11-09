@@ -365,11 +365,6 @@ public class AdminController {
         return customers;
     }
 
-    @ModelAttribute("path")
-    public String getPath() {
-        return System.getProperty("user.dir");
-    }
-
     @ModelAttribute("buys")
     public Set<BuyCar> getSortedBuys() {
         Comparator<BuyCar> comparator = new BuyCarAscendingComparatorById();

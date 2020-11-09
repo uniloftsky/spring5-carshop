@@ -33,7 +33,6 @@
 </header>
 <main>
     <div class="wrap">
-        <p th:text="${path}"></p>
 
         <div class="data" th:if="${page=='cars'}">
             <a href="#" th:href="@{/admin(page='newCar')}" class="add-data-btn" style="margin-bottom: 1em;">Додати автомобіль</a>
@@ -142,7 +141,7 @@
 
                 <input type="hidden" th:field="*{image}">
                 <div class="image-change">
-                    <img style="width: 48%; border: 1px solid black;" th:src="${car.image}">
+                    <img style="width: 48%; border: 1px solid black;" th:src="@{'img/' + ${car.image}}">
                     <fieldset>
                         <legend>Зображення</legend>
                         <div>
@@ -236,7 +235,7 @@
                 <input type="hidden" th:field="*{engine.id}">
                 <input type="hidden" th:field="*{image}">
                 <div class="image-change">
-                    <img style="width: 48%; border: 1px solid black;" th:src="${car.image}">
+                    <img style="width: 48%; border: 1px solid black;" th:src="@{'img/' + ${car.image}}">
                     <fieldset>
                         <legend>Зображення</legend>
                         <div>

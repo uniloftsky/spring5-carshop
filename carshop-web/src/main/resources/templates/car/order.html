@@ -92,7 +92,7 @@
             <div class="car-details-info">
                 <div class="car-details-img-block">
                     <img class="car-details-img" src="../../static/resources/images/e34.jpg"
-                         th:src="${'/' + car.image}">
+                         th:src="@{'/img/' + ${car.image}}">
                 </div>
                 <div class="car-details-info-in">
                     <div class="car-details-info-point" style="margin-top: .5em;">
@@ -241,7 +241,7 @@
                             <div class="recent-car" th:each="car : ${recentCars}">
                                 <div class="recent-car-img-block">
                                     <img class="recent-car-img" src="../static/resources/images/mercedes.jpg"
-                                         th:src="'/' + ${car.image}">
+                                         th:src="@{'/img/' + ${car.image}}">
                                 </div>
                                 <div class="recent-car-info">
                                     <p class="recent-car-name"

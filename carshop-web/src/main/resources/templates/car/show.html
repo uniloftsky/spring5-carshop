@@ -95,7 +95,7 @@
                 <div class="car-details-info">
                     <div class="car-details-img-block">
                         <img class="car-details-img" src="../../static/resources/images/e34.jpg"
-                             th:src="${'/' + car.image}">
+                             th:src="@{'/img/' + ${car.image}}">
                         <div class="car-details-btns">
                             <a href="#" th:href="@{'/catalog/car/' + ${car.id} + '/buy'}" class="details-btn buy-btn"><i class="fas fa-shopping-cart"></i><p>Купити</p></a>
                             <a href="#" th:href="@{'/catalog/car/' + ${car.id} + '/test'}" class="details-btn test-btn"><i class="fas fa-tachometer-alt"></i><p>Тест-драйв</p></a>
@@ -179,7 +179,7 @@
                     <div class="recent-vehicles">
                         <div class="recent-vehicle" th:each="recentVehicle : ${recentVehicles}">
                             <div class="recent-vehicle-img-block">
-                                <img class="recent-vehicle-img" th:src="${'/' + recentVehicle.image}">
+                                <img class="recent-vehicle-img" th:src="@{'/img/' + ${recentVehicle.image}}">
                             </div>
                             <div class="recent-vehicle-info">
                                 <a class="recent-vehicle-name" th:href="${recentVehicle.id}"

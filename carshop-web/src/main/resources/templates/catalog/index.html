@@ -208,7 +208,7 @@
                 <div class="catalog" th:if="${not #lists.isEmpty(page)}">
                     <div class="catalog-car" th:each="page : ${page}">
                         <div class="catalog-car-img-block">
-                            <img class="catalog-car-img" th:src="'/' + ${page.image}">
+                            <img class="catalog-car-img" th:src="@{'/img/'+ ${page.image}}">
                         </div>
                         <div class="catalog-car-info">
                             <p class="catalog-car-title"
@@ -305,7 +305,7 @@
                             <div class="recent-car" th:each="car : ${recentCars}">
                                 <div class="recent-car-img-block">
                                     <img class="recent-car-img" src="../static/resources/images/mercedes.jpg"
-                                         th:src="'/' + ${car.image}">
+                                         th:src="@{'/img/' + ${car.image}}">
                                 </div>
                                 <div class="recent-car-info">
                                     <a th:href="@{'/catalog/car/' + ${car.id}}" class="recent-car-name"
