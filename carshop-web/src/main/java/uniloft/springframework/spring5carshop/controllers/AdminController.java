@@ -11,6 +11,7 @@ import uniloft.springframework.spring5carshop.model.*;
 import uniloft.springframework.spring5carshop.services.*;
 
 import javax.validation.Valid;
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -383,7 +384,11 @@ public class AdminController {
     @GetMapping("/createCustomersReport")
     public String createCustomerReport() throws IOException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy-hh-mm-ss");
-        String fileName = "reports/customersReport-" + LocalDateTime.now().format(formatter) + ".xlsx";
+        File uploadPath = new File("reports");
+        if(!uploadPath.exists()) {
+            uploadPath.mkdir();
+        }
+        String fileName = uploadPath + "/customersReport-" + LocalDateTime.now().format(formatter) + ".xlsx";
         customerService.write(fileName);
         return "redirect:/admin?page=cars";
     }
@@ -391,7 +396,11 @@ public class AdminController {
     @GetMapping("/createBuysReport")
     public String createBuysReport() throws IOException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy-hh-mm-ss");
-        String fileName = "reports/buysReport-" + LocalDateTime.now().format(formatter) + ".xlsx";
+        File uploadPath = new File("reports");
+        if(!uploadPath.exists()) {
+            uploadPath.mkdir();
+        }
+        String fileName = uploadPath + "/buysReport-" + LocalDateTime.now().format(formatter) + ".xlsx";
         buyCarService.write(fileName);
         return "redirect:/admin?page=cars";
     }
@@ -399,7 +408,11 @@ public class AdminController {
     @GetMapping("/createTestsReport")
     public String createTestsReport() throws IOException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy-hh-mm-ss");
-        String fileName = "reports/testsReport-" + LocalDateTime.now().format(formatter) + ".xlsx";
+        File uploadPath = new File("reports");
+        if(!uploadPath.exists()) {
+            uploadPath.mkdir();
+        }
+        String fileName = uploadPath + "/testsReport-" + LocalDateTime.now().format(formatter) + ".xlsx";
         testCarService.write(fileName);
         return "redirect:/admin?page=cars";
     }
