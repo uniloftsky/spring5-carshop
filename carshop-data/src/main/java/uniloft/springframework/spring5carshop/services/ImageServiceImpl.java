@@ -28,7 +28,7 @@ public class ImageServiceImpl implements ImageService {
             File uploadDir = new File(uploadPath);
             if(!uploadDir.exists()) {
                 uploadDir.mkdir();
-                File uploadCarsDir = new File("cars");
+                File uploadCarsDir = new File("resources/cars");
                 if(!uploadCarsDir.exists()) {
                     uploadCarsDir.mkdir();
                 }
