@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import uniloft.springframework.spring5carshop.comparators.CarDescendingComparatorById;
 import uniloft.springframework.spring5carshop.model.BuyCar;
 import uniloft.springframework.spring5carshop.model.Car;
@@ -65,7 +66,7 @@ public class CarController {
     }
 
     @PostMapping("catalog/car/{carId}/testCar")
-    public String processTestCarForm(@PathVariable Long carId, @Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult, Model model) {
+    public String processTestCarForm(RedirectAttributes rA, @PathVariable Long carId, @Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult, Model model) {
         Car foundCar = carService.findById(carId);
 
         if (bindingResult.hasErrors()) {
@@ -77,11 +78,12 @@ public class CarController {
         customerService.saveOrUpdate(customer);
         TestCar testCar = new TestCar();
         testCarService.save(testCar, customer, foundCar);
-        return "redirect:/index";
+        rA.addFlashAttribute("success", "Ви успішно записались на тест-драйв!");
+        return "redirect:/catalog/car/" + carId + "/test";
     }
 
     @PostMapping("catalog/car/{carId}/buyCar")
-    public String processBuyCarForm(@PathVariable Long carId, @Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult, Model model) {
+    public String processBuyCarForm(RedirectAttributes rA, @PathVariable Long carId, @Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult, Model model) {
         Car foundCar = carService.findById(carId);
         if (bindingResult.hasErrors()) {
             model.addAttribute("car", foundCar);
@@ -91,7 +93,8 @@ public class CarController {
         customerService.saveOrUpdate(customer);
         BuyCar buyCar = new BuyCar();
         buyCarService.save(buyCar, customer, foundCar);
-        return "redirect:/index";
+        rA.addFlashAttribute("success", "Ви успішно придбали авто!");
+        return "redirect:/catalog/car/" + carId + "/buy";
     }
 
     @ModelAttribute("recentVehicles")

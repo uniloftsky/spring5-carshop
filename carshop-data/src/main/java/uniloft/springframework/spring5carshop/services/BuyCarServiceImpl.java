@@ -41,7 +41,7 @@ public class BuyCarServiceImpl implements BuyCarService {
         buyCar.setCar(car);
         buyCar.setDate(LocalDate.now());
         buyCar.setCount(1);
-        buyCar.setPrice(car.getTestPrice());
+        buyCar.setPrice(car.getPrice());
         return buyCarRepository.save(buyCar);
     }
 
