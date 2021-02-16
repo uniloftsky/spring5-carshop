@@ -25,17 +25,17 @@
         <tag>spring5-carshop-0.0.2</tag>
     </scm>
 
-    <profiles>
-        <profile>
-            <id>sql</id>
-            <properties>
-                <spring.profiles.active>sql</spring.profiles.active>
-            </properties>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-        </profile>
-    </profiles>
+<!--    <profiles>-->
+<!--        <profile>-->
+<!--            <id>sql</id>-->
+<!--            <properties>-->
+<!--                <spring.profiles.active>sql</spring.profiles.active>-->
+<!--            </properties>-->
+<!--            <activation>-->
+<!--                <activeByDefault>false</activeByDefault>-->
+<!--            </activation>-->
+<!--        </profile>-->
+<!--    </profiles>-->
 
     <dependencies>
         <dependency>
