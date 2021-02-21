@@ -35,7 +35,7 @@ public class IndexPageController {
         this.messageService = messageService;
     }
 
-    @RequestMapping({"", "/", "index", "index.html", "home", "home.html"})
+    @GetMapping({"", "/", "index", "index.html", "home", "home.html"})
     public String getIndexPage(Model model) {
         model.addAttribute("carTypes", carTypeService.getCarTypes());
         model.addAttribute("colors", colorService.getColors());
