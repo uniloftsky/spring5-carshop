@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT -jar $PATH_TO_JAR carshop-web/target/carshop-web-0.0.13-SNAPSHOT.jar

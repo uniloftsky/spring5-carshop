@@ -67,17 +67,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>com.heroku.sdk</groupId>
-                <artifactId>heroku-maven-plugin</artifactId>
-                <version>3.0.3</version>
-                <configuration>
-                    <processTypes>
-                        <web>java -Dserver.port=$PORT $JAVA_OPTS -jar target/*.jar</web>
-                    </processTypes>
-                    <appName>sushi</appName>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
                 <configuration>
